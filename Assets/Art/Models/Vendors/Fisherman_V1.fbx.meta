@@ -3,7 +3,17 @@ guid: 045aaac6c00ff5a4ab9bd04e49cfa9ea
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: springtrap1_standardSurface2
+    second: {fileID: 2100000, guid: c0803d5ceb0d9374e9a85546316cbc39, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: standardSurface1
+    second: {fileID: 2100000, guid: b95ea2b40c53a454cadd82324c564163, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

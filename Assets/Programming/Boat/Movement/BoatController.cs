@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Rider.Unity.Editor;
 using UnityEditor.Profiling;
 using UnityEngine;
 

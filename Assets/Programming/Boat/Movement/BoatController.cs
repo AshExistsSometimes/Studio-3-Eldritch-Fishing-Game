@@ -1,21 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Profiling;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 public class BoatController : MonoBehaviour
 {
+    public Camera playerCamera;
     public Transform standingPoint;
     public float walkSpeed = 2f;
     public float runSpeed = 2f;
     public float acceleration = 2f;
     public float decceleration = 2f;
+    public float turnSpeed = 2f;
 
     private float currentSpeed = 0;
     private bool isMounted = false;
 
     private Vector3 verticalVelocity = Vector3.zero;
+
+    public float lookSpeed = 2f;
+    public float lookXlimit = 80f;
+
+    Vector3 moveDirection = Vector3.zero;
+    float rotationX = 0;
 
     private Transform driver;
     private CharacterController characterController;
@@ -36,6 +45,12 @@ public class BoatController : MonoBehaviour
         }
 
         HandleMovement();
+
+        characterController.Move(moveDirection * Time.deltaTime);
+
+        rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
+        rotationX = Mathf.Clamp(rotationX, -lookXlimit, lookXlimit);
+        playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
     }
 
     private void HandleMovement()
@@ -56,7 +71,7 @@ public class BoatController : MonoBehaviour
 
         if (Mathf.Abs(horizontal) > 0.1f)
         {
-            transform.Rotate(Vector3.up * horizontal * 60f * Time.deltaTime);
+            transform.Rotate(Vector3.up * (horizontal * turnSpeed) * 60f * Time.deltaTime);
         }
 
         Vector3 move = transform.forward * currentSpeed + verticalVelocity;

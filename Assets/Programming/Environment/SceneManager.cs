@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,8 +23,13 @@ public class SceneManager : MonoBehaviour
     [Space]
     public Light DirectionalLight;
 
-    [Header("COLOURS")]
+    [Header("Fog")]
     public Gradient FogGradient;
+    public float DayFogDensity = 0.005f;
+    public float DayFogLerpTime = 10f;
+    [Space]
+    public float NightFogDensity = 0.02f;
+    public float NightFogLerpTime = 10f;
 
     [Header("VARIABLES")]
     [Range(0, 24)] 
@@ -42,6 +48,11 @@ public class SceneManager : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent LoadFinished;
+    [Space]
+    public UnityEvent IsDawn;
+    public UnityEvent IsDusk;
+
+
 
     private void Start()
     {
@@ -83,16 +94,22 @@ public class SceneManager : MonoBehaviour
         {
             IsDay = true;
             IsNight = false;
+            RenderSettings.fogDensity = Mathf.Lerp(NightFogDensity, DayFogDensity, DayFogLerpTime);
+            IsDawn.Invoke();
         }
         else if (TimeOfDay < MorningHour)
         {
             IsDay = false;
             IsNight = true;
+            RenderSettings.fogDensity = Mathf.Lerp(DayFogDensity, NightFogDensity, NightFogLerpTime);
+            IsDusk.Invoke();    
         }
         else if (TimeOfDay > EveningHour)
         {
             IsDay = false;
             IsNight = true;
+            RenderSettings.fogDensity = Mathf.Lerp(DayFogDensity, NightFogDensity, NightFogLerpTime);
+            IsDusk.Invoke();
         }
 
     }

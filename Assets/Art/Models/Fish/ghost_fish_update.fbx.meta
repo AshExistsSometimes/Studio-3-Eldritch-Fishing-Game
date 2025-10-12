@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0e22b4d4a2448ad4fb8bd216f40f04c8
+guid: c5119126dc6b9f64abd0482f3a87f0b2
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: fish
-    second: {fileID: 2100000, guid: 3a64b93203d0b2848b56bc226f0c1276, type: 2}
+      name: ghost_fish_inside
+    second: {fileID: 2100000, guid: 17ef4132b0552444db78bbd3a698bdc8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ghost_fish_skin
+    second: {fileID: 2100000, guid: e7ffde2d5abdccb4a9a1ad6ed2b2d604, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

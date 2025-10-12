@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0e22b4d4a2448ad4fb8bd216f40f04c8
+guid: 95f9118c9f2744744bc42c78aa0085c2
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: fish
-    second: {fileID: 2100000, guid: 3a64b93203d0b2848b56bc226f0c1276, type: 2}
+      name: standardSurface2
+    second: {fileID: 2100000, guid: 74cd6f48161915d42a1c2732b1552228, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

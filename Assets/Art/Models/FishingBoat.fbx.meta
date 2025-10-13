@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 359413fc4cc3e7a4a8b085963b850d10
+guid: 1f621aeaf4081d44ebedee88427587ec
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,18 +7,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: standardSurface1
-    second: {fileID: 2100000, guid: 82c38acf06eaa36488789f1404ba9ee8, type: 2}
+      name: Boat_Cabin
+    second: {fileID: 2100000, guid: cbed02c6d850fe34a9a03aaf42b7e95c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: standardSurface3
-    second: {fileID: 2100000, guid: 82c38acf06eaa36488789f1404ba9ee8, type: 2}
+      name: Boat_Exhaust
+    second: {fileID: 2100000, guid: 5fc91410e0e09b94c8248683ec9a0476, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: standardSurface4
-    second: {fileID: 2100000, guid: 17ef4132b0552444db78bbd3a698bdc8, type: 2}
+      name: Boat_Hull
+    second: {fileID: 2100000, guid: 060d75faa92739b48bfc735d0e52be2e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Boat_PitCover
+    second: {fileID: 2100000, guid: 7ef7f9d22f01b5f4186b367ee5e464c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Boat_Radar
+    second: {fileID: 2100000, guid: 2059361bdc5a28d4d8acb2592dae8ba4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

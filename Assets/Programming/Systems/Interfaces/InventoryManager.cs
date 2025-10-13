@@ -28,13 +28,13 @@ public class InventoryManager : MonoBehaviour
             menuActivated = true;
         }
     }
-    public void addItem(string itemName, int itemIndex, Sprite itemSprite)
+    public void addItem(string itemName, int itemIndex, Image itemSprite)
     {
         for (int i = 0; i < inventorySlot.Length; i++)
         {
             if (inventorySlot[i].isFull == false)
             {
-                inventorySlot[i].addItem(itemName, i, itemSprite);
+                inventorySlot[i].addItem(itemName, i);
                 return;
             }
         }

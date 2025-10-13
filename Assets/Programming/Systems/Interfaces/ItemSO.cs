@@ -6,6 +6,9 @@ public class ItemSO : ScriptableObject
 {
     public string itemName;
     public Image itemImage;
+    public bool canBeSold;
+    public int priceToBuy;
+    public int sellValue;
     public StatToChange statToChange = new StatToChange();
     public int StatChangeAmount;
 

@@ -9,6 +9,10 @@ public class ItemSO : ScriptableObject
     public bool canBeSold;
     public int priceToBuy;
     public int sellValue;
+    public bool isAFish;
+
+    public GameObject ModelPrefab;
+
     public StatToChange statToChange = new StatToChange();
     public int StatChangeAmount;
 

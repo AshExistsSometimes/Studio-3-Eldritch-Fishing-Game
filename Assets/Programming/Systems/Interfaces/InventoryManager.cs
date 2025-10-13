@@ -7,6 +7,8 @@ public class InventoryManager : MonoBehaviour
     private bool menuActivated;
     public GameObject InventoryMenu;
 
+    public ItemSO[] ItemSOs;
+
     void Start()
     {
         
@@ -15,12 +17,12 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I) && menuActivated)
+        if (Input.GetKeyDown(KeyCode.Tab) && menuActivated)
         {
             InventoryMenu.SetActive(false);
             menuActivated = false;
         }
-        else if (Input.GetKeyDown(KeyCode.I) && !menuActivated)
+        else if (Input.GetKeyDown(KeyCode.Tab) && !menuActivated)
         {
             InventoryMenu.SetActive(true);
             menuActivated = true;
@@ -33,6 +35,18 @@ public class InventoryManager : MonoBehaviour
             if (inventorySlot[i].isFull == false)
             {
                 inventorySlot[i].addItem(itemName, i, itemSprite);
+                return;
+            }
+        }
+    }
+
+    public void sellItem(string itemName, int itemIndex, Sprite itemSprite)
+    {
+        for (int i = 0; i < ItemSOs.Length; i++)
+        {
+            if (ItemSOs[i].itemName == itemName)
+            {
+                ItemSOs[i].SellItem();
                 return;
             }
         }

@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 [ExecuteAlways]
 public class SceneManager : MonoBehaviour
@@ -12,8 +12,8 @@ public class SceneManager : MonoBehaviour
     [SerializeField] private float MinutesPerDay;
 
     public bool pauseDaylightCycle = false;
-    [SerializeField] private bool IsDay;
-    [SerializeField] private bool IsNight;
+    public bool IsDay;
+    public bool IsNight;
     [Space]
     public bool isLoading = true;
 
@@ -22,6 +22,7 @@ public class SceneManager : MonoBehaviour
     //public GameObject soundManager;
     [Space]
     public Light DirectionalLight;
+    public TMP_Text CalenderText;
 
     [Header("Fog")]
     public Gradient FogGradient;
@@ -32,6 +33,8 @@ public class SceneManager : MonoBehaviour
     public float NightFogLerpTime = 10f;
 
     [Header("VARIABLES")]
+    public int DayTracker = 0;
+    private bool DayTickedOver = false;
     [Range(0, 24)] 
     public float TimeOfDay = 0f;
     [Range(0, 24)]
@@ -67,6 +70,8 @@ public class SceneManager : MonoBehaviour
     }
     private void Update()
     {
+
+
         if (Application.isPlaying)
         {
             if (!pauseDaylightCycle)
@@ -94,6 +99,12 @@ public class SceneManager : MonoBehaviour
         {
             IsDay = true;
             IsNight = false;
+            if (!DayTickedOver)
+            {
+                DayTickedOver = true;
+                DayTracker += 1;
+                CalenderText.text = DayTracker.ToString();
+            }
             RenderSettings.fogDensity = Mathf.Lerp(NightFogDensity, DayFogDensity, DayFogLerpTime);
             IsDawn.Invoke();
         }
@@ -101,6 +112,10 @@ public class SceneManager : MonoBehaviour
         {
             IsDay = false;
             IsNight = true;
+            if (DayTickedOver)
+            {
+                DayTickedOver = false;
+            }
             RenderSettings.fogDensity = Mathf.Lerp(DayFogDensity, NightFogDensity, NightFogLerpTime);
             IsDusk.Invoke();    
         }
@@ -108,6 +123,10 @@ public class SceneManager : MonoBehaviour
         {
             IsDay = false;
             IsNight = true;
+            if (DayTickedOver)
+            {
+                DayTickedOver = false;
+            }
             RenderSettings.fogDensity = Mathf.Lerp(DayFogDensity, NightFogDensity, NightFogLerpTime);
             IsDusk.Invoke();
         }
@@ -115,10 +134,16 @@ public class SceneManager : MonoBehaviour
     }
     private void UpdateLighting(float timePercent)
     {
-        if(DirectionalLight != null)
+        if (DirectionalLight != null)
         {
             DirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 120f, -100f));//84
         }
+    }
+
+    public void LockNightTime()
+    {
+        TimeOfDay = 0;
+        pauseDaylightCycle = true;
     }
 
 

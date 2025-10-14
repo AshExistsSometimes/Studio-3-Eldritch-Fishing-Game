@@ -1,14 +1,19 @@
 using UnityEngine;
 
 ////////////////////////////////////////////////////////////////////
-public class DialogueableEntity : MonoBehaviour
+public class DialogueableEntity : Interactable
 {
     //Parameters 
     public string characterName;
-    public Dialogue dialogue;
+public Dialogue dialogue;
 
-    ////////////////////////////////////////////////////////////////////
-    public void InitiateDialogue()
+    public override void OnInteract()
+    {
+            InitiateDialogue();
+    }
+
+////////////////////////////////////////////////////////////////////
+public void InitiateDialogue()
     {
         DialogueManager.instance.StartDialogue(characterName, dialogue.rootNode);
     }
@@ -17,9 +22,9 @@ public class DialogueableEntity : MonoBehaviour
     //For testing only
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-            InitiateDialogue();
+            DialogueManager.instance.DisableDialogueUI();
         }
     }
 

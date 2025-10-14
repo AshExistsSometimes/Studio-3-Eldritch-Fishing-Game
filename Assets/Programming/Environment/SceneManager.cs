@@ -70,10 +70,6 @@ public class SceneManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Minus))
-        {
-            LockNightTime();
-        }
 
 
         if (Application.isPlaying)

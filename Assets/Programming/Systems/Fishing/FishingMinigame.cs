@@ -96,6 +96,9 @@ public class FishingMinigame : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (sceneManager == null)
+            sceneManager = FindObjectOfType<SceneManager>();
     }
 
     void Start()
@@ -266,6 +269,7 @@ public class FishingMinigame : MonoBehaviour
             validFish.Add(entry.fish);
         }
 
+        Debug.Log($"[FishingMinigame] Selected rarity: {chosenRarity}, Weirdness: {sceneManager.Weirdness}, Pool size: {activePool.Count}");
         if (validFish.Count > 0)
         {
             selectedFish = validFish[Random.Range(0, validFish.Count)];
@@ -277,7 +281,10 @@ public class FishingMinigame : MonoBehaviour
             foreach (var entry in activePool)
             {
                 if (!entry.locked && sceneManager.Weirdness >= entry.fish.weirdnessLevel)
+                {
+                    Debug.Log($"Checking {entry.fish.fishName}: Rarity={entry.rarity}, Locked={entry.locked}, WeirdnessReq={entry.fish.weirdnessLevel}");
                     validFish.Add(entry.fish);
+                }
             }
             if (validFish.Count > 0)
                 selectedFish = validFish[Random.Range(0, validFish.Count)];

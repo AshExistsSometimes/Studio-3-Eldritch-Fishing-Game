@@ -3738,8 +3738,6 @@ MonoBehaviour:
   DefaultSpeed: 0.2
   DefaultPersistance: 3
   DefaultStrength: 0.5
-  selectedFish: {fileID: 0}
-  selectedFishSize: 1
   FishDifficulty: 1
   FishSpeed: 1
   FishPersistance: 1
@@ -3770,33 +3768,12 @@ MonoBehaviour:
   - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
     rarity: 0
     locked: 0
-  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
-    rarity: 1
-    locked: 0
-  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
-    rarity: 2
-    locked: 0
-  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
-    rarity: 3
-    locked: 0
-  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
-    rarity: 4
-    locked: 0
   NightFishPool:
-  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
+  - fish: {fileID: 11400000, guid: 780bdcd45fe4d5f4a8aa5a06cff862bf, type: 2}
     rarity: 0
     locked: 0
-  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
+  - fish: {fileID: 11400000, guid: ea98139342ec7d9479e395c49b61cb08, type: 2}
     rarity: 1
-    locked: 0
-  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
-    rarity: 2
-    locked: 0
-  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
-    rarity: 3
-    locked: 0
-  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
-    rarity: 4
     locked: 0
 --- !u!1001 &1478366376
 PrefabInstance:

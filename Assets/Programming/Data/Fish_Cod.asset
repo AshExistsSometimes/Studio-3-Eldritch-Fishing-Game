@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7215d5746a512cb43b4eda19b923af1b, type: 3}
-  m_Name: Fish
+  m_Name: Fish_Cod
   m_EditorClassIdentifier: 
-  fishName: FIsh
-  fishDescription: Fish
-  fishPrefab: {fileID: 0}
-  weirdnessLevel: 1
+  fishName: Cod
+  fishDescription: Basic Fish
+  fishPrefab: {fileID: 6198985449559989928, guid: f57d44ae525138c4fabe8e7de15766a8, type: 3}
+  weirdnessLevel: 0
   difficulty: 1
   persistence: 1
   agility: 1
-  sizeVariance: {x: 1, y: 1}
-  WeirdnessPenalty: 1
+  sizeVariance: {x: 1, y: 2}
+  WeirdnessPenalty: 0
   BaseSellValue: 1

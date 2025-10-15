@@ -1,10 +1,8 @@
-using NUnit.Framework;
-using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
-using System.Collections;
 
 ////////////////////////////////////////////////////////////////////
 public class BuySellSystem : MonoBehaviour
@@ -63,20 +61,8 @@ public class BuySellSystem : MonoBehaviour
     {
         if (true) //Player has enough money
         {
-            bool inventoryFull = true;
-            int indexOfEmptySlot = 0;
-
-            foreach (InventorySlot inventorySlot in inventoryManager.inventorySlot)
+            if (InventoryManager.instance.AttemptToAddItemToInventory(itemToBuy))
             {
-                if (!inventorySlot.isFull)
-                {
-                    inventoryFull = false;
-                    indexOfEmptySlot = inventorySlot.itemIndex;
-                }
-            }
-            if (!inventoryFull) 
-            {
-                inventoryManager.inventorySlot[indexOfEmptySlot].item = itemToBuy;
                 buyableItems.Remove(itemToBuy);
             }
             else
@@ -99,15 +85,10 @@ public class BuySellSystem : MonoBehaviour
     }
 
     ////////////////////////////////////////////////////////////////////
-    private void SellItemToMerchant(ItemSO itemToBuy)
+    private void SellItemToMerchant(ItemSO itemToSell)
     {
-        foreach (InventorySlot inventorySlot in inventoryManager.inventorySlot)
-        {
-            if (inventorySlot.item == itemToBuy)
-            {
-                inventorySlot.item = null;
-            }
-        }
+        InventoryManager.instance.AttemptToRemoveItemFromInventory(itemToSell);
+
         //Add gold to player 
 
         UpdateItemsForSaleUI();
@@ -124,17 +105,12 @@ public class BuySellSystem : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        foreach (InventorySlot inventorySlot in inventoryManager.inventorySlot)
+        foreach (ItemSO item in InventoryManager.instance.inventory)
         {
-            if (inventorySlot.item != null)
-            {
-                ItemSO item = inventorySlot.item;
-
-                GameObject buttonObj = Instantiate(playerItemButtonPrefab, playerItemButtonsParent);
-                buttonObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = item.itemName;
-                buttonObj.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Price " + item.sellValue.ToString();
-                buttonObj.GetComponent<Button>().onClick.AddListener(() => SellItemToMerchant(item));
-            }
+            GameObject buttonObj = Instantiate(playerItemButtonPrefab, playerItemButtonsParent);
+            buttonObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = item.itemName;
+            buttonObj.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Price " + item.sellValue.ToString();
+            buttonObj.GetComponent<Button>().onClick.AddListener(() => SellItemToMerchant(item));
         }
         foreach (ItemSO item in buyableItems)
         {
@@ -156,7 +132,7 @@ public class BuySellSystem : MonoBehaviour
         else if (stateToSwapTo == State.Selling)
         {
             buyingUI.SetActive(false);
-            sellingUI.SetActive(true); 
+            sellingUI.SetActive(true);
         }
     }
 
@@ -164,7 +140,7 @@ public class BuySellSystem : MonoBehaviour
     private void ToggleUIVisibility(bool stateToToggleTo)
     {
         UpdateItemsForSaleUI();
-        buySellUI.SetActive(stateToToggleTo);   
+        buySellUI.SetActive(stateToToggleTo);
     }
 
     ////////////////////////////////////////////////////////////////////

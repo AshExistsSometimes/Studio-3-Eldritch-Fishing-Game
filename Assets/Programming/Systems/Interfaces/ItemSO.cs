@@ -1,32 +1,28 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "Item", menuName = "Item/Item")]
+////////////////////////////////////////////////////////////////////
 public class ItemSO : ScriptableObject
 {
+    [Header("Item Data")]
     public string itemName;
-    public Image itemImage;
-    public bool canBeSold;
+    public Sprite image;
+    public GameObject prefab;
     public int priceToBuy;
     public int sellValue;
-    public bool isAFish;
+    public string itemDescription;
 
-    public GameObject ModelPrefab;
+    [Header("Parameters")]
+    public bool isUsable;
+    public bool isSellable;
+    public bool isDroppable;
 
-    public StatToChange statToChange = new StatToChange();
-    public int StatChangeAmount;
+    [Header("If the item is a fish")]
+    public bool isFish;
+    public FishSO fishSO;
+    public float fishSize;
 
-    public void SellItem()
-    {
-        if (statToChange == StatToChange.worth)
-        {
-
-        }
-    }
-
-    public enum StatToChange
-    {
-        none,
-        worth
-    }
 }
+
+////////////////////////////////////////////////////////////////////

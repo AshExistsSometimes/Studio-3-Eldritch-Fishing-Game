@@ -82,9 +82,9 @@ public class StressBar : MonoBehaviour
             int randomIndex = Random.Range(0, rewardItems.Count);
             ItemSO randomItem = rewardItems[randomIndex];
 
-            if (randomItem != null && randomItem.ModelPrefab != null)
+            if (randomItem != null && randomItem.prefab != null)
             {
-                Instantiate(randomItem.ModelPrefab, spawnPoint.position, Quaternion.identity);
+                Instantiate(randomItem.prefab, spawnPoint.position, Quaternion.identity);
             }
         }
     }

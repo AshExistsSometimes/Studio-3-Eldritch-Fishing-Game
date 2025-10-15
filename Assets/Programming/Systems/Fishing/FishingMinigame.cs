@@ -44,6 +44,9 @@ public class FishingMinigame : MonoBehaviour
 
     public float ReductionSpeed = 0.33f;
     public float RodBoostAmnt = 0.5f;
+    private float boostVelocity = 0f;
+    public float BoostSmoothTime = 0.15f; // How long the boost takes to fade
+    public float MaxBoostVelocity = 1.5f; // Limits rapid spam speed stacking
 
     [Header("DEBUG")]
     public bool InTarget = false;
@@ -63,10 +66,12 @@ public class FishingMinigame : MonoBehaviour
     {
         ProgressSlider.value = FishProgress;
 
-        if (Input.GetKeyDown(KeyCode.Minus))
+        if (Input.GetKeyDown(KeyCode.Minus))// DEBUG MINIGAME STARTER
         {
+            MinigameUI.SetActive(true);
             InitializeMinigame();
         }
+
         if (MinigameCanClose && Input.anyKeyDown)
         {
             CloseMinigame();
@@ -84,14 +89,26 @@ public class FishingMinigame : MonoBehaviour
         cursor.rectTransform.localPosition = new Vector3((cursorPoint * width) - (width / 2f), 0, 0);
 
 
+        if (isFishing)
+        {
+            cursorPoint -= Time.deltaTime * ReductionSpeed;
+            if (boostVelocity > 0f)
+            {
+                cursorPoint += boostVelocity * Time.deltaTime * (1f / BoostSmoothTime);
+                boostVelocity = Mathf.MoveTowards(boostVelocity, 0f, Time.deltaTime * (RodBoostAmnt / BoostSmoothTime));
+            }
+        }
 
-        cursorPoint -= Time.deltaTime * ReductionSpeed;
+        
+
 
         Debug.Log(WithinBounds());
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && isFishing)// REPLACE WHEN INPUT MANAGER ADDED
         {
-            cursorPoint += RodBoostAmnt;// TODO - MAKE SMOOTHER
+            // Add smooth boost
+            boostVelocity += RodBoostAmnt;
+            boostVelocity = Mathf.Clamp(boostVelocity, 0f, MaxBoostVelocity);
         }
 
         if (cursorPoint <= 0)
@@ -191,11 +208,12 @@ public class FishingMinigame : MonoBehaviour
 
     public void InitializeMinigame()
     {
+        MinigameCanClose = false;
+        MinigameUI.SetActive(true);
         ResultText.gameObject.SetActive(false);
         InitializeStats();
         FishProgress = 5f;
         TargetCentre = 0.5f;
-        MinigameUI.SetActive(true);
         player.canMove = false;
         isFishing = true;
         MinigameOpen = true;

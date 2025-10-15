@@ -3752,7 +3752,9 @@ MonoBehaviour:
   TargetCentre: 0.5
   cursorPoint: 0.5
   ReductionSpeed: 0.33
-  RodBoostAmnt: 0.1
+  RodBoostAmnt: 0.25
+  BoostSmoothTime: 0.15
+  MaxBoostVelocity: 1.5
   InTarget: 0
   MovingRight: 1
 --- !u!1001 &1478366376

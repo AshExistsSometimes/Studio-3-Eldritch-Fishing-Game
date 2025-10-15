@@ -1843,6 +1843,7 @@ MonoBehaviour:
   DayFogLerpTime: 10
   NightFogDensity: 0.02
   NightFogLerpTime: 10
+  Weirdness: 0
   DayTracker: 0
   TimeOfDay: 0
   TimeOfDayAtStart: 14
@@ -3737,6 +3738,8 @@ MonoBehaviour:
   DefaultSpeed: 0.2
   DefaultPersistance: 3
   DefaultStrength: 0.5
+  selectedFish: {fileID: 0}
+  selectedFishSize: 1
   FishDifficulty: 1
   FishSpeed: 1
   FishPersistance: 1
@@ -3748,6 +3751,7 @@ MonoBehaviour:
   ProgressSlider: {fileID: 1859263583}
   ResultText: {fileID: 1852573408}
   player: {fileID: 153445041}
+  FishDropPoint: {fileID: 1907372831}
   TargetSize: 0.2
   TargetCentre: 0.5
   cursorPoint: 0.5
@@ -3757,6 +3761,43 @@ MonoBehaviour:
   MaxBoostVelocity: 1.5
   InTarget: 0
   MovingRight: 1
+  sceneManager: {fileID: 836458879}
+  CommonThreshold: 0.5
+  UncommonThreshold: 0.75
+  OddThreshold: 0.9
+  WeirdThreshold: 0.98
+  DayFishPool:
+  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
+    rarity: 0
+    locked: 0
+  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
+    rarity: 1
+    locked: 0
+  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
+    rarity: 2
+    locked: 0
+  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
+    rarity: 3
+    locked: 0
+  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
+    rarity: 4
+    locked: 0
+  NightFishPool:
+  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
+    rarity: 0
+    locked: 0
+  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
+    rarity: 1
+    locked: 0
+  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
+    rarity: 2
+    locked: 0
+  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
+    rarity: 3
+    locked: 0
+  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
+    rarity: 4
+    locked: 0
 --- !u!1001 &1478366376
 PrefabInstance:
   m_ObjectHideFlags: 0

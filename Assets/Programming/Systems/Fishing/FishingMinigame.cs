@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -114,7 +115,7 @@ public class FishingMinigame : MonoBehaviour
     {
         ProgressSlider.value = FishProgress;
 
-        if (Input.GetKeyDown(KeyCode.Minus))// DEBUG MINIGAME STARTER
+        if (Input.GetKeyDown(InputManager.GetKeyCode("DebugFishing")))
         {
             MinigameUI.SetActive(true);
             InitializeMinigame();
@@ -142,7 +143,7 @@ public class FishingMinigame : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && isFishing)// REPLACE WHEN INPUT MANAGER ADDED
+        if (Input.GetKeyDown(InputManager.GetKeyCode("Reel")) && isFishing)
         {
             boostVelocity += RodBoostAmnt;
             boostVelocity = Mathf.Clamp(boostVelocity, 0f, MaxBoostVelocity);

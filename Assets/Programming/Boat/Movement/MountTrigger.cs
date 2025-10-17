@@ -5,7 +5,6 @@ using UnityEngine;
 public class MountTrigger : MonoBehaviour
 {
     public BoatController boat;
-    public KeyCode mountKey = KeyCode.E;
 
     public Transform playerBody;
 
@@ -14,7 +13,7 @@ public class MountTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(mountKey) & canMount)
+        if (Input.GetKeyDown(InputManager.GetKeyCode("Interact")) & canMount)// Please put this in a function so that it can be called by OnInteract, so we can have the player interact with a steering wheel to start sailing
         {
             if (!isMounted && boat != null)
             {

@@ -50,7 +50,7 @@ public class BuySellSystem : MonoBehaviour
     private void Update()
     {
         ToggleUIToShow(currentState);
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(InputManager.GetKeyCode("OpenInventory")))// PLEASE ENSURE IT CLOSES WITH THE "CloseMenu" KEYBIND TOO
         {
             ToggleUIVisibility(true);
         }

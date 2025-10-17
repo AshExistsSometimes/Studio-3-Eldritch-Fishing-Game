@@ -9,9 +9,6 @@ public class Interactor : MonoBehaviour
     [Tooltip("Maximum distance for interaction ray.")]
     public float InteractRange = 3f;
 
-    [Tooltip("Key used to interact with objects.")]
-    public KeyCode InteractKey = KeyCode.E;
-
     private IInteractable currentTarget;
 
     private void Update()
@@ -20,9 +17,7 @@ public class Interactor : MonoBehaviour
         HandleInteractionInput();
     }
 
-    /// <summary>
-    /// Performs a raycast each frame to find potential interactable objects.
-    /// </summary>
+    // Performs a raycast each frame to find interactable objects.
     private void HandleRaycast()
     {
         if (RayOrigin == null)
@@ -49,20 +44,16 @@ public class Interactor : MonoBehaviour
         ClearCurrentTarget();
     }
 
-    /// <summary>
-    /// Handles pressing the interact key when looking at an interactable.
-    /// </summary>
+    // Handles pressing the interact key when looking at an interactable.
     private void HandleInteractionInput()
     {
-        if (currentTarget != null && Input.GetKeyDown(InteractKey))
+        if (currentTarget != null && Input.GetKeyDown(InputManager.GetKeyCode("Interact")))
         {
             currentTarget.OnInteract();
         }
     }
 
-    /// <summary>
-    /// Clears the current interact target when no longer looking at it.
-    /// </summary>
+    // Clears the current interact target when no longer looking at it.
     private void ClearCurrentTarget()
     {
         if (currentTarget != null)

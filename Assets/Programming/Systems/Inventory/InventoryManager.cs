@@ -31,10 +31,20 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager instance { get; private set; }
 
 
+    //Item struct
+    public struct Item
+    {
+        public ItemSO originalSO;
+        public GameObject prefab;
+        public int priceToBuy;
+        public int sellValue;
 
-    [Header("Yet to be sorted")]
-    public List<ItemSO> inventory;
-    private int indexOfHighlightedItem;
+        public FishSO fishSO;
+        public float fishSize;
+    }
+
+    [Header("Inventory")]
+    public List<Item> inventory;
 
     //State the inventory is currently in
     private enum States
@@ -44,6 +54,8 @@ public class InventoryManager : MonoBehaviour
     }
     private States currentState;
 
+    //Variables
+    private int indexOfHighlightedItem;
 
     //WIP
     public bool mouseHoveringOverSomething;
@@ -106,7 +118,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     ////////////////////////////////////////////////////////////////////
-    public bool AttemptToAddItemToInventory(ItemSO itemToAdd)
+    public bool AttemptToAddItemToInventory(Item itemToAdd)
     {
         if (!CheckForInventoryFull())
         {
@@ -117,24 +129,21 @@ public class InventoryManager : MonoBehaviour
     }
 
     ////////////////////////////////////////////////////////////////////
-    public ItemSO GetItemFromInventory(int itemToGetIndex)
+    public bool CheckIfItemInIndex(int indexToCheck)
     {
-        if (inventory.Count > itemToGetIndex)
+        if (inventory.Count > indexToCheck)
         {
-            return inventory[itemToGetIndex];
+            return true;
         }
-        return null;
+        return false;
     }
 
     ////////////////////////////////////////////////////////////////////
-    public bool AttemptToRemoveItemFromInventory(ItemSO itemToRemove)
+    public bool AttemptToRemoveItemFromInventory(Item itemToRemove)
     {
         if (inventory.Contains(itemToRemove))
         {
-            if (inventory[indexOfHighlightedItem] == itemToRemove)
-            {
-                indexOfHighlightedItem = 0;
-            }
+            indexOfHighlightedItem = 0;
             inventory.Remove(itemToRemove);
             return true;
         }
@@ -161,7 +170,7 @@ public class InventoryManager : MonoBehaviour
             GameObject iSlot = Instantiate(inventorySlot, inventorySlotsParent.transform);
             if (inventory.Count > i)
             {
-                iSlot.GetComponent<Image>().sprite = inventory[i].image;
+                iSlot.GetComponent<Image>().sprite = inventory[i].originalSO.image;
             }
             else
             {
@@ -186,7 +195,7 @@ public class InventoryManager : MonoBehaviour
 
             if (inventory.Count > i)
             {
-                iSlot.GetComponent<Image>().sprite = inventory[i].image;
+                iSlot.GetComponent<Image>().sprite = inventory[i].originalSO.image;
             }
             else
             {
@@ -218,11 +227,11 @@ public class InventoryManager : MonoBehaviour
     }
 
     ////////////////////////////////////////////////////////////////////
-    private void UpdateItemInfoUI(ItemSO itemToGetInfoFrom)
+    private void UpdateItemInfoUI(Item itemToGetInfoFrom)
     {
-        itemNameText.text = "Name: " + itemToGetInfoFrom.itemName;
-        itemDescText.text = itemToGetInfoFrom.itemDescription;
-        if (itemToGetInfoFrom.isFish)
+        itemNameText.text = "Name: " + itemToGetInfoFrom.originalSO.itemName;
+        itemDescText.text = itemToGetInfoFrom.originalSO.itemDescription;
+        if (itemToGetInfoFrom.originalSO.isFish)
         {
             itemSizeText.text = "Size: " + itemToGetInfoFrom.fishSize;
         }
@@ -230,7 +239,7 @@ public class InventoryManager : MonoBehaviour
         {
             itemSizeText.text = "";
         }
-        if (itemToGetInfoFrom.isSellable)
+        if (itemToGetInfoFrom.originalSO.isSellable)
         {
             itemValueText.text = "Value: " + itemToGetInfoFrom.sellValue;
         }
@@ -260,10 +269,34 @@ public class InventoryManager : MonoBehaviour
             itemInfoParent.SetActive(false);
         }
 
-        ////////////////////////////////////////////////////////////////////
     }
-}
 
+    ////////////////////////////////////////////////////////////////////
+    public Item ConvertItemSO(ItemSO itemSOToConvert, float fishSize, int sellValue)
+    {
+        //Assigns variables from ItemSO
+        Item convertedItem = new Item();
+        convertedItem.originalSO = itemSOToConvert;
+        convertedItem.prefab = itemSOToConvert.prefab;
+        convertedItem.priceToBuy = itemSOToConvert.priceToBuy;
+
+        //Assigns fish relevant variables if applicable 
+        if (convertedItem.originalSO.isFish)
+        {
+            convertedItem.fishSO = itemSOToConvert.fishSO;
+            convertedItem.fishSize = fishSize;
+            convertedItem.sellValue = sellValue;
+        }
+        else
+        {
+            convertedItem.sellValue = convertedItem.originalSO.baseSellValue;
+        }
+
+        return convertedItem;
+    }
+
+    ////////////////////////////////////////////////////////////////////
+}
 ////////////////////////////////////////////////////////////////////
 
 

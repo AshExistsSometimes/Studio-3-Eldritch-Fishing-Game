@@ -38,7 +38,7 @@ public class BuySellSystem : MonoBehaviour
     private State currentState;
 
     //List of avail items to buy
-    public List<ItemSO> buyableItems;
+    public List<InventoryManager.Item> buyableItems;
 
     ////////////////////////////////////////////////////////////////////
     private void Awake()
@@ -57,7 +57,7 @@ public class BuySellSystem : MonoBehaviour
     }
 
     ////////////////////////////////////////////////////////////////////
-    private void BuyItemFromMerchant(ItemSO itemToBuy)
+    private void BuyItemFromMerchant(InventoryManager.Item itemToBuy)
     {
         if (true) //Player has enough money
         {
@@ -85,7 +85,7 @@ public class BuySellSystem : MonoBehaviour
     }
 
     ////////////////////////////////////////////////////////////////////
-    private void SellItemToMerchant(ItemSO itemToSell)
+    private void SellItemToMerchant(InventoryManager.Item itemToSell)
     {
         InventoryManager.instance.AttemptToRemoveItemFromInventory(itemToSell);
 
@@ -105,17 +105,17 @@ public class BuySellSystem : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        foreach (ItemSO item in InventoryManager.instance.inventory)
+        foreach (InventoryManager.Item item in InventoryManager.instance.inventory)
         {
             GameObject buttonObj = Instantiate(playerItemButtonPrefab, playerItemButtonsParent);
-            buttonObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = item.itemName;
+            buttonObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = item.originalSO.itemName;
             buttonObj.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Price " + item.sellValue.ToString();
             buttonObj.GetComponent<Button>().onClick.AddListener(() => SellItemToMerchant(item));
         }
-        foreach (ItemSO item in buyableItems)
+        foreach (InventoryManager.Item item in buyableItems)
         {
             GameObject buttonObj = Instantiate(merchantItemButtonPrefab, merchantItemButtonsParent);
-            buttonObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = item.itemName;
+            buttonObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = item.originalSO.itemName;
             buttonObj.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Price " + item.priceToBuy.ToString();
             buttonObj.GetComponent<Button>().onClick.AddListener(() => BuyItemFromMerchant(item));
         }

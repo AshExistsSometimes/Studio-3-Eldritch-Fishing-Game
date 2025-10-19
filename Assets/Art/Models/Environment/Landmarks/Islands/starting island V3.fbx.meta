@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9cdc9f0f42bba3947bcb5c9c0182a8f2
+guid: f75f9564e9ebf074ebf081949cf694a9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -9,16 +9,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: dock1
     second: {fileID: 2100000, guid: f7a9cdfdd99184142a0747d7a0fb7ec1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: hill1
-    second: {fileID: 2100000, guid: d9a73bac08b63d548bf7f497aa6d6ec7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: hut1
-    second: {fileID: 2100000, guid: f1529d4ec7cd4e74588aa048f49f7e98, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

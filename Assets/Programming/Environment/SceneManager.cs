@@ -7,6 +7,8 @@ using TMPro;
 [ExecuteAlways]
 public class SceneManager : MonoBehaviour
 {
+    public static SceneManager instance { get; private set; }
+
     [Header("DEBUG")]
     public int ClockTime;
     [SerializeField] private float MinutesPerDay;
@@ -33,6 +35,8 @@ public class SceneManager : MonoBehaviour
     public float NightFogLerpTime = 10f;
 
     [Header("VARIABLES")]
+    public float Weirdness = 0f;// THE BIG ONE
+    [Space]
     public int DayTracker = 0;
     private bool DayTickedOver = false;
     [Range(0, 24)] 
@@ -56,7 +60,17 @@ public class SceneManager : MonoBehaviour
     public UnityEvent IsDusk;
 
 
-
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     private void Start()
     {
         TimeOfDay = 0f;// Ensures lighting initialises correctly to give the void effect

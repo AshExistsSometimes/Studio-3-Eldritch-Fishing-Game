@@ -1843,6 +1843,7 @@ MonoBehaviour:
   DayFogLerpTime: 10
   NightFogDensity: 0.02
   NightFogLerpTime: 10
+  Weirdness: 0
   DayTracker: 0
   TimeOfDay: 0
   TimeOfDayAtStart: 14
@@ -3748,6 +3749,7 @@ MonoBehaviour:
   ProgressSlider: {fileID: 1859263583}
   ResultText: {fileID: 1852573408}
   player: {fileID: 153445041}
+  FishDropPoint: {fileID: 1907372831}
   TargetSize: 0.2
   TargetCentre: 0.5
   cursorPoint: 0.5
@@ -3757,6 +3759,22 @@ MonoBehaviour:
   MaxBoostVelocity: 1.5
   InTarget: 0
   MovingRight: 1
+  sceneManager: {fileID: 836458879}
+  CommonThreshold: 0.5
+  UncommonThreshold: 0.75
+  OddThreshold: 0.9
+  WeirdThreshold: 0.98
+  DayFishPool:
+  - fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}
+    rarity: 0
+    locked: 0
+  NightFishPool:
+  - fish: {fileID: 11400000, guid: 780bdcd45fe4d5f4a8aa5a06cff862bf, type: 2}
+    rarity: 0
+    locked: 0
+  - fish: {fileID: 11400000, guid: ea98139342ec7d9479e395c49b61cb08, type: 2}
+    rarity: 1
+    locked: 0
 --- !u!1001 &1478366376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5310,6 +5328,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &2037301841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2037301843}
+  - component: {fileID: 2037301842}
+  m_Layer: 0
+  m_Name: '- InputManager'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2037301842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037301841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf9e52aef67e3e84f8d832c976a910d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keybinds:
+  - inputName: Jump
+    keyCode: 32
+  - inputName: Sprint
+    keyCode: 304
+  - inputName: Interact
+    keyCode: 101
+  - inputName: UseItem
+    keyCode: 324
+  - inputName: OpenInventory
+    keyCode: 9
+  - inputName: Reel
+    keyCode: 323
+  - inputName: DebugFishing
+    keyCode: 45
+  - inputName: CloseMenu
+    keyCode: 27
+  - inputName: PauseGame
+    keyCode: 27
+--- !u!4 &2037301843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037301841}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.474723, y: 7.5137043, z: -49.927704}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &2057225876
 Mesh:
   m_ObjectHideFlags: 0
@@ -5666,6 +5747,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 836458877}
+  - {fileID: 2037301843}
   - {fileID: 1439797804}
   - {fileID: 787886605}
   - {fileID: 1991244349}

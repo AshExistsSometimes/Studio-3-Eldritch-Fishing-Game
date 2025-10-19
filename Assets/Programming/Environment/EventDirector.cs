@@ -1,18 +1,24 @@
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class EventDirector : MonoBehaviour
 {
-    [Header("Variables")]
-    //private int weirdness;
-    private int eventChance;
-    private float eventTimer;
-    //private int pickEvent;
+    private SceneManager sceneManager;
+    public GameObject[] eventObjectsToTrigger;
 
+    [Header("Variables")]
+    private float weirdness;
+    public int eventChance;
+    public float eventDuration;
+    private float eventTimer;
     public float secondsBetweenEvents = 10;
 
-    [Header("REQUIRED FROM PLAYER PREFAB")]
-    public GameObject hallucination;
+    public Transform posToSpawn;
+
+    private void Start()
+    {
+        sceneManager = FindAnyObjectByType<SceneManager>();
+    }
 
     private void Update()
     {
@@ -30,29 +36,21 @@ public class EventDirector : MonoBehaviour
             if (eventChance >= 80)
             {
                 StopAllCoroutines();
-                TriggerEvent();
+                StartCoroutine(TriggerEvent());
             }
 
             eventTimer = 0;
         }
     }
 
-    private void TriggerEvent()
+    private IEnumerator TriggerEvent()
     {
-        //pickEvent = Random.Range(1, 3);
+        int n = Random.Range(0, eventObjectsToTrigger.Length);
 
-        //if (pickEvent == 1)
-        //{
-        StartCoroutine(TriggerHallucination());
-        //}
-    }
+        eventObjectsToTrigger[n].SetActive(true);
 
-    private IEnumerator TriggerHallucination()
-    {
-        hallucination.SetActive(true);
+        yield return new WaitForSeconds(eventDuration);
 
-        yield return new WaitForSeconds(1f);
-
-        hallucination.SetActive(false);
+        eventObjectsToTrigger[n].SetActive(false);
     }
 }

@@ -10,7 +10,7 @@ public class ItemSO : ScriptableObject
     public Sprite image;
     public GameObject prefab;
     public int priceToBuy;
-    public int sellValue;
+    public int baseSellValue;
     public string itemDescription;
 
     [Header("Parameters")]
@@ -21,7 +21,6 @@ public class ItemSO : ScriptableObject
     [Header("If the item is a fish")]
     public bool isFish;
     public FishSO fishSO;
-    public float fishSize;
 
 }
 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e0c3bea87d111f7498b37b5e043baa26
+guid: e403f77ab74e06e46ad2b863c2ded215
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,38 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: dock1
-    second: {fileID: 2100000, guid: f7a9cdfdd99184142a0747d7a0fb7ec1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: hill1
-    second: {fileID: 2100000, guid: d9a73bac08b63d548bf7f497aa6d6ec7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: hut1
     second: {fileID: 2100000, guid: f1529d4ec7cd4e74588aa048f49f7e98, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: island
-    second: {fileID: 2100000, guid: ceb5430bee4013d4db7f17bdcb50dec5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: light_house
-    second: {fileID: 2100000, guid: 67a017c97aae9eb4c94702f721b30e7f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: skull1
-    second: {fileID: 2100000, guid: f8b8cfb617409204a975ec5025c5f117, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: small_rocks
-    second: {fileID: 2100000, guid: 92ee604decb0a9b47a7ffa620bc1603d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

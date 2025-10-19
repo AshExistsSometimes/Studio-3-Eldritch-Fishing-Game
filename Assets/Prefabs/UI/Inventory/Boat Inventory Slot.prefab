@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 40, y: -40}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1753533274690509212
 CanvasRenderer:
@@ -87,9 +87,9 @@ GameObject:
   - component: {fileID: 5547959522658193894}
   - component: {fileID: 1519182609238351730}
   - component: {fileID: 5559021638799057571}
-  - component: {fileID: 4654922284757992245}
+  - component: {fileID: 9020954433224323258}
   m_Layer: 5
-  m_Name: Inventory Slot
+  m_Name: Boat Inventory Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,7 +113,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 4.4000244, y: -10.899994}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5547959522658193894
 CanvasRenderer:
@@ -197,8 +197,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4654922284757992245}
-        m_TargetAssemblyTypeName: InventoryItemSlot, Assembly-CSharp
+      - m_Target: {fileID: 9020954433224323258}
+        m_TargetAssemblyTypeName: BoatInventoryItemSlot, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
@@ -209,7 +209,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4654922284757992245
+--- !u!114 &9020954433224323258
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,7 +218,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4522157804172768319}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb1bfd4b98a068a4fa5e8e82ac0879af, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a2bb47c2025ac543983d7f7c3be22e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subMenu: {fileID: 0}

@@ -6,30 +6,8 @@ using UnityEngine.UI;
 ////////////////////////////////////////////////////////////////////
 public class InventoryManager : MonoBehaviour
 {
-    [Header("References")]
-    public GameObject inventoryUI;
-    public GameObject inventorySlotsParent;
-    public GameObject inventoryBackground;
-    public GameObject itemInfoParent;
-    public TextMeshProUGUI itemNameText;
-    public TextMeshProUGUI itemDescText;
-    public TextMeshProUGUI itemSizeText;
-    public TextMeshProUGUI itemValueText;
-
-    [Header("Parameters")]
-    public int inventorySize;
-    public Color highlightedItemBackgroundColor;
-
-    [Header("Keybinds")]
-    public KeyCode openInventoryKey;
-
-    [Header("Prefabs")]
-    public GameObject inventorySlot;
-
-
     //Instance of InventoryManager
     public static InventoryManager instance { get; private set; }
-
 
     //Item struct
     public struct Item
@@ -43,27 +21,52 @@ public class InventoryManager : MonoBehaviour
         public float fishSize;
     }
 
+    //States the inventory can be in
+    public enum States
+    {
+        NotInInventory,
+        InInventory,
+        InBoatInventory
+    }
+
+
     [Header("Inventory")]
     public List<Item> inventory;
 
-    //State the inventory is currently in
-    private enum States
-    {
-        NotInInventory,
-        InInventory
-    }
-    private States currentState;
+    [Header("References")]
+    [SerializeField] private GameObject inventoryUI;
+    public GameObject inventorySlotsParent;
+    [SerializeField] private GameObject inventoryBackground;
+    [SerializeField] private GameObject itemInfoParent;
+    public GameObject boatInventoryUI;
+
+    [SerializeField]private TextMeshProUGUI itemNameText;
+    [SerializeField] private TextMeshProUGUI itemDescText;
+    [SerializeField] private TextMeshProUGUI itemSizeText;
+    [SerializeField] private TextMeshProUGUI itemValueText;
+
+    [Header("Parameters")]
+    public int inventorySize;
+    [SerializeField] private Color highlightedItemBackgroundColour;
+    [SerializeField] private Color unhighlightedItemBackgroundColour;
+
+    [Header("Prefabs")]
+    [SerializeField] private GameObject inventorySlot;
+
 
     //Variables
-    private int indexOfHighlightedItem;
-
-    //WIP
-    public bool mouseHoveringOverSomething;
-    public int indexOfMouseHover;
+    public static States currentState;
+    [HideInInspector] public int indexOfHighlightedItem;
+    [HideInInspector] public bool mouseHoveringOverSomething;
+    [HideInInspector] public int indexOfMouseHover;
+    [HideInInspector] public bool hoveredItemIsInBoatInv;
 
     ////////////////////////////////////////////////////////////////////
     private void Awake()
     {
+        //Instantiates list
+        inventory = new List<Item>();
+
         //Ensures singleton nature of instance variable
         if (instance == null)
         {
@@ -74,46 +77,175 @@ public class InventoryManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //CreateInventoryUI();
+        CreateInventoryUI();
     }
 
     ////////////////////////////////////////////////////////////////////
     private void Update()
     {
-        //GetInput();
-        //UpdateInventoryUI();
-        //CheckToShowItemInfoText();
+        GetInput();
+        UpdateInventoryUI();
+        CheckToShowItemInfoText();
     }
 
     ////////////////////////////////////////////////////////////////////
     private void GetInput()
     {
-        if (Input.GetKeyDown(openInventoryKey))
+
+        if (currentState == States.NotInInventory)
         {
-            if (currentState == States.InInventory)
+            //Checks to swap currently highlighted item
+            if (Input.GetKeyDown(KeyCode.Alpha1) && inventory.Count >= 1)
             {
-                ToggleStateOfGame(States.NotInInventory);
+                indexOfHighlightedItem = 0;
             }
-            else if (currentState == States.NotInInventory)
+            if (Input.GetKeyDown(KeyCode.Alpha2) && inventory.Count >= 2)
             {
-                ToggleStateOfGame(States.InInventory);
+                indexOfHighlightedItem = 1;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3) && inventory.Count >= 3)
+            {
+                indexOfHighlightedItem = 2;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4) && inventory.Count == 4)
+            {
+                indexOfHighlightedItem = 3;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1))// && inventory.Count >= 1)
+    }
+
+    ////////////////////////////////////////////////////////////////////
+    protected virtual void CreateInventoryUI()
+    {
+        //Creates UI for inventory
+        for (int i = 0; i < inventorySize; i++)
         {
-            indexOfHighlightedItem = 0;
+            GameObject iSlot = Instantiate(inventorySlot, inventorySlotsParent.transform);
+            if (inventory.Count > i)
+            {
+                iSlot.GetComponent<Image>().sprite = inventory[i].originalSO.image;
+            }
+            else
+            {
+                iSlot.GetComponent<Image>().sprite = null;
+            }
+            if (i == indexOfHighlightedItem && inventory.Count != 0)
+            {
+                iSlot.transform.GetChild(0).GetComponent<Image>().color = highlightedItemBackgroundColour;
+            }
+            else
+            {
+                iSlot.transform.GetChild(0).GetComponent<Image>().color = unhighlightedItemBackgroundColour;
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))// && inventory.Count >= 2)
+
+        inventoryBackground.SetActive(false);
+        itemInfoParent.SetActive(false);
+    }
+
+    ////////////////////////////////////////////////////////////////////
+    public virtual void UpdateInventoryUI()
+    {
+        //Updates UI for inventory
+        for (int i = 0; i < inventorySize; i++)
         {
-            indexOfHighlightedItem = 1;
+            GameObject iSlot = inventorySlotsParent.transform.GetChild(i).gameObject;
+
+            if (inventory.Count > i)
+            {
+                iSlot.GetComponent<Image>().sprite = inventory[i].originalSO.image;
+            }
+            else
+            {
+                iSlot.GetComponent<Image>().sprite = null;
+            }
+            if (i == indexOfHighlightedItem && inventory.Count != 0)
+            {
+                iSlot.transform.GetChild(0).GetComponent<Image>().color = highlightedItemBackgroundColour;
+            }
+            else
+            {
+                iSlot.transform.GetChild(0).GetComponent<Image>().color = unhighlightedItemBackgroundColour;
+            }
+
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))// && inventory.Count >= 3)
+    }
+
+    ////////////////////////////////////////////////////////////////////
+    protected void ToggleStateOfGame(States stateToToggleTo)
+    {
+        currentState = stateToToggleTo;
+        if (stateToToggleTo == States.InInventory)
         {
-            indexOfHighlightedItem = 2;
+            Cursor.visible = true;
+            inventoryBackground.SetActive(true);
+            boatInventoryUI.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha4))// && inventory.Count == 4)
+        else if (stateToToggleTo == States.InBoatInventory)
         {
-            indexOfHighlightedItem = 3;
+            Cursor.visible = true;
+            inventoryBackground.SetActive(true);
+            boatInventoryUI.SetActive(true);
+
+        }
+        else if (stateToToggleTo == States.NotInInventory)
+        {
+            Cursor.visible = false;
+            inventoryBackground.SetActive(false);
+            boatInventoryUI.SetActive(false);
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////
+    private void UpdateItemInfoUI(Item itemToGetInfoFrom)
+    {
+        //Updates item info UI based on given parameter
+        itemNameText.text = "Name: " + itemToGetInfoFrom.originalSO.itemName;
+        itemDescText.text = itemToGetInfoFrom.originalSO.itemDescription;
+
+        if (itemToGetInfoFrom.originalSO.isFish)
+        {
+            itemSizeText.text = "Size: " + itemToGetInfoFrom.fishSize;
+        }
+        else
+        {
+            itemSizeText.text = "";
+        }
+        if (itemToGetInfoFrom.originalSO.isSellable)
+        {
+            itemValueText.text = "Value: " + itemToGetInfoFrom.sellValue;
+        }
+        else
+        {
+            itemValueText.text = "";
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////
+    private void CheckToShowItemInfoText()
+    {
+        if (currentState != States.NotInInventory)
+        {
+            if (InventoryManager.instance.mouseHoveringOverSomething && hoveredItemIsInBoatInv)
+            {
+                if (BoatInventoryManager.instance.inventory.Count > indexOfMouseHover && Input.GetKey(KeyCode.LeftShift))
+                {
+                    UpdateItemInfoUI(BoatInventoryManager.instance.inventory[indexOfMouseHover]);
+                    itemInfoParent.SetActive(true);
+                }
+            }
+            else if (InventoryManager.instance.mouseHoveringOverSomething && !hoveredItemIsInBoatInv)
+            {
+                if (inventory.Count > indexOfMouseHover && Input.GetKey(KeyCode.LeftShift))
+                {
+                    UpdateItemInfoUI(inventory[indexOfMouseHover]);
+                    itemInfoParent.SetActive(true);
+                }
+            }
+            else
+            {
+                itemInfoParent.SetActive(false);
+            }
         }
     }
 
@@ -163,115 +295,6 @@ public class InventoryManager : MonoBehaviour
     }
 
     ////////////////////////////////////////////////////////////////////
-    private void CreateInventoryUI()
-    {
-        for (int i = 0; i < inventorySize; i++)
-        {
-            GameObject iSlot = Instantiate(inventorySlot, inventorySlotsParent.transform);
-            if (inventory.Count > i)
-            {
-                iSlot.GetComponent<Image>().sprite = inventory[i].originalSO.image;
-            }
-            else
-            {
-                iSlot.GetComponent<Image>().sprite = null;
-            }
-            if (i == indexOfHighlightedItem)// && inventory.Count != 0)
-            {
-                iSlot.transform.GetChild(0).GetComponent<Image>().color = highlightedItemBackgroundColor;
-            }
-        }
-
-        inventoryBackground.SetActive(false);
-        itemInfoParent.SetActive(false);
-    }
-
-    ////////////////////////////////////////////////////////////////////
-    private void UpdateInventoryUI()
-    {
-        for (int i = 0; i < inventorySize; i++)
-        {
-            GameObject iSlot = inventorySlotsParent.transform.GetChild(i).gameObject;
-
-            if (inventory.Count > i)
-            {
-                iSlot.GetComponent<Image>().sprite = inventory[i].originalSO.image;
-            }
-            else
-            {
-                iSlot.GetComponent<Image>().sprite = null;
-            }
-            if (i == indexOfHighlightedItem)// && inventory.Count != 0)
-            {
-                iSlot.transform.GetChild(0).GetComponent<Image>().color = highlightedItemBackgroundColor;
-            }
-
-        }
-    }
-
-    ////////////////////////////////////////////////////////////////////
-    private void ToggleStateOfGame(States stateToToggleTo)
-    {
-        currentState = stateToToggleTo;
-
-        if (stateToToggleTo == States.InInventory)
-        {
-            Cursor.visible = true;
-            inventoryBackground.SetActive(true);
-        }
-        else if (stateToToggleTo == States.NotInInventory)
-        {
-            Cursor.visible = false;
-            inventoryBackground.SetActive(false);
-        }
-    }
-
-    ////////////////////////////////////////////////////////////////////
-    private void UpdateItemInfoUI(Item itemToGetInfoFrom)
-    {
-        itemNameText.text = "Name: " + itemToGetInfoFrom.originalSO.itemName;
-        itemDescText.text = itemToGetInfoFrom.originalSO.itemDescription;
-        if (itemToGetInfoFrom.originalSO.isFish)
-        {
-            itemSizeText.text = "Size: " + itemToGetInfoFrom.fishSize;
-        }
-        else
-        {
-            itemSizeText.text = "";
-        }
-        if (itemToGetInfoFrom.originalSO.isSellable)
-        {
-            itemValueText.text = "Value: " + itemToGetInfoFrom.sellValue;
-        }
-        else
-        {
-            itemValueText.text = "";
-        }
-    }
-
-    ////////////////////////////////////////////////////////////////////
-    private void CheckToShowItemInfoText()
-    {
-        if (currentState == States.InInventory)
-        {
-            if (mouseHoveringOverSomething && inventory.Count > indexOfMouseHover)
-            {
-                UpdateItemInfoUI(inventory[indexOfMouseHover]);
-                itemInfoParent.SetActive(true);
-            }
-            else
-            {
-                itemInfoParent.SetActive(false);
-            }
-        }
-        else
-        {
-            itemInfoParent.SetActive(false);
-        }
-
-    }
-
-    ////////////////////////////////////////////////////////////////////
     public Item ConvertItemSO(ItemSO itemSOToConvert, float fishSize, int sellValue)
     {
         //Assigns variables from ItemSO
@@ -293,6 +316,32 @@ public class InventoryManager : MonoBehaviour
         }
 
         return convertedItem;
+    }
+
+    ////////////////////////////////////////////////////////////////////
+    public void ToggleInventoryUI()
+    {
+        if (currentState == States.NotInInventory)
+        {
+            ToggleStateOfGame(States.InInventory);
+        }
+        else
+        {
+            ToggleStateOfGame(States.NotInInventory);
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////
+    public void ToggleBoatInventoryUI()
+    {
+        if (currentState == States.NotInInventory)
+        {
+            ToggleStateOfGame(States.InBoatInventory);
+        }
+        else
+        {
+            ToggleStateOfGame(States.NotInInventory);
+        }
     }
 
     ////////////////////////////////////////////////////////////////////

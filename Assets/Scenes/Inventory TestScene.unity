@@ -438,6 +438,128 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &623391840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 623391841}
+  - component: {fileID: 623391842}
+  m_Layer: 5
+  m_Name: Boat Inventory Slots Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &623391841
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623391840}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2034270382}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.5564, y: 49.313286}
+  m_SizeDelta: {x: 800, y: 351.4348}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &623391842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623391840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 90
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 80, y: 80}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
+--- !u!1 &745380005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 745380007}
+  - component: {fileID: 745380006}
+  m_Layer: 0
+  m_Name: BoatInventoryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &745380006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745380005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d24101ad2e31c34c90f3686285ca494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryUI: {fileID: 2034270381}
+  inventorySlotsParent: {fileID: 623391840}
+  inventoryBackground: {fileID: 0}
+  itemInfoParent: {fileID: 1365902927}
+  boatInventoryUI: {fileID: 0}
+  itemNameText: {fileID: 302887786}
+  itemDescText: {fileID: 1607392829}
+  itemSizeText: {fileID: 1298075496}
+  itemValueText: {fileID: 1048558455}
+  inventorySize: 20
+  highlightedItemBackgroundColour: {r: 0, g: 0, b: 0, a: 0}
+  unhighlightedItemBackgroundColour: {r: 0, g: 0, b: 0, a: 0}
+  inventorySlot: {fileID: 4522157804172768319, guid: b86ff229629a044429fc22e663953f24, type: 3}
+  indexOfHighlightedItem: 0
+  mouseHoveringOverSomething: 0
+  indexOfMouseHover: 0
+  hoveredItemIsInBoatInv: 0
+  boatInventorySlot: {fileID: 4522157804172768319, guid: 4539b81c33a44f04aa8d9a5373c5f4eb, type: 3}
+--- !u!4 &745380007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745380005}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.874996, y: 4.446693, z: -1.701128}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &895149339
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,6 +588,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2034270382}
   - {fileID: 433187255}
   - {fileID: 1944176857}
   - {fileID: 1365902928}
@@ -704,7 +827,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -298.79993, y: 51.45999}
+  m_AnchoredPosition: {x: -298.8, y: 101.46}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1048558455
@@ -839,18 +962,19 @@ MonoBehaviour:
   inventorySlotsParent: {fileID: 433187254}
   inventoryBackground: {fileID: 1944176856}
   itemInfoParent: {fileID: 1365902927}
+  boatInventoryUI: {fileID: 0}
   itemNameText: {fileID: 302887786}
   itemDescText: {fileID: 1607392829}
   itemSizeText: {fileID: 1298075496}
   itemValueText: {fileID: 1048558455}
   inventorySize: 4
-  highlightedItemBackgroundColor: {r: 0, g: 0, b: 1, a: 0}
-  openInventoryKey: 9
-  inventorySlot: {fileID: 4522157804172768319, guid: b86ff229629a044429fc22e663953f24, type: 3}
-  inventory:
-  - {fileID: 11400000, guid: 0d9cca5ccd087684f8c620ef67ebb573, type: 2}
+  highlightedItemBackgroundColour: {r: 0, g: 0, b: 1, a: 1}
+  unhighlightedItemBackgroundColour: {r: 0, g: 0, b: 0, a: 1}
+  inventorySlot: {fileID: 4522157804172768319, guid: e6c19c74554f31346b2499f8b9048bbd, type: 3}
+  indexOfHighlightedItem: 0
   mouseHoveringOverSomething: 0
   indexOfMouseHover: 0
+  hoveredItemIsInBoatInv: 0
 --- !u!4 &1062950947
 Transform:
   m_ObjectHideFlags: 0
@@ -900,7 +1024,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -298.8, y: 101.46}
+  m_AnchoredPosition: {x: -298.79993, y: 51.459984}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1298075496
@@ -1331,6 +1455,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944176856}
   m_CullTransparentMesh: 1
+--- !u!1 &2034270381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2034270382}
+  m_Layer: 5
+  m_Name: BoatInventoryUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2034270382
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034270381}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 623391841}
+  m_Father: {fileID: 895149340}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1340,3 +1500,4 @@ SceneRoots:
   - {fileID: 964340515}
   - {fileID: 1543858902}
   - {fileID: 1062950947}
+  - {fileID: 745380007}

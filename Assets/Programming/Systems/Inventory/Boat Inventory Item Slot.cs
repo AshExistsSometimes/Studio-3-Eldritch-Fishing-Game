@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 ////////////////////////////////////////////////////////////////////
-public class InventoryItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class BoatInventoryItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     ////////////////////////////////////////////////////////////////////
     public void OnPointerEnter(PointerEventData eventData)
@@ -13,7 +13,7 @@ public class InventoryItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
         InventoryManager.instance.mouseHoveringOverSomething = true;
         InventoryManager.instance.indexOfMouseHover = index;
-        InventoryManager.instance.hoveredItemIsInBoatInv = false;
+        InventoryManager.instance.hoveredItemIsInBoatInv = true;
     }
 
     ////////////////////////////////////////////////////////////////////
@@ -26,22 +26,18 @@ public class InventoryItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerEx
     ////////////////////////////////////////////////////////////////////
     public void OnClick()
     {
-        if (InventoryManager.currentState == InventoryManager.States.InInventory)
+        if (InventoryManager.currentState == InventoryManager.States.InBoatInventory)
         {
-            Debug.Log("Drop Item");
-        }
-        else if (InventoryManager.currentState == InventoryManager.States.InBoatInventory)
-        {
-            if (InventoryManager.instance.inventory.Count > transform.GetSiblingIndex())
+            if (BoatInventoryManager.instance.inventory.Count > transform.GetSiblingIndex())
             {
-                if (BoatInventoryManager.instance.AttemptToAddItemToInventory(InventoryManager.instance.inventory[InventoryManager.instance.indexOfHighlightedItem]))
+                if (InventoryManager.instance.AttemptToAddItemToInventory(BoatInventoryManager.instance.inventory[BoatInventoryManager.instance.indexOfHighlightedItem]))
                 {
-                    InventoryManager.instance.AttemptToRemoveItemFromInventory(InventoryManager.instance.inventory[InventoryManager.instance.indexOfHighlightedItem]);
-                    InventoryManager.instance.UpdateInventoryUI();
+                    BoatInventoryManager.instance.AttemptToRemoveItemFromInventory(BoatInventoryManager.instance.inventory[BoatInventoryManager.instance.indexOfHighlightedItem]);
+                    BoatInventoryManager.instance.UpdateInventoryUI();
                 }
                 else
                 {
-                    Debug.Log("No space in boat inventory");
+                    Debug.Log("No space in player inventory");
                 }
             }
         }

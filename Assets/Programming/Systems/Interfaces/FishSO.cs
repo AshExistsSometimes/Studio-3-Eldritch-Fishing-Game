@@ -2,13 +2,8 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Fish", menuName = "Item/Fish")]
 ////////////////////////////////////////////////////////////////////
-public class FishSO : ScriptableObject
+public class FishSO : ItemSO
 {
-    [Header("Fish Data")]
-    public string fishName;
-    public string fishDescription;
-    public GameObject fishPrefab;
-
     [Header("Minigame Stats")]
     public float weirdnessLevel;
     public float difficulty;

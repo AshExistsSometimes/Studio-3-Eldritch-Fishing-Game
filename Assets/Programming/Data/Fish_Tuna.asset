@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7215d5746a512cb43b4eda19b923af1b, type: 3}
-  m_Name: Fish_Eye
+  m_Name: Fish_Tuna
   m_EditorClassIdentifier: 
-  itemName: Eye
+  itemName: Tuna
   image: {fileID: 0}
-  prefab: {fileID: 5131454222236064084, guid: 5cc060d209d53ae47afbabd4e6a43c22, type: 3}
+  prefab: {fileID: 3366555804488427353, guid: 4032aafe630278642b4c9fa09b8a6983, type: 3}
   priceToBuy: 0
-  baseSellValue: 0
-  itemDescription: Ew.
+  baseSellValue: 5
+  itemDescription: BIG fish
   isUsable: 0
   isSellable: 1
   isDroppable: 0
   isFish: 1
-  weirdnessLevel: 1
-  difficulty: 2
-  persistence: 0.5
-  agility: 0.5
-  sizeVariance: {x: 1, y: 1}
-  WeirdnessPenalty: 1
-  BaseSellValue: 2
+  weirdnessLevel: 0
+  difficulty: 1.2
+  persistence: 1.2
+  agility: 1.2
+  sizeVariance: {x: 1, y: 5}
+  WeirdnessPenalty: 0
+  BaseSellValue: 20

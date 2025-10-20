@@ -12,9 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7215d5746a512cb43b4eda19b923af1b, type: 3}
   m_Name: Fish_Cod
   m_EditorClassIdentifier: 
-  fishName: Cod
-  fishDescription: Basic Fish
-  fishPrefab: {fileID: 6198985449559989928, guid: f57d44ae525138c4fabe8e7de15766a8, type: 3}
+  itemName: Cod
+  image: {fileID: 0}
+  prefab: {fileID: 6198985449559989928, guid: f57d44ae525138c4fabe8e7de15766a8, type: 3}
+  priceToBuy: 0
+  baseSellValue: 0
+  itemDescription: Cod
+  isUsable: 0
+  isSellable: 1
+  isDroppable: 0
+  isFish: 1
   weirdnessLevel: 0
   difficulty: 1
   persistence: 1

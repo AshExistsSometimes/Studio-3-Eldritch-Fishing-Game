@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -283,7 +282,7 @@ public class FishingMinigame : MonoBehaviour
             {
                 if (!entry.locked && sceneManager.Weirdness >= entry.fish.weirdnessLevel)
                 {
-                    Debug.Log($"Checking {entry.fish.fishName}: Rarity={entry.rarity}, Locked={entry.locked}, WeirdnessReq={entry.fish.weirdnessLevel}");
+                    Debug.Log($"Checking {entry.fish.itemName}: Rarity={entry.rarity}, Locked={entry.locked}, WeirdnessReq={entry.fish.weirdnessLevel}");
                     validFish.Add(entry.fish);
                 }
             }
@@ -310,14 +309,14 @@ public class FishingMinigame : MonoBehaviour
 
     public void AddToInventory()
     {
-        if (selectedFish == null || selectedFish.fishPrefab == null)
+        if (selectedFish == null || selectedFish.prefab == null)
         {
             Debug.LogWarning("No valid fish prefab found on selectedFish!");
             return;
         }
         else
         {
-            Debug.Log($"Fish '{selectedFish.fishName}' would be added to inventory, showing in world for now.");
+            Debug.Log($"Fish '{selectedFish.itemName}' would be added to inventory, showing in world for now.");
             DropFishOnGround();
         }
 
@@ -340,7 +339,7 @@ public class FishingMinigame : MonoBehaviour
         Vector3 spawnPosition = FishDropPoint.position;
 
         // Instantiate the fish prefab
-        GameObject fishObject = Instantiate(selectedFish.fishPrefab, spawnPosition, Quaternion.identity);
+        GameObject fishObject = Instantiate(selectedFish.prefab, spawnPosition, Quaternion.identity);
 
         // Apply size scaling
         fishObject.transform.localScale = Vector3.one * selectedFishSize;

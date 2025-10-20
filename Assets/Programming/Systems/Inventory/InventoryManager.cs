@@ -21,7 +21,7 @@ public class InventoryManager : MonoBehaviour
     public Color highlightedItemBackgroundColor;
 
     [Header("Keybinds")]
-    public KeyCode openInventoryKey;
+    //public KeyCode openInventoryKey; // No. I gave the code to make your code compatible with the InputManaqer 
 
     [Header("Prefabs")]
     public GameObject inventorySlot;
@@ -39,7 +39,6 @@ public class InventoryManager : MonoBehaviour
         public int priceToBuy;
         public int sellValue;
 
-        public FishSO fishSO;
         public float fishSize;
     }
 
@@ -88,7 +87,7 @@ public class InventoryManager : MonoBehaviour
     ////////////////////////////////////////////////////////////////////
     private void GetInput()
     {
-        if (Input.GetKeyDown(openInventoryKey))
+        if (Input.GetKeyDown(InputManager.GetKeyCode("OpenInventory")))
         {
             if (currentState == States.InInventory)
             {
@@ -272,7 +271,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     ////////////////////////////////////////////////////////////////////
-    public Item ConvertItemSO(ItemSO itemSOToConvert, float fishSize, int sellValue)
+    public Item ConvertItemSO(ItemSO itemSOToConvert, int sellValue)
     {
         //Assigns variables from ItemSO
         Item convertedItem = new Item();
@@ -280,17 +279,21 @@ public class InventoryManager : MonoBehaviour
         convertedItem.prefab = itemSOToConvert.prefab;
         convertedItem.priceToBuy = itemSOToConvert.priceToBuy;
 
-        //Assigns fish relevant variables if applicable 
-        if (convertedItem.originalSO.isFish)
-        {
-            convertedItem.fishSO = itemSOToConvert.fishSO;
-            convertedItem.fishSize = fishSize;
-            convertedItem.sellValue = sellValue;
-        }
-        else
-        {
-            convertedItem.sellValue = convertedItem.originalSO.baseSellValue;
-        }
+        return convertedItem;
+    }
+
+
+
+    public Item AddFishToInventory(FishSO fishSOToConvert, float fishSize, int sellValue)
+    {
+        //Assigns variables from FishSO
+        Item convertedItem = new Item();
+        convertedItem.originalSO = fishSOToConvert;
+        convertedItem.prefab = fishSOToConvert.prefab;
+        convertedItem.priceToBuy = fishSOToConvert.priceToBuy;
+
+        convertedItem.fishSize = fishSize;
+        convertedItem.sellValue = sellValue;
 
         return convertedItem;
     }

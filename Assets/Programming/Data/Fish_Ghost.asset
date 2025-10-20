@@ -12,10 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7215d5746a512cb43b4eda19b923af1b, type: 3}
   m_Name: Fish_Ghost
   m_EditorClassIdentifier: 
-  fishName: Ghost Fish
-  fishDescription: Its semi-transparent
-  fishPrefab: {fileID: 6927056428827809821, guid: 8790df506c2085e4185c98a9fcda5097, type: 3}
-  weirdnessLevel: 0
+  itemName: Ghost Fish
+  image: {fileID: 0}
+  prefab: {fileID: 6927056428827809821, guid: 8790df506c2085e4185c98a9fcda5097, type: 3}
+  priceToBuy: 0
+  baseSellValue: 5
+  itemDescription: Its a Ghost!
+  isUsable: 0
+  isSellable: 1
+  isDroppable: 0
+  isFish: 1
+  weirdnessLevel: 5
   difficulty: 0.8
   persistence: 1.5
   agility: 1.3

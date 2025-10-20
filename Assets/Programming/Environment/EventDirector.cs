@@ -7,7 +7,7 @@ public class EventDirector : MonoBehaviour
     public GameObject[] eventObjectsToTrigger;
 
     [Header("Variables")]
-    private float weirdness;
+    private float weirdness;// Not needed! you can use [sceneManager.Weirdness] :)
     public int eventChance;
     public float eventDuration;
     private float eventTimer;

@@ -18,9 +18,7 @@ public class ItemSO : ScriptableObject
     public bool isSellable;
     public bool isDroppable;
 
-    [Header("If the item is a fish")]
-    public bool isFish;
-    public FishSO fishSO;
+    public bool isFish = false;
 
 }
 

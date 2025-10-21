@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class BoatController : MonoBehaviour
 {
+    public GameObject player;
     public Camera playerCamera;
     public Transform standingPoint;
     public float walkSpeed = 2f;
@@ -49,6 +50,7 @@ public class BoatController : MonoBehaviour
         rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
         rotationX = Mathf.Clamp(rotationX, -lookXlimit, lookXlimit);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+        player.transform.localRotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
     }
 
     private void HandleMovement()
@@ -101,7 +103,6 @@ public class BoatController : MonoBehaviour
         }
 
         driver.SetParent(null);
-        driver.position = transform.position - transform.right * 3f + Vector3.up * 1f;
 
         playerMovement.enabled = true;
 

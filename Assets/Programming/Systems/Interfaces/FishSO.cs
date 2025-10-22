@@ -2,8 +2,11 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Fish", menuName = "Item/Fish")]
 ////////////////////////////////////////////////////////////////////
-public class FishSO : ItemSO
+public class FishSO : ScriptableObject
 {
+    [Header("Fish Information")]
+    public string fishName = "Fish";
+
     [Header("Minigame Stats")]
     public float weirdnessLevel;
     public float difficulty;
@@ -14,6 +17,9 @@ public class FishSO : ItemSO
     [Header("Other")]
     public float WeirdnessPenalty;
     public float BaseSellValue;
+
+    [Header("InventoryItem")]
+    public InvItemSO InventoryItem;
 }
 
 ////////////////////////////////////////////////////////////////////

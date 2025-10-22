@@ -12,16 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7215d5746a512cb43b4eda19b923af1b, type: 3}
   m_Name: Fish_Eye
   m_EditorClassIdentifier: 
-  itemName: Eye
-  image: {fileID: 0}
-  prefab: {fileID: 5131454222236064084, guid: 5cc060d209d53ae47afbabd4e6a43c22, type: 3}
-  priceToBuy: 0
-  baseSellValue: 0
-  itemDescription: Ew.
-  isUsable: 0
-  isSellable: 1
-  isDroppable: 0
-  isFish: 1
+  fishName: Eyeball
   weirdnessLevel: 1
   difficulty: 2
   persistence: 0.5
@@ -29,3 +20,4 @@ MonoBehaviour:
   sizeVariance: {x: 1, y: 1}
   WeirdnessPenalty: 1
   BaseSellValue: 2
+  InventoryItem: {fileID: 11400000, guid: 66fd6f7df227c6545a97761edd0d08ee, type: 2}

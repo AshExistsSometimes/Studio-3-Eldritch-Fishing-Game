@@ -69,7 +69,7 @@ public class DisplayItemData : MonoBehaviour
 
         itemDescription.text = data.Description;
 
-        itemWorth.text = "£" + data.Worth.ToString();
+        itemWorth.text = "£" + data.BaseSellValue.ToString();
 
         itemInfoPanel.SetActive(true);
     }

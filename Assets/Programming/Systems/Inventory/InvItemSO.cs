@@ -12,15 +12,26 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "InvItem", menuName = "SO/InvItem")]
 public class InvItemSO : ScriptableObject
 {
-    public Sprite Icon;
-    public GameObject Prefab;
 
     // Data
-    public string Name = "Bob";
+    public string Name = "Item";
 
     [TextArea(1, 150)] // god fobid you exceed this amount.
     public string Description = "Lorem Ipsum";
+    [Space]
+    public Sprite Icon;
+    public GameObject Prefab;
+    [Space]
 
-
-    public int Worth = 1;
+    // Added / altered by Ashley ------------
+    [Tooltip("Can the item put in the hotbar to be held in the hand")]
+    public bool Equippable = false;
+    [Tooltip ("Can the item be used when held in the hand")]
+    public bool Usable = false;
+    [Space]
+    public int BaseSellValue = 1;
+    public float WeirdnessPenalty = 0f;
+    [Header("Fish Exclusive"), Tooltip("1 is default, applies a multiplier to value if higher")]
+    public float FishSize = 1f;
+    //---------------------------------------
 }

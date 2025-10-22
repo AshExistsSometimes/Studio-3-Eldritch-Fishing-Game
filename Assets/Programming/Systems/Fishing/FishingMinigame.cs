@@ -282,7 +282,7 @@ public class FishingMinigame : MonoBehaviour
             {
                 if (!entry.locked && sceneManager.Weirdness >= entry.fish.weirdnessLevel)
                 {
-                    Debug.Log($"Checking {entry.fish.itemName}: Rarity={entry.rarity}, Locked={entry.locked}, WeirdnessReq={entry.fish.weirdnessLevel}");
+                    Debug.Log($"Checking {entry.fish.fishName}: Rarity={entry.rarity}, Locked={entry.locked}, WeirdnessReq={entry.fish.weirdnessLevel}");
                     validFish.Add(entry.fish);
                 }
             }
@@ -309,40 +309,12 @@ public class FishingMinigame : MonoBehaviour
 
     public void AddToInventory()
     {
-        if (selectedFish == null || selectedFish.prefab == null)
-        {
-            Debug.LogWarning("No valid fish prefab found on selectedFish!");
-            return;
-        }
-        else
-        {
-            Debug.Log($"Fish '{selectedFish.itemName}' would be added to inventory, showing in world for now.");
-            DropFishOnGround();
-        }
-
-        // Check inventory capacity
-        //if (inventory != null && inventory.CheckForInventoryFull())
-        //{
-        //    Debug.Log("Inventory is full. Fish placed in world instead.");
-        //    DropFishOnGround();
-        //}
-        //else
-        //{
-        //    Debug.Log($"Fish '{selectedFish.fishName}' would be added to inventory, showing in world for now.");
-        //    DropFishOnGround();
-        //}
+        // Adding to inventory logic
     }
 
     private void DropFishOnGround()
     {
-        // Determine where to spawn the fish (player position or ground nearby)
-        Vector3 spawnPosition = FishDropPoint.position;
-
-        // Instantiate the fish prefab
-        GameObject fishObject = Instantiate(selectedFish.prefab, spawnPosition, Quaternion.identity);
-
-        // Apply size scaling
-        fishObject.transform.localScale = Vector3.one * selectedFishSize;
+        // Logic to drop fish when inventory full
     }
 
     public void FlipDirection()

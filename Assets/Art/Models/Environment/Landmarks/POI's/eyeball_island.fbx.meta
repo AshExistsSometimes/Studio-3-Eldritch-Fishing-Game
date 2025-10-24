@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f75f9564e9ebf074ebf081949cf694a9
+guid: eb495fb99f6841045a4550165c598827
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,28 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: dock1
-    second: {fileID: 2100000, guid: f7a9cdfdd99184142a0747d7a0fb7ec1, type: 2}
+      name: eyeball_island
+    second: {fileID: 2100000, guid: f56fe7b2b48281941822dc7a666efe24, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: island
-    second: {fileID: 2100000, guid: ceb5430bee4013d4db7f17bdcb50dec5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: light_house
-    second: {fileID: 2100000, guid: 67a017c97aae9eb4c94702f721b30e7f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: skull1
-    second: {fileID: 2100000, guid: f8b8cfb617409204a975ec5025c5f117, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: small_rocks
-    second: {fileID: 2100000, guid: 92ee604decb0a9b47a7ffa620bc1603d, type: 2}
+      name: floating_eyeball
+    second: {fileID: 2100000, guid: e2f26203a9e7b26409cc573a6ca23bb6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

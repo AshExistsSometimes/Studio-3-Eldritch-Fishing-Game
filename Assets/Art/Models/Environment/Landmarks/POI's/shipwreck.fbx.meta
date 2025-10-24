@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8ad79d6479b6c9043a20ee72f6aa0b36
+guid: f28d621b3e80cbb4e85eda925532af58
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: finger1
-    second: {fileID: 2100000, guid: aceed29c1dce4334b9c0116b13307a76, type: 2}
+      name: standardSurface1
+    second: {fileID: 2100000, guid: 9bb4a36c93dee364c94dda0119edacb9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

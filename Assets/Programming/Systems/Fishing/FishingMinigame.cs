@@ -39,6 +39,7 @@ public class FishingMinigame : MonoBehaviour
     public TMP_Text ResultText;
     public PlayerMovement player;
     public Transform FishDropPoint;
+    public FishingRod rod;
 
     [Header("Bar Values")]
     float width = 0f;
@@ -116,8 +117,7 @@ public class FishingMinigame : MonoBehaviour
 
         if (Input.GetKeyDown(InputManager.GetKeyCode("DebugFishing")))
         {
-            MinigameUI.SetActive(true);
-            InitializeMinigame();
+            StartMinigame();
         }
 
         if (MinigameCanClose && Input.anyKeyDown)
@@ -158,6 +158,12 @@ public class FishingMinigame : MonoBehaviour
         }
     }
 
+    public void StartMinigame()
+    {
+        MinigameUI.SetActive(true);
+        InitializeMinigame();
+    }
+
     private void HandleTargetMovement()
     {
         if (MovingRight)
@@ -180,10 +186,12 @@ public class FishingMinigame : MonoBehaviour
         if (WithinBounds())
         {
             FishProgress += Time.deltaTime * (DefaultPersistance - FishPersistance);
+            rod.ReelSpinning = true;
         }
         else
         {
             FishProgress -= Time.deltaTime * (DefaultStrength + FishStrength);
+            rod.ReelSpinning = false;
         }
     }
 
@@ -205,6 +213,7 @@ public class FishingMinigame : MonoBehaviour
 
     public void WinMinigame()
     {
+        rod.PullBobberBackIn();
         ResultText.gameObject.SetActive(true);
         ResultText.text = "Caught It!";
         if(inventory != null)
@@ -217,6 +226,7 @@ public class FishingMinigame : MonoBehaviour
 
     public void FailMinigame()
     {
+        rod.PullBobberBackIn();
         ResultText.gameObject.SetActive(true);
         ResultText.text = "It Got Away!";
         isFishing = false;

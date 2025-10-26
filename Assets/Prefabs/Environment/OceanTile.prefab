@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9076481678503549209}
   m_Layer: 0
   m_Name: OceanTile
-  m_TagString: Untagged
+  m_TagString: Ocean
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

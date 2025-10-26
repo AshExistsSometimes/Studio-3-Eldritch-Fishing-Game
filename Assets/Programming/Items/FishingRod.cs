@@ -58,6 +58,11 @@ public class FishingRod : MonoBehaviour
             StartCoroutine(WaitForCooldown(Cooldown));
         }
 
+        else if (!RodCastReady && Input.GetKeyDown(InputManager.GetKeyCode("UseItem")) && !FishingMinigame.instance.isFishing)
+        {
+            PullBobberBackIn();
+        }
+
         // --- Handle reel visual spin if active ---
         if (ReelSpinning)
         {

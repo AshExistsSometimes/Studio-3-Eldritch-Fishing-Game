@@ -2523,28 +2523,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Landmarks:
   - Landmark: {fileID: 9029836951849699294, guid: d33e53427fc346e4ca53e5e543bb6961, type: 3}
-    LandmarkName: RockOutcropping
+    LandmarkName: Rock
     MaxSpawnNum: 40
     Rarity: 1
     ScaleVariation: {x: 1, y: 4}
     SpaceRequired: 1
     HeightVariation: {x: -3, y: 0}
+    IslandFishPool: []
+    FishSpawnRadius: 0
     SpawnedInstances: []
     TargetSpawnCount: 0
-  - Landmark: {fileID: 5975797116803972983, guid: f259c0705229fb44d97d7a6cec83e3d5, type: 3}
+    IsLargeIsland: 0
+    PlayerInsideRadius: 0
+  - Landmark: {fileID: 8515545171689362039, guid: 486d5cf1ebf297448af05324936bfbd5, type: 3}
+    LandmarkName: Seagulls
+    MaxSpawnNum: 10
+    Rarity: 1
+    ScaleVariation: {x: 1, y: 1}
+    SpaceRequired: 0
+    HeightVariation: {x: 0, y: 10}
+    IslandFishPool: []
+    FishSpawnRadius: 20
+    SpawnedInstances: []
+    TargetSpawnCount: 0
+    IsLargeIsland: 0
+    PlayerInsideRadius: 0
+  - Landmark: {fileID: 6871493212940628318, guid: 9eb1cdb5a36450c4cbf878b78ceb7338, type: 3}
     LandmarkName: Hand Island
     MaxSpawnNum: 1
     Rarity: 0.01
-    ScaleVariation: {x: 0.25, y: 0.25}
+    ScaleVariation: {x: 0.006, y: 0.006}
+    SpaceRequired: 135
+    HeightVariation: {x: -1, y: -7}
+    IslandFishPool:
+    - fish: {fileID: 11400000, guid: 886563ace1d5cec42835ef94ddee35fb, type: 2}
+      rarity: 0
+      caughtAtNight: 1
+      locked: 0
+    FishSpawnRadius: 150
+    SpawnedInstances:
+    - {fileID: 0}
+    TargetSpawnCount: 0
+    IsLargeIsland: 1
+    PlayerInsideRadius: 0
+  - Landmark: {fileID: 28296363210626272, guid: cce974e2c85f8764182baac896c7f828, type: 3}
+    LandmarkName: Eyeball Island
+    MaxSpawnNum: 1
+    Rarity: 0.01
+    ScaleVariation: {x: 0.5, y: 0.5}
     SpaceRequired: 20
-    HeightVariation: {x: 0, y: 0}
+    HeightVariation: {x: -3, y: -5}
+    IslandFishPool: []
+    FishSpawnRadius: 5
     SpawnedInstances: []
     TargetSpawnCount: 0
+    IsLargeIsland: 1
+    PlayerInsideRadius: 0
+  - Landmark: {fileID: 2656784991188296421, guid: 0dbe67da0f6036d489bbe81757dc9d80, type: 3}
+    LandmarkName: Shipwreck
+    MaxSpawnNum: 1
+    Rarity: 0.05
+    ScaleVariation: {x: 0.01, y: 0.01}
+    SpaceRequired: 30
+    HeightVariation: {x: 0, y: -1}
+    IslandFishPool:
+    - fish: {fileID: 11400000, guid: ea98139342ec7d9479e395c49b61cb08, type: 2}
+      rarity: 0
+      caughtAtNight: 1
+      locked: 0
+    FishSpawnRadius: 70
+    SpawnedInstances:
+    - {fileID: 0}
+    TargetSpawnCount: 1
+    IsLargeIsland: 0
+    PlayerInsideRadius: 0
   Player: {fileID: 153445032}
   SpawnRadius: 225
   DespawnRadius: 275
   NoSpawnRadius: 125
-  InitializeAtStart: 1
+  LargeIslandSpawnRadius: 500
+  LargeIslandSpawnRadiusBounds: 50
 --- !u!114 &836458879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2603,7 +2661,7 @@ MonoBehaviour:
   Weirdness: 0
   DayTracker: 0
   TimeOfDay: 0
-  TimeOfDayAtStart: 19.2
+  TimeOfDayAtStart: 8
   SecondsInAnHour: 10
   MorningHour: 6
   EveningHour: 18
@@ -4980,12 +5038,6 @@ MonoBehaviour:
   NightFishPool:
   - fish: {fileID: 11400000, guid: 780bdcd45fe4d5f4a8aa5a06cff862bf, type: 2}
     rarity: 0
-    locked: 0
-  - fish: {fileID: 11400000, guid: ea98139342ec7d9479e395c49b61cb08, type: 2}
-    rarity: 1
-    locked: 0
-  - fish: {fileID: 11400000, guid: 886563ace1d5cec42835ef94ddee35fb, type: 2}
-    rarity: 1
     locked: 0
 --- !u!4 &1567949466 stripped
 Transform:

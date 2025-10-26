@@ -10,7 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d78c963316ee784e92f8ec97a335447, type: 3}
-  m_Name: DialogueNode 2
+  m_Name: Intro Node 2
   m_EditorClassIdentifier: 
-  dialogueText: You Chose Option 1
-  availableResponses: []
+  dialogueText: 'You''ve been out cold a day or so, I''ve had you holed up here in
+    the mean time. '
+  availableResponses:
+  - responseText: 
+    nextDialogueNode: {fileID: 11400000, guid: 1c1eb5af842fbdf44a21d14740a21122, type: 2}

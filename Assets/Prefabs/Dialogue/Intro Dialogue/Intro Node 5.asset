@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d78c963316ee784e92f8ec97a335447, type: 3}
-  m_Name: DialogueNode 4
+  m_Name: Intro Node 5
   m_EditorClassIdentifier: 
-  dialogueText: Test Part 2
+  dialogueText: <AMOUNT> should be enough, and I'll get you a route out, soon as
+    you want it.
   availableResponses:
   - responseText: 
-    nextDialogueNode: {fileID: 11400000, guid: a73888672608d91428cd144ad94850fc, type: 2}
+    nextDialogueNode: {fileID: 11400000, guid: f07fce419b5426f4aa6f91d74822cd58, type: 2}

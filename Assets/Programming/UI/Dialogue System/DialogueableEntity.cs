@@ -22,6 +22,10 @@ public void InitiateDialogue()
     //For testing only
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            InitiateDialogue();
+        }
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             DialogueManager.instance.DisableDialogueUI();

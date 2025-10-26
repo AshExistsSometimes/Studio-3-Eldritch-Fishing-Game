@@ -10,7 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d78c963316ee784e92f8ec97a335447, type: 3}
-  m_Name: DialogueNode 3
+  m_Name: Intro Node 6
   m_EditorClassIdentifier: 
-  dialogueText: You Chose Option 2
-  availableResponses: []
+  dialogueText: 'Got a boat and rod ready for you, as I imagine you''ve already seen.
+    Some upgrades available for a price aswell. '
+  availableResponses:
+  - responseText: 
+    nextDialogueNode: {fileID: 11400000, guid: 4ea0c5885fd289747b96b69c560ef39e, type: 2}

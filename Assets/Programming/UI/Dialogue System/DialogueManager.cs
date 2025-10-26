@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 ////////////////////////////////////////////////////////////////////
@@ -97,12 +98,16 @@ public class DialogueManager : MonoBehaviour
     ////////////////////////////////////////////////////////////////////
     private void EnableDialogueUI()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         DialogueParent.SetActive(true);
     }
 
     ////////////////////////////////////////////////////////////////////
     public bool CheckForDialogueActive()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         return DialogueParent.activeSelf;
     }
 

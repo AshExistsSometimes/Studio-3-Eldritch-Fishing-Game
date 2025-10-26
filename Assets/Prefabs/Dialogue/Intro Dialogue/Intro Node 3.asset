@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d78c963316ee784e92f8ec97a335447, type: 3}
-  m_Name: DialogueNode
+  m_Name: Intro Node 3
   m_EditorClassIdentifier: 
-  dialogueText: Test Part 1
+  dialogueText: I'd be happy to help you leave, but I'm afraid I'll have to ask you
+    to pay off your stay first.
   availableResponses:
   - responseText: 
-    nextDialogueNode: {fileID: 11400000, guid: c43e48462a5aed348862172cbb153fa3, type: 2}
+    nextDialogueNode: {fileID: 11400000, guid: a9fbd4234fef4c34d8226fbd9e30a647, type: 2}

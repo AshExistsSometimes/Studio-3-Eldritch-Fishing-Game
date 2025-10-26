@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46e03a19f8e5e124dad137a0f14696cc, type: 3}
-  m_Name: TestDialogue
+  m_Name: Intro Dialogue
   m_EditorClassIdentifier: 
-  rootNode: {fileID: 11400000, guid: ec31be498aa7ed749987f01bab91f97d, type: 2}
+  rootNode: {fileID: 11400000, guid: 1830e8ee2105f6c46854d3adb0680959, type: 2}

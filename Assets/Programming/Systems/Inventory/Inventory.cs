@@ -132,7 +132,7 @@ public class Inventory : MonoBehaviour
         //}
 
         // Example code for adding to inventory.
-        // if (Input.GetKeyDown(KeyCode.Space))//remnove this in final.
+        // if (Input.GetKeyDown(KeyCode.Space))//remove this in final.
         // {
 
         //     // example add item in inventory, remove in final.

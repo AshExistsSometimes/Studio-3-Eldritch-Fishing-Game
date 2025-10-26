@@ -15,7 +15,7 @@ public class BoatController : MonoBehaviour
     public float turnSpeed = 2f;
 
     private float currentSpeed = 0;
-    private bool isMounted = false;
+    public bool isMounted = false;
 
     private Vector3 verticalVelocity = Vector3.zero;
 

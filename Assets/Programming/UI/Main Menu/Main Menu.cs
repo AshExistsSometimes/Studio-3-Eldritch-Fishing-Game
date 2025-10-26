@@ -13,32 +13,21 @@ public class MainMenu : MonoBehaviour
     private void Awake()
     {
         //Disables submenus on game start
+        BackToMainMenu();
+    }
+
+    ////////////////////////////////////////////////////////////////////
+    public void BackToMainMenu()
+    {
+        mainMenuUI.SetActive(true);
         settingsUI.SetActive(false);
         creditsUI.SetActive(false);
     }
 
     ////////////////////////////////////////////////////////////////////
-    private void Update()
+    public void NewGameButton(string sceneName)
     {
-        GetInput();
-    }
-
-    ////////////////////////////////////////////////////////////////////
-    private void GetInput()
-    {
-        if (creditsUI.activeSelf && Input.GetKeyDown(KeyCode.Escape))
-        {
-            mainMenuUI.SetActive(true);
-            creditsUI.SetActive(false);
-        }
-
-
-    }
-
-    ////////////////////////////////////////////////////////////////////
-    public void NewGameButton()
-    {
-        //Play Game
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
 
     ////////////////////////////////////////////////////////////////////

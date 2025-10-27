@@ -8,6 +8,7 @@ public class FishingBobber : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ocean"))
         {
+            Debug.Log("Collided with ocean");
             minigame.InitializeMinigame();
         }
     }

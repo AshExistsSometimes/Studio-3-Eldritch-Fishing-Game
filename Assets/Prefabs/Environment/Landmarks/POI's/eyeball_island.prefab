@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 8482535423699844312}
   - component: {fileID: 1044693924291871389}
   - component: {fileID: 7298291707122950382}
+  - component: {fileID: 5113926183516596358}
   m_Layer: 0
   m_Name: eye_island_rock
   m_TagString: Untagged
@@ -205,6 +206,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5113926183516596358
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2726363781256642788}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5080991145658732194, guid: eb495fb99f6841045a4550165c598827, type: 3}
 --- !u!1 &5460750271083311486
 GameObject:
   m_ObjectHideFlags: 0

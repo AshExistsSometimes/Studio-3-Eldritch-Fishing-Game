@@ -16,6 +16,9 @@ public class DialogueManager : MonoBehaviour
     public GameObject responseButtonPrefab;
     public Transform buttonParent;
 
+    private bool isInDialogue = false;
+    public PlayerMovement player;
+
     ////////////////////////////////////////////////////////////////////
     private void Awake()
     {
@@ -33,11 +36,21 @@ public class DialogueManager : MonoBehaviour
         DisableDialogueUI();
     }
 
+    private void Update()
+    {
+        if (isInDialogue)
+        {
+            player.canMove = false;
+            Cursor.lockState = CursorLockMode.None  ;
+        }
+    }
+
     ////////////////////////////////////////////////////////////////////
     public void StartDialogue(string speakerName, DialogueNode node)
     {
         //Displays dialogue UI
         EnableDialogueUI();
+        isInDialogue = true;
 
         //Displays respective text 
         speakerNameText.text = speakerName;
@@ -91,6 +104,11 @@ public class DialogueManager : MonoBehaviour
     ////////////////////////////////////////////////////////////////////
     public void DisableDialogueUI()
     {
+        isInDialogue = false;
+        player.canMove = true;
+        Cursor.lockState = CursorLockMode.Locked;
+
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         DialogueParent.SetActive(false);

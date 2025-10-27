@@ -24,7 +24,7 @@ public class MountTrigger : Interactable, IInteractable
                 boat.Mount(playerBody);
             }
         }
-        else if (Input.GetKeyDown(InputManager.GetKeyCode("Interact")) & isMounted)
+        else if ((Input.GetKeyDown(InputManager.GetKeyCode("Interact")) & isMounted) || (Input.GetKeyDown(InputManager.GetKeyCode("CloseMenu")) & isMounted))
         {
             isMounted = false;
             boat.Dismount();

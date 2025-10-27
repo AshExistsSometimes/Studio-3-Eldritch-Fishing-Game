@@ -61,6 +61,8 @@ public class Inventory : MonoBehaviour
 
     public bool inventoryOpen = false;
 
+    public PlayerMovement player;
+
     // DEBUG REMOVE FROM FINAL
     // public InvItemSO spawnData;
 
@@ -102,46 +104,6 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (Input.GetKeyDown(InputManager.GetKeyCode("INVENTORY STRING")))
-
-        // Ideally something else handles calling open and close inventory, but this will suffice for now.
-        // Dont forget to check if the user is on the boat or have a seperate call with OpenInventory(true), this opens both the inventory
-        // and boat inventory together.
-        //if (Input.GetKeyDown(InputManager.GetKeyCode("OpenInventory")))
-        //{
-        //    if (inventoryObject.activeSelf)
-        //    {
-        //        CloseInventory();
-        //    }
-        //    else
-        //    {
-        //        OpenInventory(true);
-        //    }
-        //}
-
-        //// close the info panel if open otherwise close the inventory.
-        //if (Input.GetKeyDown(InputManager.GetKeyCode("CloseMenu")))
-        //{
-        //    if (displayItemData.IsPanelOpen())
-        //    {
-        //        displayItemData.ClosePanel();
-        //        return;
-        //    }
-
-        //    CloseInventory();
-        //}
-
-        // Example code for adding to inventory.
-        // if (Input.GetKeyDown(KeyCode.Space))//remove this in final.
-        // {
-
-        //     // example add item in inventory, remove in final.
-        //     if (AttemptAddItemToInventory(spawnData))
-        //     {
-        //         // rm -rf the fish object in world.
-        //     }
-        // }
-
         // handles the cursor image.
         // if we have a item then we display.
         if (selectedData != null && selectedItemOriginalSlot != -1)
@@ -310,6 +272,8 @@ public class Inventory : MonoBehaviour
     /// <param name="openBoatInventoryToo">If TRUE, this will also open the boat inventory</param>
     public void OpenInventory(bool openBoatInventoryToo = false)
     {
+        player.canMove = false;
+        Cursor.lockState = CursorLockMode.None;
         inventoryOpen = true;
         inventoryObject.SetActive(true);
         boatInventoryObject.SetActive(openBoatInventoryToo);
@@ -320,6 +284,8 @@ public class Inventory : MonoBehaviour
     /// </summary>
     public void CloseInventory()
     {
+        player.canMove = true;
+        Cursor.lockState = CursorLockMode.Locked;
         inventoryOpen = false;
         displayItemData.ClosePanel(); // jsut in case.
         inventoryObject.SetActive(false);

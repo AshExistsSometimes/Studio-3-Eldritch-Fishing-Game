@@ -85,7 +85,6 @@ public class FishingRod : MonoBehaviour
     // Casts the hook forward using physics force.
     public void Cast()
     {
-        Debug.Log("cast");
         RodCastReady = false;
 
         hook.transform.position = castPoint.position;

@@ -8,6 +8,7 @@ public class BoatController : MonoBehaviour
     public GameObject player;
     public Camera playerCamera;
     public Transform standingPoint;
+    public FishingRod rod;
     public float walkSpeed = 2f;
     public float runSpeed = 2f;
     public float acceleration = 2f;
@@ -92,6 +93,7 @@ public class BoatController : MonoBehaviour
         driver.localPosition = Vector3.zero;
         driver.localRotation = Quaternion.identity;
 
+        rod.gameObject.SetActive(false);
         playerMovement.enabled = false;
     }
 
@@ -109,5 +111,6 @@ public class BoatController : MonoBehaviour
         isMounted = false;
         driver = null;
         currentSpeed = 0f;
+        rod.gameObject.SetActive(true);
     }
 }

@@ -91,12 +91,16 @@ public class DialogueManager : MonoBehaviour
     ////////////////////////////////////////////////////////////////////
     public void DisableDialogueUI()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         DialogueParent.SetActive(false);
     }
 
     ////////////////////////////////////////////////////////////////////
     private void EnableDialogueUI()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         DialogueParent.SetActive(true);
     }
 

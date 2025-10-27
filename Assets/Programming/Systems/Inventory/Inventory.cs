@@ -38,6 +38,8 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private Image cursorImage;
 
+    public GameObject CursorIcon;
+
     [SerializeField]
     private DisplayItemData displayItemData;
 
@@ -105,6 +107,7 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         // handles the cursor image.
+        MoveCursor();
         // if we have a item then we display.
         if (selectedData != null && selectedItemOriginalSlot != -1)
         {
@@ -272,6 +275,7 @@ public class Inventory : MonoBehaviour
     /// <param name="openBoatInventoryToo">If TRUE, this will also open the boat inventory</param>
     public void OpenInventory(bool openBoatInventoryToo = false)
     {
+        CursorIcon.SetActive(true);
         player.canMove = false;
         Cursor.lockState = CursorLockMode.None;
         inventoryOpen = true;
@@ -284,6 +288,7 @@ public class Inventory : MonoBehaviour
     /// </summary>
     public void CloseInventory()
     {
+        CursorIcon.SetActive(false);
         player.canMove = true;
         Cursor.lockState = CursorLockMode.Locked;
         inventoryOpen = false;
@@ -581,5 +586,15 @@ public class Inventory : MonoBehaviour
 
     }
 
+    public void MoveCursor()
+    {
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            CursorIcon.transform.parent as RectTransform,
+            Input.mousePosition,
+            null,
+            out Vector2 localPoint
+        );
 
+        CursorIcon.GetComponent<RectTransform>().anchoredPosition = localPoint;
+    }
 }

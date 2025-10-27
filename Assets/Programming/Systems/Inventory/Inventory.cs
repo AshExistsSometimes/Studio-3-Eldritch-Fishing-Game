@@ -107,7 +107,6 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         // handles the cursor image.
-        MoveCursor();
         // if we have a item then we display.
         if (selectedData != null && selectedItemOriginalSlot != -1)
         {
@@ -584,17 +583,5 @@ public class Inventory : MonoBehaviour
 
         return true;
 
-    }
-
-    public void MoveCursor()
-    {
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            CursorIcon.transform.parent as RectTransform,
-            Input.mousePosition,
-            null,
-            out Vector2 localPoint
-        );
-
-        CursorIcon.GetComponent<RectTransform>().anchoredPosition = localPoint;
     }
 }

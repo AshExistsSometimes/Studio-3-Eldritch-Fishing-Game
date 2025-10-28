@@ -142,7 +142,7 @@ public class LandmarkSpawner : MonoBehaviour
                 SpawnLandmarkInstance(data, spawnPos);
         }
 
-        // Handle large island separately
+        // Handle large island
         LandmarkData largeIsland = Landmarks.Find(x => x.IsLargeIsland);
         if (largeIsland != null && largeIsland.SpawnedInstances.Count == 0)
         {
@@ -193,7 +193,7 @@ public class LandmarkSpawner : MonoBehaviour
         float randomScale = Random.Range(data.ScaleVariation.x, data.ScaleVariation.y);
         obj.transform.localScale = Vector3.one * randomScale;
 
-        float heightOffset = Random.Range(data.HeightVariation.x, data.HeightVariation.y);
+        float heightOffset = Random.Range(data.HeightVariation.x, data.HeightVariation.y );
         obj.transform.position = new Vector3(obj.transform.position.x, heightOffset, obj.transform.position.z);
 
         data.SpawnedInstances.Add(obj);

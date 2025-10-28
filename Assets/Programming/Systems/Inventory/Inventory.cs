@@ -18,6 +18,7 @@ public class Inventory : MonoBehaviour
     /// Singleton, so you can call this where ever.
     /// </summary>
     public static Inventory Instance { get; private set; }
+    public GameObject playerSpawnPoint;
 
     // UI stuff
     [SerializeField]
@@ -562,7 +563,7 @@ public class Inventory : MonoBehaviour
     /// <param name="prefab">The prefab associated with the item.</param>
     private void SpawnItem(GameObject prefab)
     {
-        Instantiate(prefab, transform.position, Quaternion.identity);
+        Instantiate(prefab, playerSpawnPoint.transform.position, Quaternion.identity);
     }
 
     /// <summary>

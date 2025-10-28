@@ -3598,7 +3598,7 @@ MonoBehaviour:
   DayFogLerpTime: 10
   NightFogDensity: 0.01
   NightFogLerpTime: 10
-  Weirdness: 1.5000002
+  Weirdness: 0.1
   WeirdnessIncreaseAmount: 0.1
   WeirdnessIncreaseSpeed: 10
   DayTracker: 0
@@ -5247,6 +5247,10 @@ PrefabInstance:
       propertyPath: displayItemData
       value: 
       objectReference: {fileID: 1427831589}
+    - target: {fileID: 1778615137780944349, guid: 0786bd1945e03944399538f55d0371d8, type: 3}
+      propertyPath: playerSpawnPoint
+      value: 
+      objectReference: {fileID: 1859118647}
     - target: {fileID: 2053586829228067798, guid: 0786bd1945e03944399538f55d0371d8, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1002.4
@@ -6778,6 +6782,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852573406}
   m_CullTransparentMesh: 1
+--- !u!1 &1859118647 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8866090037252581021, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
+  m_PrefabInstance: {fileID: 4056824614305314929}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1859263581
 GameObject:
   m_ObjectHideFlags: 0

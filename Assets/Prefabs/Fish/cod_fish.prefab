@@ -62,6 +62,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e22b4d4a2448ad4fb8bd216f40f04c8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 788886542522649027}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e22b4d4a2448ad4fb8bd216f40f04c8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 893469361756441558}
   m_SourcePrefab: {fileID: 100100000, guid: 0e22b4d4a2448ad4fb8bd216f40f04c8, type: 3}
 --- !u!1 &6198985449559989928 stripped
 GameObject:
@@ -118,3 +121,18 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &893469361756441558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198985449559989928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f42600e72988adb4386cf28aad49ce63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlowColor: {r: 1, g: 1, b: 1, a: 1}
+  GlowIntensity: 0.01
+  fish: {fileID: 11400000, guid: 3c04037929f2c724e8b0c9ce1654d593, type: 2}

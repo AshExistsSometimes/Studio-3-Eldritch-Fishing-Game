@@ -7,6 +7,26 @@ using UnityEngine.UI;
 ////////////////////////////////////////////////////////////////////
 public class BuySellSystem : MonoBehaviour
 {
+    [Header("Parameters")]
+    [SerializeField] private int playerMoney;
+    public GameObject buyingUI;
+    public GameObject sellingUI;
+
+    [Header("References")]
+    public Inventory inventory;
+
+    public void ShowBuyMenu()
+    {
+        buyingUI.SetActive(true);
+        sellingUI.SetActive(false);
+    }
+
+    public void ShowSellMenu()
+    {
+        buyingUI.SetActive(false);
+        sellingUI.SetActive(true);
+    }
+
     ////Parameters
     //public string merchantName;
     //public float merchantBuyingFromMultiplier;
@@ -119,37 +139,10 @@ public class BuySellSystem : MonoBehaviour
     //}
 
     //////////////////////////////////////////////////////////////////////
-    //private void ToggleUIToShow(State stateToSwapTo)
-    //{
-    //    if (stateToSwapTo == State.Buying)
-    //    {
-    //        buyingUI.SetActive(true);
-    //        sellingUI.SetActive(false);
-    //    }
-    //    else if (stateToSwapTo == State.Selling)
-    //    {
-    //        buyingUI.SetActive(false);
-    //        sellingUI.SetActive(true);
-    //    }
-    //}
-
-    //////////////////////////////////////////////////////////////////////
     //private void ToggleUIVisibility(bool stateToToggleTo)
     //{
     //    UpdateItemsForSaleUI();
     //    buySellUI.SetActive(stateToToggleTo);
-    //}
-
-    //////////////////////////////////////////////////////////////////////
-    //public void BuyingButton()
-    //{
-    //    currentState = State.Buying;
-    //}
-
-    //////////////////////////////////////////////////////////////////////
-    //public void SellingButton()
-    //{
-    //    currentState = State.Selling;
     //}
 
     //////////////////////////////////////////////////////////////////////
@@ -160,5 +153,3 @@ public class BuySellSystem : MonoBehaviour
     //    errorMessageToDisplay.SetActive(false);
     //}
 }
-
-////////////////////////////////////////////////////////////////////

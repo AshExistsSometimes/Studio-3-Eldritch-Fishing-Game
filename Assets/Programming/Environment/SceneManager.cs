@@ -33,9 +33,13 @@ public class SceneManager : MonoBehaviour
     [Space]
     public float NightFogDensity = 0.02f;
     public float NightFogLerpTime = 10f;
-
+    [Space]
     [Header("VARIABLES")]
     public float Weirdness = 0f;// THE BIG ONE
+    public float WeirdnessIncreaseAmount = 1f;
+    public float WeirdnessIncreaseSpeed = 1f;
+    private bool WeirdnessCanIncrease = true;
+    [Space]
     [Space]
     public int DayTracker = 0;
     private bool DayTickedOver = false;
@@ -73,6 +77,7 @@ public class SceneManager : MonoBehaviour
     }
     private void Start()
     {
+        Weirdness = 0;// Set to last saved weirdness
         TimeOfDay = 0f;// Ensures lighting initialises correctly to give the void effect
         if (LoadingScreen != null)
         {
@@ -84,7 +89,11 @@ public class SceneManager : MonoBehaviour
     }
     private void Update()
     {
-
+        if (WeirdnessCanIncrease)
+        {
+            StartCoroutine(TickUpWeirdness());
+        }
+        
 
         if (Application.isPlaying)
         {
@@ -194,6 +203,17 @@ public class SceneManager : MonoBehaviour
         yield return new WaitForSeconds(loadingTime / 4f);//          1 Quarter of loading time 
         LoadingScreen.SetActive(false);
         //soundManager.SetActive(true);
+    }
+
+    public IEnumerator TickUpWeirdness()
+    {
+        if (WeirdnessCanIncrease)
+        {
+            WeirdnessCanIncrease = false;
+            Weirdness += WeirdnessIncreaseAmount;
+            yield return new WaitForSeconds(WeirdnessIncreaseSpeed);
+            WeirdnessCanIncrease = true;
+        }
     }
 
 }

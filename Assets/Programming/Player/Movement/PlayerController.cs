@@ -19,11 +19,28 @@ public class PlayerMovement : MonoBehaviour
 
     public bool canMove = true;
 
+    [Header ("Head Bob Settings")]
+    public Transform headTransform;
+    public bool enableHeadbob = true;
+    public float headbobSpeed = 6f;
+    public float headbobAmount = 0.05f;
+    [HideInInspector]
+    public float defaultheadbobSpeed;
+    private float headbobTimer = 0f;
+    private Vector3 defaultHeadPos;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+
+        defaultheadbobSpeed = headbobSpeed;
+        if (headTransform != null)
+        {
+            defaultHeadPos = headTransform.localPosition;
+        }
     }
 
     void Update()
@@ -55,10 +72,36 @@ public class PlayerMovement : MonoBehaviour
 
         if (canMove)
         {
+            HandleHeadbob();
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+        }
+    }
+
+
+
+
+
+    void HandleHeadbob()
+    {
+        if (headTransform == null) return;
+
+        // Check if player is moving (using WASD keys)
+        bool isMoving = Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1f || Mathf.Abs(Input.GetAxis("Vertical")) > 0.1f;
+
+        if (isMoving)
+        {
+            headbobTimer += Time.deltaTime * headbobSpeed;
+            float bobOffset = Mathf.Sin(headbobTimer) * headbobAmount;
+            headTransform.localPosition = defaultHeadPos + new Vector3(0f, bobOffset, 0f);
+        }
+        else
+        {
+            // Reset headbob
+            headbobTimer = 0f;
+            headTransform.localPosition = Vector3.Lerp(headTransform.localPosition, defaultHeadPos, Time.deltaTime * headbobSpeed);
         }
     }
 }

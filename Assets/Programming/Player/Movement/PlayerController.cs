@@ -72,7 +72,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (canMove)
         {
-            HandleHeadbob();
+            if (enableHeadbob)
+            {
+                HandleHeadbob();
+            }
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);

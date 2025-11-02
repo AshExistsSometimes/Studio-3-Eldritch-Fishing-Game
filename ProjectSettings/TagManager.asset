@@ -6,6 +6,7 @@ TagManager:
   tags:
   - InteractionPopup
   - Ocean
+  - Boat
   layers:
   - Default
   - TransparentFX

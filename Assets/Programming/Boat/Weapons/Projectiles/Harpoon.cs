@@ -19,6 +19,7 @@ public class Harpoon : MonoBehaviour
     // The tip's trigger collider should call this (e.g., via an OnTriggerEnter on a child).
     public void OnTriggerEnter(Collider col)
     {
+        Debug.Log("Harpoon has hit " + col.name);
         if (stuck) return;
         if (col == null) return;
 
@@ -39,6 +40,7 @@ public class Harpoon : MonoBehaviour
         IDamagable dmg = hitTransform.GetComponentInParent<IDamagable>();
         if (dmg != null)
         {
+            Debug.Log("Harpoon is dealing " + Damage + " to " + col.name);
             dmg.TakeDamage(Damage);
         }
 

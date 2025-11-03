@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6624298699489353646}
   - component: {fileID: 8081221621841094647}
   - component: {fileID: 1381425255103228759}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 4010741271297315566}
   - component: {fileID: 622828411364081214}
   - component: {fileID: 2651097377440679676}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Harpoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

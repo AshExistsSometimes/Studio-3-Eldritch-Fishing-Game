@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class ChainGenerator : MonoBehaviour
@@ -6,52 +7,139 @@ public class ChainGenerator : MonoBehaviour
     [System.Serializable]
     public class ChainSegment
     {
-        public GameObject prefab;    // Prefab to spawn for this segment
+        public GameObject prefab;         // Prefab for this segment
         public Vector3 scale = Vector3.one;
-        public float followSpeed = 5f; // Speed at which this segment follows the previous
+        public float mass = 1f;           // Rigidbody mass
+        public float jointSpring = 0f;    // Optional spring for hinge joint
+        public float jointDamper = 0f;    // Optional damper for hinge joint
+        public Vector3 initialOffset = Vector3.zero; // Offset at spawn relative to previous segment
     }
 
     [Header("Chain Setup")]
     public List<ChainSegment> segments = new List<ChainSegment>();
 
-    [Header("Chain Behavior")]
-    public bool facePreviousSegment = true;
-
-    [Header("Runtime Data (Read Only)")]
-    public List<Transform> segmentInstances = new List<Transform>();
+    [Header("Runtime Data")]
+    public List<GameObject> segmentInstances = new List<GameObject>();
 
     [Header("Debug")]
     public bool drawGizmos = true;
 
-    void Start()
+    // ------------------------------------------------------------------------------------------
+    // UNITY EVENT FUNCTIONS
+    // ------------------------------------------------------------------------------------------
+
+    private void Start()
     {
         RefreshChain();
     }
 
-    void Update()
+    private void OnEnable()
     {
-        UpdateChainPositions();
+        if (segmentInstances.Count == 0)
+            RefreshChain();
+        else
+            SetChainActive(true);
     }
+
+    private void OnDisable()
+    {
+        SetChainActive(false);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!drawGizmos || segmentInstances.Count == 0) return;
+
+        Gizmos.color = Color.yellow;
+        Vector3 prevPos = transform.position;
+
+        foreach (GameObject seg in segmentInstances)
+        {
+            if (seg == null) continue;
+            Gizmos.DrawLine(prevPos, seg.transform.position);
+            prevPos = seg.transform.position;
+        }
+    }
+
+    // ------------------------------------------------------------------------------------------
+    // CHAIN CREATION AND MANAGEMENT
+    // ------------------------------------------------------------------------------------------
 
     public void RefreshChain()
     {
         ClearChain();
+
+        Rigidbody previousRb = null;
+        Transform previousAttach = null;
 
         for (int i = 0; i < segments.Count; i++)
         {
             ChainSegment segData = segments[i];
             if (segData.prefab == null)
             {
-                Debug.LogWarning($"Segment {i} has no prefab assigned!");
+                Debug.LogWarning($"ChainGenerator: Segment {i} has no prefab assigned!");
                 continue;
             }
 
+            // Instantiate segment
             GameObject segObj = Instantiate(segData.prefab);
             segObj.name = $"ChainSegment_{i}";
             segObj.transform.localScale = segData.scale;
-            segObj.transform.position = transform.position;
 
-            segmentInstances.Add(segObj.transform);
+            // Auto-add Rigidbody
+            Rigidbody rb = segObj.GetComponent<Rigidbody>();
+            if (rb == null)
+                rb = segObj.AddComponent<Rigidbody>();
+
+            rb.mass = segData.mass;
+            rb.angularDamping = 0.05f;
+            rb.linearDamping = 0.05f;
+
+            // Auto-add HingeJoint
+            HingeJoint joint = segObj.GetComponent<HingeJoint>();
+            if (joint == null)
+                joint = segObj.AddComponent<HingeJoint>();
+
+            // Root segment special setup
+            if (i == 0)
+            {
+                rb.isKinematic = true; // Root is controlled manually
+                previousRb = rb;
+                previousAttach = segObj.transform.Find("AttachmentPoint") ?? segObj.transform;
+
+                // Place root at generator position
+                segObj.transform.position = transform.position;
+            }
+            else
+            {
+                rb.isKinematic = false;
+
+                // Connect hinge to previous segment's Rigidbody
+                joint.connectedBody = previousRb;
+
+                // Determine previous attachment point
+                Vector3 prevAttachPos = previousAttach != null ? previousAttach.position : previousRb.transform.position;
+
+                // Set hinge anchor relative to this segment
+                Transform myAttach = segObj.transform.Find("AttachmentPoint") ?? segObj.transform;
+                joint.anchor = segObj.transform.InverseTransformPoint(myAttach.position);
+
+                // Optional spring/damper
+                JointSpring spring = joint.spring;
+                spring.spring = segData.jointSpring;
+                spring.damper = segData.jointDamper;
+                joint.spring = spring;
+                joint.useSpring = segData.jointSpring > 0;
+
+                // Position segment using previous attachment point plus optional offset
+                segObj.transform.position = prevAttachPos + segData.initialOffset;
+            }
+
+            segmentInstances.Add(segObj);
+
+            // Update previous for next iteration
+            previousRb = rb;
+            previousAttach = segObj.transform.Find("AttachmentPoint") ?? segObj.transform;
         }
     }
 
@@ -60,58 +148,17 @@ public class ChainGenerator : MonoBehaviour
         for (int i = segmentInstances.Count - 1; i >= 0; i--)
         {
             if (segmentInstances[i] != null)
-                Destroy(segmentInstances[i].gameObject);
+                Destroy(segmentInstances[i]);
         }
         segmentInstances.Clear();
     }
 
-    private void UpdateChainPositions()
+    private void SetChainActive(bool active)
     {
-        if (segmentInstances.Count == 0) return;
-
-        for (int i = 0; i < segmentInstances.Count; i++)
+        foreach (GameObject seg in segmentInstances)
         {
-            Transform seg = segmentInstances[i];
-            Vector3 targetPos;
-
-            if (i == 0)
-            {
-                // First segment follows the root
-                targetPos = transform.position;
-            }
-            else
-            {
-                Transform prevSeg = segmentInstances[i - 1];
-                Transform attachPoint = prevSeg.Find("AttachmentPoint");
-                targetPos = (attachPoint != null) ? attachPoint.position : prevSeg.position;
-            }
-
-            // Smoothly move toward target position
-            float speed = segments[Mathf.Clamp(i, 0, segments.Count - 1)].followSpeed;
-            seg.position = Vector3.MoveTowards(seg.position, targetPos, speed * Time.deltaTime);
-
-            if (facePreviousSegment)
-            {
-                Vector3 lookTarget = (i == 0) ? transform.position : segmentInstances[i - 1].position;
-                if ((lookTarget - seg.position).sqrMagnitude > 0.0001f)
-                    seg.rotation = Quaternion.LookRotation(lookTarget - seg.position, Vector3.up);
-            }
-        }
-    }
-
-    void OnDrawGizmos()
-    {
-        if (!Application.isPlaying || !drawGizmos) return;
-        if (segmentInstances.Count == 0) return;
-
-        Gizmos.color = Color.yellow;
-        Vector3 prevPos = transform.position;
-
-        foreach (Transform seg in segmentInstances)
-        {
-            if (seg == null) continue;
-            Gizmos.DrawLine(prevPos, seg.position);
-            prevPos = seg.position;
+            if (seg != null)
+                seg.SetActive(active);
         }
     }
 }

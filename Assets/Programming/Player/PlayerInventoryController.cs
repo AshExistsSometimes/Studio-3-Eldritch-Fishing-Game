@@ -17,7 +17,7 @@ public class PlayerInventoryController : MonoBehaviour
             }
             else
             {
-                inventory.OpenInventory(false);
+                inventory.OpenInventory(false, false);
             }
         }
 

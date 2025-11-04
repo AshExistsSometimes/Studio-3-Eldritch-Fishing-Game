@@ -2,26 +2,26 @@ using UnityEngine;
 
 public class BuySellInvInteractable : Interactable
 {
-    public BuySellSystem buySell;
+    public Inventory inventory;
     public PlayerMovement player;
 
     private void Update()
     {
         if (Input.GetKeyDown(InputManager.GetKeyCode("CloseMenu")))
         {
-            buySell.CloseInventory();
+            inventory.CloseInventory();
         }
     }
 
     public override void OnInteract()
     {
-        if (buySell.inventory.inventoryObject.activeSelf)
+        if (inventory.inventoryObject.activeSelf)
         {
-            buySell.CloseInventory();
+            inventory.CloseInventory();
         }
         else
         {
-            buySell.OpenInventory();
+            inventory.OpenInventory(false, true);
         }
     }
 }

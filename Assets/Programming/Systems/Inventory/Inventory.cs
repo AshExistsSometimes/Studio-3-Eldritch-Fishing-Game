@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,7 @@ public class Inventory : MonoBehaviour
     /// </summary>
     public static Inventory Instance { get; private set; }
     public GameObject playerSpawnPoint;
+    public TMP_Text moneyText;
 
     // UI stuff
     [SerializeField]
@@ -28,6 +30,9 @@ public class Inventory : MonoBehaviour
     private GameObject boatInventoryObject;
 
     [SerializeField]
+    private GameObject shopInventoryObject;
+
+    [SerializeField]
     private GameObject inventorySlotPrefab;
 
     [SerializeField]
@@ -35,6 +40,12 @@ public class Inventory : MonoBehaviour
 
     [SerializeField]
     private GameObject boatSlotParent;
+
+    [SerializeField] 
+    private GameObject shopSlotParent;
+
+    [SerializeField] 
+    private GameObject sellSlotParent;
 
     [SerializeField]
     private Image cursorImage;
@@ -52,11 +63,21 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     int boatInvSize = 30;
 
-    // Both inventory slots.
+    // how many slots you want the shop to have.
+    [SerializeField]
+    int shopInvSize = 5;
+
+    // how many slots you want the sell menu to have.
+    [SerializeField]
+    int sellInvSize = 1;
+
+    // All inventory slots.
     List<InventorySlotUI> inventorySlots = new List<InventorySlotUI>();
     List<InventorySlotUI> boatSlots = new List<InventorySlotUI>();
+    List<InventorySlotUI> shopSlots = new List<InventorySlotUI>();
+    List<InventorySlotUI> sellSlots = new List<InventorySlotUI>();
 
-    // ccurrent selected slot. used for draging and checks.
+    // current selected slot. used for draging and checks.
     private int selectedID = -1;
 
     private int selectedItemOriginalSlot = -1;
@@ -75,6 +96,9 @@ public class Inventory : MonoBehaviour
 
     // used for storing the previous hovered slot.
     private int hoverSlotID = -1;
+
+    // How much money the player has
+    int money = 0;
 
     void Awake()
     {
@@ -97,7 +121,9 @@ public class Inventory : MonoBehaviour
             }
         }
 
+        moneyText.text = "$" + money;
     }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -273,7 +299,8 @@ public class Inventory : MonoBehaviour
     /// Opens the inventory UI.
     /// </summary>
     /// <param name="openBoatInventoryToo">If TRUE, this will also open the boat inventory</param>
-    public void OpenInventory(bool openBoatInventoryToo = false)
+    /// <param name="openShopInventoryToo">If TRUE, this will also open the shop menu</param>
+    public void OpenInventory(bool openBoatInventoryToo = false, bool openShopInventoryToo = false)
     {
         CursorIcon.SetActive(true);
         player.canMove = false;
@@ -281,6 +308,7 @@ public class Inventory : MonoBehaviour
         inventoryOpen = true;
         inventoryObject.SetActive(true);
         boatInventoryObject.SetActive(openBoatInventoryToo);
+        shopInventoryObject.SetActive(openShopInventoryToo);
     }
 
     /// <summary>
@@ -295,6 +323,7 @@ public class Inventory : MonoBehaviour
         displayItemData.ClosePanel(); // jsut in case.
         inventoryObject.SetActive(false);
         boatInventoryObject.SetActive(false);
+        shopInventoryObject.SetActive(false);
     }
 
     /// <summary>
@@ -318,6 +347,24 @@ public class Inventory : MonoBehaviour
             InventorySlotUI slotUI = slot.GetComponent<InventorySlotUI>();
             slotUI.SetUp(globalIDTracker);
             boatSlots.Add(slotUI);
+            globalIDTracker++;
+        }
+
+        for (int i = 0; i < shopInvSize; i++)
+        {
+            GameObject slot = Instantiate(inventorySlotPrefab, shopSlotParent.transform);
+            InventorySlotUI slotUI = slot.GetComponent<InventorySlotUI>();
+            slotUI.SetUp(globalIDTracker);
+            shopSlots.Add(slotUI);
+            globalIDTracker++;
+        }
+
+        for (int i = 0; i < sellInvSize; i++)
+        {
+            GameObject slot = Instantiate(inventorySlotPrefab, sellSlotParent.transform);
+            InventorySlotUI slotUI = slot.GetComponent<InventorySlotUI>();
+            slotUI.SetUp(globalIDTracker);
+            sellSlots.Add(slotUI);
             globalIDTracker++;
         }
     }
@@ -397,6 +444,24 @@ public class Inventory : MonoBehaviour
                 return;
             }
         }
+
+        foreach (InventorySlotUI slot in shopSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                slot.SetItemData(data);
+                return;
+            }
+        }
+
+        foreach (InventorySlotUI slot in sellSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                slot.SetItemData(data);
+                return;
+            }
+        }
     }
 
     /// <summary>
@@ -415,6 +480,22 @@ public class Inventory : MonoBehaviour
         }
 
         foreach (InventorySlotUI slot in boatSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                return slot.HasStoredData();
+            }
+        }
+
+        foreach (InventorySlotUI slot in shopSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                return slot.HasStoredData();
+            }
+        }
+
+        foreach (InventorySlotUI slot in sellSlots)
         {
             if (slot.GetID() == slotID)
             {
@@ -448,6 +529,22 @@ public class Inventory : MonoBehaviour
             }
         }
 
+        foreach (InventorySlotUI slot in shopSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                return slot.GetStoredData();
+            }
+        }
+
+        foreach (InventorySlotUI slot in sellSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                return slot.GetStoredData();
+            }
+        }
+
         return null;
     }
 
@@ -467,6 +564,23 @@ public class Inventory : MonoBehaviour
         }
 
         foreach (InventorySlotUI slot in boatSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                slot.SetItemData(null);
+                return;
+            }
+        }
+        foreach (InventorySlotUI slot in shopSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                slot.SetItemData(null);
+                return;
+            }
+        }
+
+        foreach (InventorySlotUI slot in sellSlots)
         {
             if (slot.GetID() == slotID)
             {
@@ -503,6 +617,27 @@ public class Inventory : MonoBehaviour
                 return;
             }
         }
+
+        foreach (InventorySlotUI slot in shopSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                SpawnItem(slot.GetStoredData().Prefab);
+                slot.SetItemData(null);
+                return;
+            }
+        }
+
+        foreach (InventorySlotUI slot in sellSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                SpawnItem(slot.GetStoredData().Prefab);
+                slot.SetItemData(null);
+                return;
+            }
+        }
+
     }
 
     /// <summary>
@@ -529,6 +664,24 @@ public class Inventory : MonoBehaviour
                 return;
             }
         }
+
+        foreach (InventorySlotUI slot in shopSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                slot.SetImageAlpha(alpha);
+                return;
+            }
+        }
+
+        foreach (InventorySlotUI slot in sellSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                slot.SetImageAlpha(alpha);
+                return;
+            }
+        }
     }
 
     /// <summary>
@@ -548,6 +701,24 @@ public class Inventory : MonoBehaviour
         }
 
         foreach (InventorySlotUI slot in boatSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                slot.SetSlotImage(image);
+                return;
+            }
+        }
+
+        foreach (InventorySlotUI slot in shopSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                slot.SetSlotImage(image);
+                return;
+            }
+        }
+
+        foreach (InventorySlotUI slot in sellSlots)
         {
             if (slot.GetID() == slotID)
             {
@@ -584,5 +755,11 @@ public class Inventory : MonoBehaviour
 
         return true;
 
+    }
+
+    public void Sell()
+    {
+        money += 100;
+        moneyText.text = "$" + money;
     }
 }

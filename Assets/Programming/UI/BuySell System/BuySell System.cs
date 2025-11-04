@@ -4,16 +4,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-////////////////////////////////////////////////////////////////////
 public class BuySellSystem : MonoBehaviour
 {
-    //[SerializeField] private GameObject shopInventoryObject;
+    public Inventory inventory;
+    public PlayerMovement player;
+
+    [SerializeField] private GameObject shopInventoryObject;
 
     [SerializeField] private GameObject inventorySlotPrefab;
 
     [SerializeField] private GameObject shopSlotParent;
 
     [SerializeField] private GameObject sellSlotParent;
+
+    [SerializeField] private TMP_Text moneyText;
 
     List<InventorySlotUI> shopSlots = new List<InventorySlotUI>();
     List<InventorySlotUI> sellSlots = new List<InventorySlotUI>();
@@ -22,9 +26,32 @@ public class BuySellSystem : MonoBehaviour
 
     int sellInvSize = 1;
 
+    int money = 0;
+
     private void Start()
     {
         SetUpSlots();
+        moneyText.text = "$" + money;
+    }
+
+    public void OpenInventory()
+    {
+        inventory.CursorIcon.SetActive(true);
+        player.canMove = false;
+        Cursor.lockState = CursorLockMode.None;
+        inventory.inventoryOpen = true;
+        inventory.inventoryObject.SetActive(true);
+        shopInventoryObject.SetActive(true);
+    }
+
+    public void CloseInventory()
+    {
+        inventory.CursorIcon.SetActive(false);
+        player.canMove = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        inventory.inventoryOpen = false;
+        inventory.inventoryObject.SetActive(false);
+        shopInventoryObject.SetActive(false);
     }
 
     private void SetUpSlots()
@@ -201,6 +228,4 @@ public class BuySellSystem : MonoBehaviour
         //    yield return new WaitForSeconds(errorMessageDuration);
         //    errorMessageToDisplay.SetActive(false);
         //}
-    }
-
-////////////////////////////////////////////////////////////////////
+}

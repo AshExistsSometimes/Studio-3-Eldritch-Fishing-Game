@@ -149,7 +149,7 @@ public class SceneManager : MonoBehaviour
 
 
 
-        if (MorningHour > TimeOfDay - 2 || TimeOfDay > EveningHour + 2)// 6am and 6pm | NightTime Check
+        if (MorningHour > TimeOfDay - 1 || TimeOfDay > EveningHour + 1)// 6am and 6pm | NightTime Check
         {
             Debug.Log("Sun off");
             DirectionalLight.intensity = 0f;

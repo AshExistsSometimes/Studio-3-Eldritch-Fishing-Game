@@ -34,6 +34,12 @@ public class SceneManager : MonoBehaviour
     public float NightFogDensity = 0.02f;
     public float NightFogLerpTime = 10f;
     [Space]
+    [Space]
+    [Space]
+    public bool FogOverwritten = false;
+    public Color FogOverwriteColour = Color.red;
+    public float FogOverwriteDensity = 0.02f;
+    [Space]
     [Header("VARIABLES")]
     public float Weirdness = 0f;// THE BIG ONE
     public float WeirdnessIncreaseAmount = 1f;
@@ -93,30 +99,8 @@ public class SceneManager : MonoBehaviour
         {
             StartCoroutine(TickUpWeirdness());
         }
-        
 
-        if (Application.isPlaying)
-        {
-            if (!pauseDaylightCycle)
-            {
-                TimeOfDay += Time.deltaTime * (SecondsInAnHour / 100);
-            }
-            TimeOfDay %= 24; // Clamp between 0 and 24
-            ClockTime = Mathf.FloorToInt(TimeOfDay %= 24);
-            UpdateLighting(TimeOfDay / 24f);
-            MinutesPerDay = ((SecondsInAnHour * 24) / 60);
-
-
-            Color currentFogColour = FogGradient.Evaluate(TimeOfDay / 24);
-            RenderSettings.fogColor = currentFogColour;
-
-        }
-        else
-        {
-            UpdateLighting(TimeOfDay / 24f);
-            MinutesPerDay = ((SecondsInAnHour * 24) / 60);
-            TimeOfDay = 0f;
-        }
+        UpdateLightAndFog();
 
         if (MorningHour < TimeOfDay && TimeOfDay < EveningHour)// 6am and 6pm | Daytime Check
         {
@@ -128,7 +112,12 @@ public class SceneManager : MonoBehaviour
                 DayTracker += 1;
                 CalenderText.text = DayTracker.ToString();
             }
-            RenderSettings.fogDensity = Mathf.Lerp(NightFogDensity, DayFogDensity, DayFogLerpTime);
+
+            if (!FogOverwritten)
+            {
+                RenderSettings.fogDensity = Mathf.Lerp(NightFogDensity, DayFogDensity, DayFogLerpTime);
+            }
+
             IsDawn.Invoke();
         }
         else if (TimeOfDay < MorningHour)
@@ -139,8 +128,12 @@ public class SceneManager : MonoBehaviour
             {
                 DayTickedOver = false;
             }
-            RenderSettings.fogDensity = Mathf.Lerp(DayFogDensity, NightFogDensity, NightFogLerpTime);
-            IsDusk.Invoke();    
+
+            if (!FogOverwritten)
+            {
+                RenderSettings.fogDensity = Mathf.Lerp(DayFogDensity, NightFogDensity, NightFogLerpTime);
+            }
+            IsDusk.Invoke();
         }
         else if (TimeOfDay > EveningHour)
         {
@@ -154,7 +147,54 @@ public class SceneManager : MonoBehaviour
             IsDusk.Invoke();
         }
 
+
+
+        if (MorningHour > TimeOfDay - 2 || TimeOfDay > EveningHour + 2)// 6am and 6pm | NightTime Check
+        {
+            Debug.Log("Sun off");
+            DirectionalLight.intensity = 0f;
+        }
+        else
+        {
+            Debug.Log("Sun on");
+            DirectionalLight.intensity = 2f;
+        }
     }
+
+    private void UpdateLightAndFog()
+    {
+        if (Application.isPlaying)
+        {
+            if (!pauseDaylightCycle)
+            {
+                TimeOfDay += Time.deltaTime * (SecondsInAnHour / 100);
+            }
+            TimeOfDay %= 24; // Clamp between 0 and 24
+            ClockTime = Mathf.FloorToInt(TimeOfDay %= 24);
+            UpdateLighting(TimeOfDay / 24f);
+            MinutesPerDay = ((SecondsInAnHour * 24) / 60);
+
+            if (!FogOverwritten)
+            {
+                Color currentFogColour = FogGradient.Evaluate(TimeOfDay / 24);
+                RenderSettings.fogColor = currentFogColour;
+            }
+            else
+            {
+                Color currentFogColour = FogOverwriteColour;
+                RenderSettings.fogColor = currentFogColour;
+
+                RenderSettings.fogDensity = FogOverwriteDensity;
+            }
+        }
+        else
+        {
+            UpdateLighting(TimeOfDay / 24f);
+            MinutesPerDay = ((SecondsInAnHour * 24) / 60);
+            TimeOfDay = 0f;
+        }
+    }
+
     private void UpdateLighting(float timePercent)
     {
         if (DirectionalLight != null)

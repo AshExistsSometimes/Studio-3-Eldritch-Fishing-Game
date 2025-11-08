@@ -10,6 +10,7 @@ public class MonitorController : MonoBehaviour
     [Header("Data Sources")]
     public BoatController Boat;
     public BoatHealthManager BoatHPManager;
+    public SceneManager sceneManager;
 
     public bool ScreenOn = false;
 
@@ -39,16 +40,27 @@ public class MonitorController : MonoBehaviour
 
     private void UpdateDisplayText()
     {
+        // HP to Text Health Bar
         float hpPercent = BoatHPManager.HP / BoatHPManager.MaxHP;
-        int filledSegments = Mathf.Clamp(Mathf.CeilToInt(hpPercent * 10f), 0, 10);
-        int emptySegments = 10 - filledSegments;
+        int hpFilledSegments = Mathf.Clamp(Mathf.CeilToInt(hpPercent * 10f), 0, 10);
+        int hpEmptySegments = 10 - hpFilledSegments;
 
-        string filled = new string('■', filledSegments);
-        string empty = new string('□', emptySegments);
-        string HPbar = filled + empty;
+        string hpFilled = new string('■', hpFilledSegments);
+        string hpEmpty = new string('□', hpEmptySegments);
+        string HPbar = hpFilled + hpEmpty;
+
+        // Fuel to Text Fuel Bar
+        //float fuelPercent = CURRENT FUEL / MAX FUEL;
+        //int fuelFilledSegments = Mathf.Clamp(Mathf.CeilToInt(hpPercent * 10f), 0, 10);
+        //int fuelEmptySegments = 10 - hpFilledSegments;
+
+        //string fuelFilled = new string('■', fuelFilledSegments);
+        //string fuelEmpty = new string('□', fuelEmptySegments);
+        //string Fuelbar = fuelFilled + fuelEmpty;
 
         DisplayText.text =
-            "HP:  " + HPbar +
-            "<br>Fuel:■■■■■■■■■■";
+            "<color=#9CB79F>HP:  <color=#B76262>" + HPbar +// HP Display
+            "<color=#9CB79F><br>Fuel:■■■■■■■■■■" +// Fuel Display
+            "<br><br><br><br><br><br><size=150%>" + sceneManager.ClockTime + ":00";// Time Display
     }
 }

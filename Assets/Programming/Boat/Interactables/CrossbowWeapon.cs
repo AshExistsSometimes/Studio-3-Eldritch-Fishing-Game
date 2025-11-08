@@ -27,6 +27,9 @@ public class CrossbowWeapon : Interactable
     public float FirePower = 20f;
     public string BoatTag = "Boat";
 
+    [Header("Visual")]
+    public GameObject HarpoonVisual;
+
     private bool isMounted = false;
     private float lastFireTime = -999f;
 
@@ -112,6 +115,9 @@ public class CrossbowWeapon : Interactable
         // Handle crossbow rotation from input
         HandleRotationInput();
 
+        // Puts a harpoon in the crossbow when ready to fire
+        UpdateHarpoonVisual();
+
         if (playerMovement != null && playerMovement.playerCamera != null && UD_RotPoint != null)
         {
             // Get vertical input for pitch only
@@ -168,7 +174,8 @@ public class CrossbowWeapon : Interactable
     /// <summary>Fire harpoon from UD_RotPoint�s -Z direction if off cooldown.</summary>
     public void FireHarpoon()
     {
-        if (Time.time < lastFireTime + FireRate) return;
+        if (!isLoaded()) return;
+
         if (!HarpoonPrefab || !HarpoonSpawnPoint || !UD_RotPoint) return;
 
         GameObject go = Instantiate(HarpoonPrefab, HarpoonSpawnPoint.position, HarpoonSpawnPoint.rotation);
@@ -183,6 +190,18 @@ public class CrossbowWeapon : Interactable
         if (h) h.IgnoredTag = BoatTag;
 
         lastFireTime = Time.time;
+    }
+    private void UpdateHarpoonVisual()
+    {
+        HarpoonVisual.gameObject.SetActive(isLoaded());
+    }
+
+    private bool isLoaded()
+    {
+        if (Time.time < lastFireTime + FireRate)
+            return false;
+        else
+            return true;
     }
 
     private float NormalizeAngle(float angle)

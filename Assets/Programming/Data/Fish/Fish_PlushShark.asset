@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7215d5746a512cb43b4eda19b923af1b, type: 3}
-  m_Name: Fish_Boot
+  m_Name: Fish_PlushShark
   m_EditorClassIdentifier: 
-  fishName: Old Boot
-  weirdnessLevel: 0
-  difficulty: 3
-  persistence: 0.5
-  agility: 0.5
-  sizeVariance: {x: 1, y: 1}
-  WeirdnessPenalty: 0
-  BaseSellValue: 1
-  InventoryItem: {fileID: 11400000, guid: cdc9de5cd7a21084d998471dbb09840d, type: 2}
+  fishName: Plush Shark
+  weirdnessLevel: 2
+  difficulty: 1.5
+  persistence: 1.5
+  agility: 1.5
+  sizeVariance: {x: 0, y: 0}
+  WeirdnessPenalty: 5
+  BaseSellValue: 0
+  InventoryItem: {fileID: 11400000, guid: 521fbb0a3cd6dd247918a408c68e2108, type: 2}

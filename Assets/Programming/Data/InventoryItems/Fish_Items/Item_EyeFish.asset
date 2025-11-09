@@ -19,5 +19,5 @@ MonoBehaviour:
   Equippable: 0
   Usable: 0
   BaseSellValue: 10
-  WeirdnessPenalty: 0
+  WeirdnessPenalty: 0.2
   IsFish: 1

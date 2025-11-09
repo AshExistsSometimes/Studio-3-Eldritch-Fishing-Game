@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511e2b32049a77a4d8dbb722747eb956, type: 3}
   m_Name: Item_OldBoot
   m_EditorClassIdentifier: 
-  Name: Old Boot
+  ItemName: Old Boot
   Description: A boot!
-  Icon: {fileID: 21300000, guid: 86d9556b6fa255c41821f1c7c093511d, type: 3}
+  Icon: {fileID: 21300000, guid: 7ff3af64b6d4a63458c8c2d8eebc4dc3, type: 3}
   Prefab: {fileID: 741410156798085602, guid: cafe746bbc67c074eaf5effc70e88dc8, type: 3}
   Equippable: 0
   Usable: 0
   BaseSellValue: 1
   WeirdnessPenalty: 0
-  FishSize: 1
+  IsFish: 1

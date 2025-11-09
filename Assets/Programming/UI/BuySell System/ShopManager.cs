@@ -33,6 +33,11 @@ public class ShopManager : MonoBehaviour
         PopulateShopUI();
     }
 
+    public void CloseVendor()
+    {
+        ActiveVendor = null;
+    }
+
     private void PopulateShopUI()
     {
         // Clear old items

@@ -58,13 +58,13 @@ public class SellPopup : MonoBehaviour
         gameObject.SetActive(true);
 
         // Base money text with color
-        PopupText.text = "<color=#E5D360>+ $" + moneyAmount + "</color>";
+        PopupText.text = "<color=#E5D360>+$" + moneyAmount + "</color>";
 
         // Append weirdness only if the vendor applies it
         if (vendorAppliesWeirdness)
         {
             Debug.Log("Applying Weirdness Text");
-            PopupText.text += " <color=#C860E5>(+ " + weirdnessAmount + " W)</color>";
+            PopupText.text += " <color=#C860E5>(+" + weirdnessAmount + " W)</color>";
         }
     }
 }

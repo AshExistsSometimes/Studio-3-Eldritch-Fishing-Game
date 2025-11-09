@@ -9,6 +9,7 @@ public class FishingRod : MonoBehaviour
     public GameObject hook;           // Hook/bobber object
     public GameObject reelVisual;     // Visual reel object (spins during reeling)
     public LineRenderer lineRenderer; // Renders fishing line between rod and hook
+    public Inventory inventory;
 
     [Header("Settings")]
     public float Cooldown = 0.5f;     // Time before next cast allowed

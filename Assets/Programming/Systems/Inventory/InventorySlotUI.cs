@@ -101,6 +101,13 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         return storedData;
     }
 
+    public void OnSellToVendor()
+    {
+        if (storedData == null) return;
+
+        ShopManager.Instance.SellItem(storedData);
+    }
+
     /// <summary>
     /// Sets the slot's icon, null will use the one stored inside.
     /// </summary>

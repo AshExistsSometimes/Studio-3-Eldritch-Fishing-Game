@@ -7,10 +7,10 @@ public class Interactable : MonoBehaviour, IInteractable
 {
     [Header("Interaction Feedback")]
     [Tooltip("Glow color when the object is hovered over.")]
-    public Color GlowColor = Color.yellow;
+    public Color GlowColor = Color.white;
 
     [Tooltip("Strength multiplier for the emission glow.")]
-    [Range(0f, 5f)] public float GlowIntensity = 1.5f;
+    [Range(0f, 5f)] public float GlowIntensity = 0.02f;
 
     private Renderer _renderer;
     private Material _materialInstance;

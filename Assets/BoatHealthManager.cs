@@ -17,4 +17,9 @@ public class BoatHealthManager : MonoBehaviour, IDamagable
     {
         Debug.Log("Boat Sank");
     }
+
+    public void Repair()
+    {
+        HP = MaxHP;
+    }
 }

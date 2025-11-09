@@ -87,8 +87,7 @@ public class Inventory : MonoBehaviour
 
     public PlayerMovement player;
 
-    // DEBUG REMOVE FROM FINAL
-    // public InvItemSO spawnData;
+    public FishingRod rod;
 
     // used for double click to open item data.
     private bool isSecondClick = false;
@@ -189,6 +188,27 @@ public class Inventory : MonoBehaviour
             {
                 doubleClickSlotID = -1;
                 isSecondClick = false;
+            }
+        }
+
+        // right-click: sell item if a vendor is active and the slot contains an item ------ Ashley Code
+        if (Input.GetMouseButtonDown(1) && selectedID != -1)
+        {
+            InvItemSO itemToSell = GetSlotData(selectedID);
+            if (itemToSell != null && ShopManager.Instance != null && ShopManager.Instance.ActiveVendor != null)
+            {
+                // Use ShopManager to handle sell logic (we update money etc in ShopManager)
+                ShopManager.Instance.SellItem(itemToSell);
+
+                // Remove the item from the inventory (we sold it)
+                RemoveItemAtSlot(selectedID);
+
+                // Update UI money text from EconomyManager
+                if (moneyText != null && EconomyManager.instance != null)
+                    moneyText.text = "$" + EconomyManager.instance.Currency;
+
+                // Clear selection (so the UI doesn't keep dragging an empty item)
+                ClearSelected();
             }
         }
 
@@ -309,6 +329,8 @@ public class Inventory : MonoBehaviour
         inventoryObject.SetActive(true);
         boatInventoryObject.SetActive(openBoatInventoryToo);
         shopInventoryObject.SetActive(openShopInventoryToo);
+
+        rod.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -324,6 +346,8 @@ public class Inventory : MonoBehaviour
         inventoryObject.SetActive(false);
         boatInventoryObject.SetActive(false);
         shopInventoryObject.SetActive(false);
+
+        rod.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -547,7 +571,7 @@ public class Inventory : MonoBehaviour
 
         return null;
     }
-
+    
     /// <summary>
     /// Remove the item at that slot by setting the data to null.
     /// </summary>
@@ -759,7 +783,33 @@ public class Inventory : MonoBehaviour
 
     public void Sell()
     {
-        money += 100;
-        moneyText.text = "$" + money;
+        // Only sell if a vendor is active
+        if (ShopManager.Instance == null || ShopManager.Instance.ActiveVendor == null) return;
+        if (selectedID == -1) return;
+
+        InvItemSO item = GetSlotData(selectedID);
+        if (item == null) return;
+
+        // Let ShopManager handle the sale (weirdness, popup, economy)
+        ShopManager.Instance.SellItem(item);
+
+        // Remove item from inventory and update money text
+        RemoveItemAtSlot(selectedID);
+
+        if (moneyText != null && EconomyManager.instance != null)
+            moneyText.text = "$" + EconomyManager.instance.Currency;
+
+        ClearSelected();
+    }
+
+    public bool DoesPlayerOwnItem(InvItemSO item)
+    {
+        // Search player inventory
+        foreach (var slot in inventorySlots)
+        {
+            if (slot.GetStoredData() == item)
+                return true;
+        }
+        return false;
     }
 }

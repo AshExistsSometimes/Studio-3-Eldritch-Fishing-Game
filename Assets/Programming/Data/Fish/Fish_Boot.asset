@@ -20,4 +20,4 @@ MonoBehaviour:
   sizeVariance: {x: 1, y: 1}
   WeirdnessPenalty: 0
   BaseSellValue: 1
-  InventoryItem: {fileID: 0}
+  InventoryItem: {fileID: 11400000, guid: cdc9de5cd7a21084d998471dbb09840d, type: 2}

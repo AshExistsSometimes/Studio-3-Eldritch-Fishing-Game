@@ -348,6 +348,7 @@ public class Inventory : MonoBehaviour
         shopInventoryObject.SetActive(false);
 
         rod.gameObject.SetActive(true);
+        ShopManager.Instance.CloseVendor();
     }
 
     /// <summary>

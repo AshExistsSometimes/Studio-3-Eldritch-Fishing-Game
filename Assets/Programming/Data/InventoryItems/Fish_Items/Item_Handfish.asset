@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511e2b32049a77a4d8dbb722747eb956, type: 3}
   m_Name: Item_Handfish
   m_EditorClassIdentifier: 
-  Name: Handfish
+  ItemName: Hand Fish
   Description: It's a little handsy
-  Icon: {fileID: 21300000, guid: 7816cac28f36fc041b3b2e51b5d5744f, type: 3}
+  Icon: {fileID: 21300000, guid: ff3411dd8e5b7e2469a4ba27667b0717, type: 3}
   Prefab: {fileID: 8502841204410475468, guid: dd2e9cc0f5d25b541863487a5ddd05f4, type: 3}
   Equippable: 0
   Usable: 0
   BaseSellValue: 5
   WeirdnessPenalty: 2
-  FishSize: 1
+  IsFish: 1

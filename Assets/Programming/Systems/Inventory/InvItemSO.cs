@@ -14,7 +14,7 @@ public class InvItemSO : ScriptableObject
 {
 
     // Data
-    public string Name = "Item";
+    public string ItemName = "Item";
 
     [TextArea(1, 150)] // god fobid you exceed this amount.
     public string Description = "Lorem Ipsum";

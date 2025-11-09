@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511e2b32049a77a4d8dbb722747eb956, type: 3}
   m_Name: Item_FuelCan
   m_EditorClassIdentifier: 
-  Name: Fuel Canister
+  ItemName: Fuel
   Description: Fuel for your boat!
-  Icon: {fileID: 21300000, guid: 877d623bba4c5e4489e5c349bd96fdf4, type: 3}
+  Icon: {fileID: 21300000, guid: bb6e736e5a583214d846235621205c90, type: 3}
   Prefab: {fileID: 2891776731246276285, guid: 8b8637626e263d44faec6956507bd0d5, type: 3}
   Equippable: 0
   Usable: 0
   BaseSellValue: 1
   WeirdnessPenalty: 0
-  IsFish: 0
+  IsFish: 1

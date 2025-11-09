@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511e2b32049a77a4d8dbb722747eb956, type: 3}
   m_Name: Item_LemonPhoto
   m_EditorClassIdentifier: 
-  Name: A Picture of a Lemon
-  Description: Lemon :D
-  Icon: {fileID: 21300000, guid: 877d623bba4c5e4489e5c349bd96fdf4, type: 3}
-  Prefab: {fileID: 919132149155446097, guid: f01f995339676994cbbb94ff6758fc1d, type: 3}
+  ItemName: A Picture of a Lemon
+  Description: Lemon :D       AAAAAAAAAAAAAAAAAAAAA
+  Icon: {fileID: 21300000, guid: 3d7afe4e1fafe5b4aba28ab90134611e, type: 3}
+  Prefab: {fileID: 3095719201751477781, guid: 86352bfdec502b9419c59240e7cd2d1e, type: 3}
   Equippable: 0
   Usable: 0
   BaseSellValue: 6
   WeirdnessPenalty: 0
-  FishSize: 1
+  IsFish: 1

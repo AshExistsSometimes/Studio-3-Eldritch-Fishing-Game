@@ -6390,7 +6390,7 @@ MonoBehaviour:
   FogOverwritten: 0
   FogOverwriteColour: {r: 0.254717, g: 0.056470275, b: 0.056470275, a: 1}
   FogOverwriteDensity: 0.005
-  Weirdness: 0.2
+  Weirdness: 0.1
   WeirdnessIncreaseAmount: 0.1
   WeirdnessIncreaseSpeed: 10
   DayTracker: 0
@@ -6493,13 +6493,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b52cd80f680134e8e2d57a74513669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventObjectsToTrigger:
-  - {fileID: 953654687}
-  - {fileID: 2007831814}
-  eventChance: 10
-  eventDuration: 2
+  eventObjects:
+  - eventGameObject: {fileID: 953654687}
+    chanceToSpawn: 1
+    despawnTimer: 2
+    usingDespawnTimer: 1
+    posToSpawn: {fileID: 160266753}
+  - eventGameObject: {fileID: 2007831814}
+    chanceToSpawn: 1
+    despawnTimer: 0
+    usingDespawnTimer: 0
+    posToSpawn: {fileID: 836458877}
+  randomChance: 0
+  eventTimer: 0
   secondsBetweenEvents: 30
-  posToSpawn: {fileID: 134536094}
 --- !u!114 &836458881
 MonoBehaviour:
   m_ObjectHideFlags: 0

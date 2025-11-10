@@ -1,19 +1,20 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
+
 public class EventDirector : MonoBehaviour
 {
     private SceneManager sceneManager;
-    public GameObject[] eventObjectsToTrigger;
+    public List<EventObjects> eventObjects;
+    int eventIndex = 0;
 
     [Header("Variables")]
-    private float weirdness;// Not needed! you can use [sceneManager.Weirdness] :)
-    public int eventChance;
-    public float eventDuration;
-    private float eventTimer;
-    public float secondsBetweenEvents = 10;
-
-    public Transform posToSpawn;
+    [SerializeField] private float randomChance;
+    [SerializeField] private float eventTimer;
+    [SerializeField] private float secondsBetweenEvents = 10;
+    private bool isEventActive = false;
 
     private void Start()
     {
@@ -22,35 +23,57 @@ public class EventDirector : MonoBehaviour
 
     private void Update()
     {
-        eventTimer += Time.deltaTime;
+        if (!isEventActive) 
+        {
+            eventTimer += Time.deltaTime;
+        }
 
         if (eventTimer >= secondsBetweenEvents)
         {
-            eventChance = (Random.Range(1, 100));
+            PickEventToTrigger();
+        }
+    }
 
-            if (eventChance > 100)
-            {
-                eventChance = 100;
-            }
+    private void PickEventToTrigger()
+    {
+        randomChance = UnityEngine.Random.Range(1, 100) + sceneManager.Weirdness;
+        eventIndex = UnityEngine.Random.Range(0, eventObjects.Count);
 
-            if (eventChance >= 80)
-            {
-                StopAllCoroutines();
-                StartCoroutine(TriggerEvent());
-            }
-
+        if (randomChance > 100)
+        {
+            randomChance = 100;
+        }
+        
+        if (randomChance >= eventObjects[eventIndex].chanceToSpawn)
+        {
             eventTimer = 0;
+            isEventActive = true;
+            StopAllCoroutines();
+            StartCoroutine(TriggerEvent());
         }
     }
 
     private IEnumerator TriggerEvent()
     {
-        int n = Random.Range(0, eventObjectsToTrigger.Length);
+        eventObjects[eventIndex].eventGameObject.SetActive(true);
 
-        eventObjectsToTrigger[n].SetActive(true);
+        yield return new WaitForSeconds(eventObjects[eventIndex].despawnTimer);
 
-        yield return new WaitForSeconds(eventDuration);
+        if (eventObjects[eventIndex].usingDespawnTimer)
+        {
+            eventObjects[eventIndex].eventGameObject.SetActive(false);
+        }
 
-        eventObjectsToTrigger[n].SetActive(false);
+        isEventActive = false;
     }
+}
+
+[Serializable]
+public class EventObjects
+{
+    public GameObject eventGameObject;
+    public int chanceToSpawn;
+    public float despawnTimer;
+    public bool usingDespawnTimer;
+    public Transform posToSpawn;
 }

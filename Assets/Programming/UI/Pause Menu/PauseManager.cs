@@ -32,6 +32,7 @@ public class PauseManager : MonoBehaviour
         isPaused = true;
         Time.timeScale = 0f;
         pauseMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void OnResume()
@@ -40,5 +41,6 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1f;
         pauseMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

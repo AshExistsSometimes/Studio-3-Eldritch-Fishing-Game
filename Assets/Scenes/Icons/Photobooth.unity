@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlushShark
       objectReference: {fileID: 0}
+    - target: {fileID: 5184785506508855446, guid: 6de6908498a6a03408938526e329a8db, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5530383363459613228, guid: 6de6908498a6a03408938526e329a8db, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.088
@@ -434,6 +438,63 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1001 &1810657452
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2675683405314499824, guid: 3b600b7d223988549a6335ba02586255, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.312
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675683405314499824, guid: 3b600b7d223988549a6335ba02586255, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.161
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675683405314499824, guid: 3b600b7d223988549a6335ba02586255, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.968
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675683405314499824, guid: 3b600b7d223988549a6335ba02586255, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9077858
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675683405314499824, guid: 3b600b7d223988549a6335ba02586255, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.09358466
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675683405314499824, guid: 3b600b7d223988549a6335ba02586255, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.3497957
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675683405314499824, guid: 3b600b7d223988549a6335ba02586255, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.21168363
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675683405314499824, guid: 3b600b7d223988549a6335ba02586255, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -18.542
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675683405314499824, guid: 3b600b7d223988549a6335ba02586255, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 38.907
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675683405314499824, guid: 3b600b7d223988549a6335ba02586255, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 19.652
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344555277039828554, guid: 3b600b7d223988549a6335ba02586255, type: 3}
+      propertyPath: m_Name
+      value: Lamprey
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3b600b7d223988549a6335ba02586255, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -441,3 +502,4 @@ SceneRoots:
   - {fileID: 1637115699}
   - {fileID: 997546012}
   - {fileID: 524039862}
+  - {fileID: 1810657452}

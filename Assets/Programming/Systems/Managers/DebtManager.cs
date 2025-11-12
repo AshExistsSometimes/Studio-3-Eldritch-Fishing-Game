@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class DebtManager : MonoBehaviour
 {
-    public bool DebtPaid = false;
+    [Tooltip("if true, player has paid off all their debt")]public bool DebtPaid = false;
     [Space]
     public int TotalDebtAmount = 100;
     public int DebtRemaining = 100;
@@ -19,17 +19,22 @@ public class DebtManager : MonoBehaviour
     //
     public void DayPassed()
     {
-        daysUntilDue -= 1;
+        if (DebtPaid) return;
 
-        if (daysUntilDue <= 0)// if last day
+        if (!DebtPaid)
         {
-            if (DebtPaid)
+            daysUntilDue -= 1;
+
+            if (daysUntilDue <= 0)// if last day
             {
-                DebtSucceeded();
-            }
-            else
-            {
-                DebtFailed();
+                if (DebtPaid)
+                {
+                    DebtSucceeded();
+                }
+                else
+                {
+                    DebtFailed();
+                }
             }
         }
     }
@@ -53,6 +58,10 @@ public class DebtManager : MonoBehaviour
 
         // Reduce the number of debts remaining to be paid
         DebtsUntilPaidOff -= 1;
+        if (DebtsUntilPaidOff <= 0)
+        {
+            DebtPaid = true;
+        }
     }
 
     public void PayDebt(int amount)

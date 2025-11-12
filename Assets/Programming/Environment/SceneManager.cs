@@ -25,6 +25,7 @@ public class SceneManager : MonoBehaviour
     [Space]
     public Light DirectionalLight;
     public TMP_Text CalenderText;
+    public DebtManager debtManager;
 
     [Header("Fog")]
     public Gradient FogGradient;
@@ -111,6 +112,8 @@ public class SceneManager : MonoBehaviour
                 DayTickedOver = true;
                 DayTracker += 1;
                 CalenderText.text = DayTracker.ToString();
+
+                debtManager.DayPassed();
             }
 
             if (!FogOverwritten)

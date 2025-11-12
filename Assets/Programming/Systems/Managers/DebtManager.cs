@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,7 +17,24 @@ public class DebtManager : MonoBehaviour
     public int DebtsUntilPaidOff = 10;
     [Space]
     public UnityEvent FailureEvent;
+    public TMP_Text TrackerText;
+
+    [HideInInspector] public DebtManager Instance;
     //
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        TrackerText.text = ("" + daysUntilDue);
+    }
     public void DayPassed()
     {
         if (DebtPaid) return;
@@ -24,6 +42,7 @@ public class DebtManager : MonoBehaviour
         if (!DebtPaid)
         {
             daysUntilDue -= 1;
+            TrackerText.text = ("" + daysUntilDue);
 
             if (daysUntilDue <= 0)// if last day
             {
@@ -61,6 +80,7 @@ public class DebtManager : MonoBehaviour
         if (DebtsUntilPaidOff <= 0)
         {
             DebtPaid = true;
+            TrackerText.text = ("X");
         }
     }
 

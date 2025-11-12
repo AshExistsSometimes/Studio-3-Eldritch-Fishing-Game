@@ -65,6 +65,7 @@ public class ShopManager : MonoBehaviour
     public void BuyItem(VendorSO.VendorStockEntry entry)
     {
         if (EconomyManager.instance.Currency < entry.Price) return;
+        //if (Inventory.Instance) IMPLEMENT FULL INVENTORY CHECK HERE <----
 
         EconomyManager.instance.TryRemoveMoney(entry.Price);
 

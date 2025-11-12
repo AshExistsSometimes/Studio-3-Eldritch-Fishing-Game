@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 [RequireComponent(typeof(CharacterController))]
 public class BoatController : MonoBehaviour
@@ -44,9 +45,12 @@ public class BoatController : MonoBehaviour
             return;
         }
 
+        Physics.IgnoreLayerCollision(8, 9);
+        Physics.IgnoreLayerCollision(8, 10);
+
         HandleMovement();
 
-        characterController.Move(moveDirection * Time.deltaTime);
+        //characterController.Move(moveDirection * Time.deltaTime);
 
         rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
         rotationX = Mathf.Clamp(rotationX, -lookXlimit, lookXlimit);
@@ -75,7 +79,7 @@ public class BoatController : MonoBehaviour
             transform.Rotate(Vector3.up * (horizontal * turnSpeed) * 60f * Time.deltaTime);
         }
 
-        Vector3 move = transform.forward * currentSpeed + verticalVelocity;
+        Vector3 move = transform.forward * currentSpeed;
         characterController.Move(move * Time.deltaTime);
     }
 

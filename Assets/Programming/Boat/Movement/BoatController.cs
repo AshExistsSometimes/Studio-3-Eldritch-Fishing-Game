@@ -40,11 +40,17 @@ public class BoatController : MonoBehaviour
 
     void Update()
     {
+        float yPos = transform.position.y;
+
         if (!isMounted || driver == null)
         {
             return;
         }
 
+        if (yPos > 2.8)
+        {
+            yPos = 2.8f;
+        }
         Physics.IgnoreLayerCollision(8, 9);
         Physics.IgnoreLayerCollision(8, 10);
 

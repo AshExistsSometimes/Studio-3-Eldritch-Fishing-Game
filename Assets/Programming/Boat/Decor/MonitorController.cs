@@ -11,8 +11,11 @@ public class MonitorController : MonoBehaviour
     public BoatController Boat;
     public BoatHealthManager BoatHPManager;
     public SceneManager sceneManager;
+    public DebtManager debtManager;
 
     public bool ScreenOn = false;
+
+    private string debtString;
 
     private void Update()
     {
@@ -58,9 +61,19 @@ public class MonitorController : MonoBehaviour
         //string fuelEmpty = new string('□', fuelEmptySegments);
         //string Fuelbar = fuelFilled + fuelEmpty;
 
+        if (!debtManager.DebtPaid)
+        {
+            string debtString = new string("<br><br><size=100%>Debt to Pay: <size=130%>" + debtManager.DebtRemaining + "<size=100%>");
+        }
+        else
+        {
+            string debtString = new string("<br><br><size=100%>Debt paid off<br><size=100%>");
+        }
+
         DisplayText.text =
             "<color=#9CB79F>HP:  <color=#B76262>" + HPbar +// HP Display
             "<color=#9CB79F><br>Fuel:■■■■■■■■■■" +// Fuel Display
-            "<br><br><br><br><br><br><size=150%>" + sceneManager.ClockTime + ":00";// Time Display
+             debtString +
+            "<br><br><br><size=150%>" + sceneManager.ClockTime + ":00";// Time Display
     }
 }

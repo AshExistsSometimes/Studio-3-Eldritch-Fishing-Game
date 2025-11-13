@@ -34,6 +34,7 @@ public class DebtManager : MonoBehaviour
         }
 
         TrackerText.text = ("" + daysUntilDue);
+        Debug.Log(DebtRemaining);
     }
     public void DayPassed()
     {

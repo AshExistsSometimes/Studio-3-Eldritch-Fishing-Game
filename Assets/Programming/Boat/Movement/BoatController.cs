@@ -123,4 +123,21 @@ public class BoatController : MonoBehaviour
         currentSpeed = 0f;
         rod.gameObject.SetActive(true);
     }
+
+
+    // UPGRADES - Ashley
+
+    public void UpgradeSpeed(float UpgradeAmount)
+    {
+        walkSpeed += UpgradeAmount;
+        runSpeed += UpgradeAmount;
+    }
+    public void UpgradeAcceleration(float UpgradeAmount)
+    {
+        acceleration += UpgradeAmount;
+    }
+    public void UpgradeTurnSpeed(float UpgradeAmount)
+    {
+        turnSpeed += UpgradeAmount;
+    }
 }

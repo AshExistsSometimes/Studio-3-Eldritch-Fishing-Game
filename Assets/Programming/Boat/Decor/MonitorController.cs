@@ -63,17 +63,19 @@ public class MonitorController : MonoBehaviour
 
         if (!debtManager.DebtPaid)
         {
-            string debtString = new string("<br><br><size=100%>Debt to Pay: <size=130%>" + debtManager.DebtRemaining + "<size=100%>");
+            Debug.Log("Monitor Registering Player as still having debt");
+            debtString = ("<br><br><size=100%>Debt to Pay: <size=130%>" + debtManager.DebtRemaining + "<size=100%>");
         }
         else
         {
-            string debtString = new string("<br><br><size=100%>Debt paid off<br><size=100%>");
+            Debug.Log("Monitor Registering Player as having no debt");
+            debtString = ("<br><br><size=100%>Debt paid off<br><size=100%>");
         }
 
         DisplayText.text =
             "<color=#9CB79F>HP:  <color=#B76262>" + HPbar +// HP Display
             "<color=#9CB79F><br>Fuel:■■■■■■■■■■" +// Fuel Display
-             debtString +
+              debtString +
             "<br><br><br><size=150%>" + sceneManager.ClockTime + ":00";// Time Display
     }
 }

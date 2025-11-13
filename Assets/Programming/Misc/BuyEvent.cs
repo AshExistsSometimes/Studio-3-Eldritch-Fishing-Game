@@ -25,13 +25,13 @@ public class BuyEvent : Interactable
             {
                 if (EconomyManager.instance.Currency < Cost)// If players money is lower than cost
                 {
-                    interactionText = "- Too expensive ($" + Cost + ")";
+                    interactionText = gameObject.name + " is too expensive ($" + Cost + ")";
                     interactionPrompt.enabled = true;
                 }
 
                 if (EconomyManager.instance.Currency >= Cost)// If players has enough money
                 {
-                    interactionText = "- Buy for $" + Cost + "<br> You have: $" + EconomyManager.instance.Currency;
+                    interactionText = "- Buy " + gameObject.name + " for $" + Cost + "<br> You have: $" + EconomyManager.instance.Currency;
                     interactionPrompt.enabled = true;
                 }
             }

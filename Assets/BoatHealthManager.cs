@@ -22,4 +22,10 @@ public class BoatHealthManager : MonoBehaviour, IDamagable
     {
         HP = MaxHP;
     }
+
+    // UPGRADES
+    public void UpgradeMaxHP(float  UpgradeAmount)
+    {
+        MaxHP += UpgradeAmount;
+    }
 }

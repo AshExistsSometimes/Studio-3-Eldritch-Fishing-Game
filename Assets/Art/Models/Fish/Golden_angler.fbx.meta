@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 449ead9deabe04145acc58ee71929abe
+guid: 52d14bda01df5b1408d64a955ee39b1e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: glowing_bit
-    second: {fileID: 2100000, guid: 68cdd2ab3333f054894b63343951492a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: standardSurface1
-    second: {fileID: 2100000, guid: af9b24e6a9685e84ab2aed4e831d45d9, type: 2}
+    second: {fileID: 2100000, guid: a53f495ac46223d40b8007943a5fac6c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

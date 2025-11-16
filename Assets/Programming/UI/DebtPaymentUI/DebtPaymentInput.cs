@@ -10,7 +10,7 @@ public class DebtPaymentInput : MonoBehaviour
     public TMP_Text inputText;
     public Button confirmButton;
     public TMP_Text PlayerMoneyText;
-    public PlayerMovement playerMovement;
+    public PlayerController playerController;
 
     [Header("Colours")]
     public Color DefaultTextColour = Color.white;
@@ -102,8 +102,8 @@ public class DebtPaymentInput : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
 
-        if (playerMovement != null)
-            playerMovement.canMove = false;
+        if (playerController != null)
+            playerController.canMove = false;
 
         // Focus input field
         inputField.ActivateInputField();
@@ -117,8 +117,8 @@ public class DebtPaymentInput : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        if (playerMovement != null)
-            playerMovement.canMove = true;
+        if (playerController != null)
+            playerController.canMove = true;
     }
 }
 

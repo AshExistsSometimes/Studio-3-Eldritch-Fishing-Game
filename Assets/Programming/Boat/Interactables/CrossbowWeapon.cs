@@ -6,7 +6,7 @@ public class CrossbowWeapon : Interactable
     [Header("Mounting")]
     public Transform MountPosition;
     public Transform DismountPos;
-    public PlayerMovement playerMovement;
+    public PlayerController playerMovement;
     public GameObject playerObject;
     public FishingRod rod;
 

@@ -205,6 +205,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: eyeball
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 233b0a36f39e3ba4a8ab61ff1621ea8d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -5754084199372789682, guid: 233b0a36f39e3ba4a8ab61ff1621ea8d, type: 3}
     m_RemovedGameObjects: []
@@ -247,7 +251,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -274,7 +278,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!114 &-8636967201793324758
@@ -291,6 +295,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlowColor: {r: 1, g: 1, b: 1, a: 1}
   GlowIntensity: 0.01
+  _renderer: {fileID: 0}
+  _materialInstance: {fileID: 0}
+  _originalEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  _isGlowing: 0
+  interactionPrompt: {fileID: 0}
+  interactionText: Press 'E' to interact
   fish: {fileID: 11400000, guid: 780bdcd45fe4d5f4a8aa5a06cff862bf, type: 2}
 --- !u!4 &5511639317660779502 stripped
 Transform:

@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lemon_Photo
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5c63df9f353b00b4d8f4c4676e35b213, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -90,7 +94,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -117,7 +121,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7800320292062851693, guid: 5c63df9f353b00b4d8f4c4676e35b213, type: 3}
 --- !u!114 &-6786975954295766232
@@ -134,4 +138,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlowColor: {r: 1, g: 1, b: 1, a: 1}
   GlowIntensity: 0.01
+  _renderer: {fileID: 0}
+  _materialInstance: {fileID: 0}
+  _originalEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  _isGlowing: 0
+  interactionPrompt: {fileID: 0}
+  interactionText: Press 'E' to interact
   fish: {fileID: 11400000, guid: 32bb5ec9ee77a7249ae2f695596b5488, type: 2}

@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerInventoryController : MonoBehaviour
 {
     public Inventory inventory;
-    public PlayerMovement player;
+    public PlayerController player;
 
     void Update()
     {

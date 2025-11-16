@@ -85,7 +85,7 @@ public class Inventory : MonoBehaviour
 
     public bool inventoryOpen = false;
 
-    public PlayerMovement player;
+    public PlayerController player;
 
     public FishingRod rod;
 

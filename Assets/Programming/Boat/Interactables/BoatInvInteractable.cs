@@ -3,7 +3,7 @@ using UnityEngine;
 public class BoatInvInteractable : Interactable
 {
     public Inventory inventory;
-    public PlayerMovement player;
+    public PlayerController player;
 
     public override void OnInteract()
     {

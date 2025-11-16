@@ -30,12 +30,12 @@ public class BoatController : MonoBehaviour
     private Transform driver;
     private CharacterController characterController;
 
-    public PlayerMovement playerMovement { get; private set; }
+    public PlayerController playerController { get; private set; }
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        playerMovement = FindFirstObjectByType<PlayerMovement>();    
+        playerController = FindFirstObjectByType<PlayerController>();    
     }
 
     void Update()
@@ -104,7 +104,7 @@ public class BoatController : MonoBehaviour
         driver.localRotation = Quaternion.identity;
 
         rod.gameObject.SetActive(false);
-        playerMovement.enabled = false;
+        playerController.enabled = false;
     }
 
     public void Dismount()
@@ -116,7 +116,7 @@ public class BoatController : MonoBehaviour
 
         driver.SetParent(null);
 
-        playerMovement.enabled = true;
+        playerController.enabled = true;
 
         isMounted = false;
         driver = null;

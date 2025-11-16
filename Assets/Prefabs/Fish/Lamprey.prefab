@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamprey
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cb3e1cef9fa112d46adc2755448825ed, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7899681801819731002, guid: cb3e1cef9fa112d46adc2755448825ed, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -155,4 +159,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlowColor: {r: 1, g: 1, b: 1, a: 1}
   GlowIntensity: 0.02
+  _renderer: {fileID: 0}
+  _materialInstance: {fileID: 0}
+  _originalEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  _isGlowing: 0
+  interactionPrompt: {fileID: 0}
+  interactionText: Press 'E' to interact
   fish: {fileID: 0}

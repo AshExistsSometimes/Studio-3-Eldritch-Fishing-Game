@@ -37,7 +37,7 @@ public class FishingMinigame : MonoBehaviour
     public GameObject MinigameUI;
     public Slider ProgressSlider;
     public TMP_Text ResultText;
-    public PlayerMovement player;
+    public PlayerController player;
     public Transform FishDropPoint;
     public FishingRod rod;
 

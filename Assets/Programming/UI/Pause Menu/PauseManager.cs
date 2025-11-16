@@ -5,12 +5,12 @@ public class PauseManager : MonoBehaviour
 {
     public GameObject pauseMenu;
     public Button buttonToSelect;
-    private PlayerMovement player;
+    private PlayerController player;
     private bool isPaused;
 
     private void Start()
     {
-        player = FindFirstObjectByType<PlayerMovement>();
+        player = FindFirstObjectByType<PlayerController>();
         pauseMenu.SetActive(false);
     }
 

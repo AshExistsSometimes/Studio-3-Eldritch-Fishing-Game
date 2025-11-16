@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ghost_fish_update
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c5119126dc6b9f64abd0482f3a87f0b2, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8919101080228090923, guid: c5119126dc6b9f64abd0482f3a87f0b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -140,7 +144,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -207,4 +211,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlowColor: {r: 1, g: 1, b: 1, a: 1}
   GlowIntensity: 0.01
+  _renderer: {fileID: 0}
+  _materialInstance: {fileID: 0}
+  _originalEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  _isGlowing: 0
+  interactionPrompt: {fileID: 0}
+  interactionText: Press 'E' to interact
   fish: {fileID: 11400000, guid: ea98139342ec7d9479e395c49b61cb08, type: 2}

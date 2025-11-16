@@ -79,7 +79,7 @@ public class Interactable : MonoBehaviour, IInteractable
             return;
 
         _isGlowing = false;
-        if (_materialInstance.HasProperty("_EmissionColor"))
+        if (_materialInstance && _materialInstance.HasProperty("_EmissionColor"))
             _materialInstance.SetColor("_EmissionColor", _originalEmissionColor);
 
         if (interactionPrompt != null)

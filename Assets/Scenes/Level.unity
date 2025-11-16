@@ -3515,6 +3515,7 @@ MonoBehaviour:
   DisplayText: {fileID: 1123900908}
   Boat: {fileID: 1128538157}
   BoatHPManager: {fileID: 1128538156}
+  BoatFuelManager: {fileID: 1128538158}
   sceneManager: {fileID: 836458879}
   debtManager: {fileID: 836458883}
   ScreenOn: 0
@@ -6763,7 +6764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2902912015855397692, guid: b921136257aba7c43946f749f2bdfc49, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.7149983
+      value: 0.229
       objectReference: {fileID: 0}
     - target: {fileID: 2902912015855397692, guid: b921136257aba7c43946f749f2bdfc49, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6771,7 +6772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2902912015855397692, guid: b921136257aba7c43946f749f2bdfc49, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.572005
+      value: 14.466
       objectReference: {fileID: 0}
     - target: {fileID: 2902912015855397692, guid: b921136257aba7c43946f749f2bdfc49, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6804,7 +6805,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2522833508103516550, guid: b921136257aba7c43946f749f2bdfc49, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1562309858}
   m_SourcePrefab: {fileID: 100100000, guid: b921136257aba7c43946f749f2bdfc49, type: 3}
 --- !u!4 &637333145 stripped
 Transform:
@@ -9526,6 +9530,11 @@ CanvasRenderer:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5121362256174176049, guid: 1a928e10981f0c043bb7617fab8c1def, type: 3}
   m_PrefabInstance: {fileID: 150560456}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &861002782 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1102995731514270871, guid: 79e81ef02b83cda49a601dc3c7f5762e, type: 3}
+  m_PrefabInstance: {fileID: 1791773244}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &871775449
 GameObject:
@@ -12914,6 +12923,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4350035f83271d243b6bc23f3dc0e16a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1128538158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128538154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c18df80ff32c14d8b25210a268ba21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fuelAmount: 100
+  maxFuelAmount: 100
 --- !u!1001 &1130015328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15531,6 +15554,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5711056252459032445}
     - target: {fileID: 1778615137780944349, guid: 0786bd1945e03944399538f55d0371d8, type: 3}
+      propertyPath: biofuelUI
+      value: 
+      objectReference: {fileID: 1791773246}
+    - target: {fileID: 1778615137780944349, guid: 0786bd1945e03944399538f55d0371d8, type: 3}
       propertyPath: moneyText
       value: 
       objectReference: {fileID: 1899917457}
@@ -15542,6 +15569,10 @@ PrefabInstance:
       propertyPath: boatInvSize
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1778615137780944349, guid: 0786bd1945e03944399538f55d0371d8, type: 3}
+      propertyPath: fuelManager
+      value: 
+      objectReference: {fileID: 1128538158}
     - target: {fileID: 1778615137780944349, guid: 0786bd1945e03944399538f55d0371d8, type: 3}
       propertyPath: sellSlotParent
       value: 
@@ -17705,6 +17736,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8500247059130435058, guid: 9d329333f09c43641be5123be6f15fd8, type: 3}
   m_PrefabInstance: {fileID: 96603209}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1562309856 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2522833508103516550, guid: b921136257aba7c43946f749f2bdfc49, type: 3}
+  m_PrefabInstance: {fileID: 637333144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1562309858
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562309856}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &1569204387 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6723004257813316626, guid: f57d44ae525138c4fabe8e7de15766a8, type: 3}
@@ -20231,7 +20312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 289761353871031853, guid: 79e81ef02b83cda49a601dc3c7f5762e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.23499778
+      value: -0.35
       objectReference: {fileID: 0}
     - target: {fileID: 289761353871031853, guid: 79e81ef02b83cda49a601dc3c7f5762e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20239,7 +20320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 289761353871031853, guid: 79e81ef02b83cda49a601dc3c7f5762e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.890005
+      value: 14.765
       objectReference: {fileID: 0}
     - target: {fileID: 289761353871031853, guid: 79e81ef02b83cda49a601dc3c7f5762e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -20276,13 +20357,110 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1102995731514270871, guid: 79e81ef02b83cda49a601dc3c7f5762e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1791773248}
+    - targetCorrespondingSourceObject: {fileID: 1102995731514270871, guid: 79e81ef02b83cda49a601dc3c7f5762e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1791773247}
+    - targetCorrespondingSourceObject: {fileID: 1102995731514270871, guid: 79e81ef02b83cda49a601dc3c7f5762e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1791773246}
   m_SourcePrefab: {fileID: 100100000, guid: 79e81ef02b83cda49a601dc3c7f5762e, type: 3}
 --- !u!4 &1791773245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 289761353871031853, guid: 79e81ef02b83cda49a601dc3c7f5762e, type: 3}
   m_PrefabInstance: {fileID: 1791773244}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1791773246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861002782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3138839899db14696d86482e7108cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlowColor: {r: 1, g: 1, b: 1, a: 1}
+  GlowIntensity: 0.02
+  _renderer: {fileID: 0}
+  _materialInstance: {fileID: 0}
+  _originalEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  _isGlowing: 0
+  interactionPrompt: {fileID: 0}
+  interactionText: Press 'E' to interact
+  inventory: {fileID: 23266831}
+  isOpen: 0
+--- !u!65 &1791773247
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861002782}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1791773248
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861002782}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1798038004
 GameObject:
   m_ObjectHideFlags: 0
@@ -24736,6 +24914,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8381221767033158875, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1128538156}
+    - targetCorrespondingSourceObject: {fileID: 8381221767033158875, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1128538158}
     - targetCorrespondingSourceObject: {fileID: 3342982358664931206, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 757092444}

@@ -17,7 +17,8 @@ public class BoatController : MonoBehaviour
     public float turnSpeed = 2f;
 
     private float currentSpeed = 0;
-    public bool isMounted = false;
+    public float fuelDepletionTimer = 0;
+    [HideInInspector] public bool isMounted = false;
 
     private Vector3 verticalVelocity = Vector3.zero;
 
@@ -28,14 +29,18 @@ public class BoatController : MonoBehaviour
     float rotationX = 0;
 
     private Transform driver;
-    private CharacterController characterController;
+    private Vector3 lastPosition;
 
-    public PlayerController playerController { get; private set; }
+    private CharacterController characterController;
+    private PlayerController playerController;
+    private BoatFuelManager fuelManager;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         playerController = FindFirstObjectByType<PlayerController>();    
+        fuelManager = GetComponent<BoatFuelManager>();
+        lastPosition = transform.position;
     }
 
     void Update()
@@ -54,9 +59,12 @@ public class BoatController : MonoBehaviour
         Physics.IgnoreLayerCollision(8, 9);
         Physics.IgnoreLayerCollision(8, 10);
 
-        HandleMovement();
+        CheckIfMoving();
 
-        //characterController.Move(moveDirection * Time.deltaTime);
+        if (fuelManager.fuelAmount > 0)
+        {
+            HandleMovement();
+        }
 
         rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
         rotationX = Mathf.Clamp(rotationX, -lookXlimit, lookXlimit);
@@ -139,5 +147,21 @@ public class BoatController : MonoBehaviour
     public void UpgradeTurnSpeed(float UpgradeAmount)
     {
         turnSpeed += UpgradeAmount;
+    }
+
+    private void CheckIfMoving()
+    {
+        if (transform.position != lastPosition)
+        {
+            fuelDepletionTimer += Time.deltaTime;
+        }
+
+        if (fuelDepletionTimer > 5)
+        {
+            fuelDepletionTimer = 0;
+            fuelManager.DepleteFuel(1);
+        }
+        
+        lastPosition = transform.position;
     }
 }

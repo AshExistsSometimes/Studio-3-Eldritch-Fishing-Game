@@ -87,6 +87,10 @@ public class Inventory : MonoBehaviour
 
     public PlayerController player;
 
+    public BoatFuelManager fuelManager;
+
+    public BiofuelConverterInteraction biofuelUI;
+
     public FishingRod rod;
 
     // used for double click to open item data.
@@ -208,6 +212,16 @@ public class Inventory : MonoBehaviour
                     moneyText.text = "$" + EconomyManager.instance.Currency;
 
                 // Clear selection (so the UI doesn't keep dragging an empty item)
+                ClearSelected();
+            }
+
+            selectedData = GetSlotData(selectedID);
+            if (selectedData != null && biofuelUI.isOpen)
+            {
+                fuelManager.AddFuel(10);
+
+                RemoveItemAtSlot(selectedID);
+
                 ClearSelected();
             }
         }

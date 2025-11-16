@@ -48,7 +48,7 @@ public class CrossbowWeapon : Interactable
             Mount();
     }
 
-    /// <summary>Mount player onto crossbow, disable movement, align rotation.</summary>
+    // Mount player onto crossbow, disable movement, align rotation.</summary>
     public void Mount()
     {
         if (!playerObject || !playerMovement || !MountPosition) return;

@@ -34,7 +34,7 @@ public class EconomyManager : MonoBehaviour
         else return;
     }
 
-    private bool CanPlayerAffordItem(int ItemCost)
+    public bool CanPlayerAffordItem(int ItemCost)
     {
         if (Currency >= ItemCost)
         {

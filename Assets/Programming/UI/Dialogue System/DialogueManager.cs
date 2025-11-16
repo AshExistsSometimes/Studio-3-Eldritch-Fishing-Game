@@ -17,7 +17,7 @@ public class DialogueManager : MonoBehaviour
     public Transform buttonParent;
 
     private bool isInDialogue = false;
-    public PlayerMovement player;
+    public PlayerController player;
 
     ////////////////////////////////////////////////////////////////////
     private void Awake()

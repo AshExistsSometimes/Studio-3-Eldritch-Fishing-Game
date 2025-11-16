@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -71,6 +73,7 @@ public class LandmarkSpawner : MonoBehaviour
     [Header("Large Islands")]
     public float LargeIslandSpawnRadius = 500f;
     public float LargeIslandSpawnRadiusBounds = 50f;
+    public int MaxLargeIslands = 1;
 
     private bool initialized = false;
     private bool respawnRequested = false;
@@ -142,26 +145,63 @@ public class LandmarkSpawner : MonoBehaviour
                 SpawnLandmarkInstance(data, spawnPos);
         }
 
-        // Handle large island
-        LandmarkData largeIsland = Landmarks.Find(x => x.IsLargeIsland);
-        if (largeIsland != null && largeIsland.SpawnedInstances.Count == 0)
+        // Handle large islands
+        var largeIslands = Landmarks.Where(x => x.IsLargeIsland).ToList();
+        int currentLargeIslands = largeIslands.Sum(li => li.SpawnedInstances.Count);
+
+        if (currentLargeIslands < MaxLargeIslands)
         {
-            Vector3 spawnPos;
-            if (TryGetValidLargeIslandPosition(largeIsland, out spawnPos))
+            int needed = MaxLargeIslands - currentLargeIslands;
+
+            // Filter only unspawned large islands
+            var unspawned = largeIslands.Where(li => li.SpawnedInstances.Count == 0 && li.Rarity > 0f).ToList();
+            if (unspawned.Count == 0) return;
+
+            // Spawn until we reach the needed count (or run out of options)
+            while (needed > 0 && unspawned.Count > 0)
             {
-                // Delete any overlapping landmarks
-                foreach (var other in Landmarks)
+                // Weighted selection based on Rarity
+                float totalWeight = unspawned.Sum(u => u.Rarity);
+                float pick = Random.value * totalWeight;
+
+                LandmarkData chosen = null;
+                float accum = 0f;
+                foreach (var li in unspawned)
                 {
-                    for (int i = other.SpawnedInstances.Count - 1; i >= 0; i--)
+                    accum += li.Rarity;
+                    if (pick <= accum)
                     {
-                        if (Vector3.Distance(other.SpawnedInstances[i].transform.position, spawnPos) < largeIsland.SpaceRequired)
-                        {
-                            Destroy(other.SpawnedInstances[i]);
-                            other.SpawnedInstances.RemoveAt(i);
-                        }
+                        chosen = li;
+                        break;
                     }
                 }
-                SpawnLandmarkInstance(largeIsland, spawnPos);
+
+                if (chosen == null)
+                    chosen = unspawned[0];
+
+                // Try to spawn selected island
+                Vector3 pos;
+                if (TryGetValidLargeIslandPosition(chosen, out pos))
+                {
+                    // Delete overlapping smaller stuff
+                    foreach (var other in Landmarks)
+                    {
+                        for (int i = other.SpawnedInstances.Count - 1; i >= 0; i--)
+                        {
+                            if (Vector3.Distance(other.SpawnedInstances[i].transform.position, pos) < chosen.SpaceRequired)
+                            {
+                                Destroy(other.SpawnedInstances[i]);
+                                other.SpawnedInstances.RemoveAt(i);
+                            }
+                        }
+                    }
+
+                    SpawnLandmarkInstance(chosen, pos);
+                    needed--;
+                }
+
+                // Remove chosen island from list to prevent duplicates
+                unspawned.Remove(chosen);
             }
         }
     }

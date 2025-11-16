@@ -61,7 +61,7 @@ public class MonitorController : MonoBehaviour
         //string fuelEmpty = new string('□', fuelEmptySegments);
         //string Fuelbar = fuelFilled + fuelEmpty;
 
-        if (!debtManager.DebtPaid)
+        if (!debtManager.DebtFullyPaid)
         {
             Debug.Log("Monitor Registering Player as still having debt");
             debtString = ("<br><br><size=100%>Debt to Pay: <size=130%>" + debtManager.DebtRemaining + "<size=100%>");

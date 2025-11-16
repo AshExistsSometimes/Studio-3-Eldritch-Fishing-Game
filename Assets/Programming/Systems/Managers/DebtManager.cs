@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class DebtManager : MonoBehaviour
 {
-    [Tooltip("if true, player has paid off all their debt")]public bool DebtPaid = false;
+    [Tooltip("if true, player has paid off all their debt")]public bool DebtFullyPaid = false;
     [Space]
     public int TotalDebtAmount = 100;
     public int DebtRemaining = 100;
@@ -38,16 +38,16 @@ public class DebtManager : MonoBehaviour
     }
     public void DayPassed()
     {
-        if (DebtPaid) return;
+        if (DebtFullyPaid) return;
 
-        if (!DebtPaid)
+        if (!DebtFullyPaid)
         {
             daysUntilDue -= 1;
             TrackerText.text = ("" + daysUntilDue);
 
             if (daysUntilDue <= 0)// if last day
             {
-                if (DebtPaid)
+                if (DebtFullyPaid)
                 {
                     DebtSucceeded();
                 }
@@ -80,21 +80,27 @@ public class DebtManager : MonoBehaviour
         DebtsUntilPaidOff -= 1;
         if (DebtsUntilPaidOff <= 0)
         {
-            DebtPaid = true;
+            DebtFullyPaid = true;
             TrackerText.text = ("X");
         }
     }
 
-    public void PayDebt(int amount)
+    public void TryPayDebt(int amount)
     {
-        if (amount > DebtRemaining)// Stops player from paying more than is left on their debt
+        if (EconomyManager.instance.CanPlayerAffordItem(amount))
         {
-            int paymentAmount = DebtRemaining - amount;
-            DebtRemaining =- paymentAmount;
+            if (amount > DebtRemaining)// Stops player from paying more than is left on their debt
+                {
+                    int paymentAmount = DebtRemaining - amount;
+                    DebtRemaining = -paymentAmount;
+                    EconomyManager.instance.TryRemoveMoney(amount);     
+                }
+            else
+                {
+                    DebtRemaining -= amount;
+                    EconomyManager.instance.TryRemoveMoney(amount);
+                }
         }
-        else
-        {
-            DebtRemaining -= amount;
-        }      
+        else { return; }
     }
 }

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7215d5746a512cb43b4eda19b923af1b, type: 3}
-  m_Name: Fish_Unwrapped
+  m_Name: Fish_CookieFish
   m_EditorClassIdentifier: 
-  fishName: Unwrapped Cod
-  weirdnessLevel: 2
-  difficulty: 1.3
-  persistence: 1.3
-  agility: 1.3
-  sizeVariance: {x: 1, y: 1}
-  WeirdnessPenalty: 10
-  BaseSellValue: 30
-  InventoryItem: {fileID: 11400000, guid: d385b107fa73053458342f377f132c57, type: 2}
+  fishName: Cookie Fish
+  weirdnessLevel: 4
+  difficulty: 1
+  persistence: 1
+  agility: 1
+  sizeVariance: {x: 1, y: 2}
+  WeirdnessPenalty: 0
+  BaseSellValue: 1
+  InventoryItem: {fileID: 11400000, guid: e94fae26cfb01c44b9fc76f4433882aa, type: 2}

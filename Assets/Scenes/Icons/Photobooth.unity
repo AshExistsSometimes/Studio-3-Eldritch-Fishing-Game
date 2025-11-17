@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cookie Fish
       objectReference: {fileID: 0}
+    - target: {fileID: 9063934023236869986, guid: 63172d5ddc10bfc43bcf9946e81522e6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -358,6 +362,63 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1001 &1082685279
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1667570702395959267, guid: c1d07b77e98497e4fa0cccec090a13b4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.154
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667570702395959267, guid: c1d07b77e98497e4fa0cccec090a13b4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.088
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667570702395959267, guid: c1d07b77e98497e4fa0cccec090a13b4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.023
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667570702395959267, guid: c1d07b77e98497e4fa0cccec090a13b4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.96096075
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667570702395959267, guid: c1d07b77e98497e4fa0cccec090a13b4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.074135065
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667570702395959267, guid: c1d07b77e98497e4fa0cccec090a13b4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.2611702
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667570702395959267, guid: c1d07b77e98497e4fa0cccec090a13b4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.05337138
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667570702395959267, guid: c1d07b77e98497e4fa0cccec090a13b4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -9.809
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667570702395959267, guid: c1d07b77e98497e4fa0cccec090a13b4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -30.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667570702395959267, guid: c1d07b77e98497e4fa0cccec090a13b4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -3.715
+      objectReference: {fileID: 0}
+    - target: {fileID: 2049056584177859929, guid: c1d07b77e98497e4fa0cccec090a13b4, type: 3}
+      propertyPath: m_Name
+      value: Golden_angler
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c1d07b77e98497e4fa0cccec090a13b4, type: 3}
 --- !u!1 &1637115696
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,3 +564,4 @@ SceneRoots:
   - {fileID: 997546012}
   - {fileID: 207631202}
   - {fileID: 524039862}
+  - {fileID: 1082685279}

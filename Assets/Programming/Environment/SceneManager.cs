@@ -26,6 +26,7 @@ public class SceneManager : MonoBehaviour
     public Light DirectionalLight;
     public TMP_Text CalenderText;
     public DebtManager debtManager;
+    public DeathManager deathManager;
 
     [Header("Fog")]
     public Gradient FogGradient;
@@ -114,6 +115,8 @@ public class SceneManager : MonoBehaviour
                 CalenderText.text = DayTracker.ToString();
 
                 debtManager.DayPassed();
+                deathManager.SaveProgress(); Debug.Log("Attempting to Save Data");
+                deathManager.SaveDataToFile(); Debug.Log("Attempting to Save Data to file");
             }
 
             if (!FogOverwritten)

@@ -7,7 +7,6 @@ public class BiofuelConverterInteraction : Interactable
 
     public override void OnInteract()
     {
-        Debug.Log(isOpen);
         {
             if (inventory.inventoryObject.activeSelf)
             {

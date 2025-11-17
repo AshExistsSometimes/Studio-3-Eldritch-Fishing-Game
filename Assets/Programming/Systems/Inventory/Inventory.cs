@@ -87,6 +87,8 @@ public class Inventory : MonoBehaviour
 
     public PlayerController player;
     public EconomyManager econManager;
+    public BiofuelConverterInteraction biofuelUI;
+    public BoatFuelManager fuelManager;
 
     public FishingRod rod;
 
@@ -210,6 +212,16 @@ public class Inventory : MonoBehaviour
                     moneyText.text = "$" + EconomyManager.instance.Currency;
 
                 // Clear selection (so the UI doesn't keep dragging an empty item)
+                ClearSelected();
+            }
+
+            selectedData = GetSlotData(selectedID);
+            if (selectedData != null && biofuelUI.isOpen)
+            {
+                fuelManager.AddFuel(10);
+
+                RemoveItemAtSlot(selectedID);
+
                 ClearSelected();
             }
         }

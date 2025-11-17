@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - InteractionPopup
+  - Ocean
+  - Boat
   layers:
   - Default
   - TransparentFX
@@ -11,11 +14,11 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Terrain
+  - Projectiles
+  - Boat
+  - Ocean
+  - IgnoreBoat
   - 
   - 
   - 

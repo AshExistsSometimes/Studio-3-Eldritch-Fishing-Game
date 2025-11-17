@@ -7,16 +7,18 @@ public class Interactable : MonoBehaviour, IInteractable
 {
     [Header("Interaction Feedback")]
     [Tooltip("Glow color when the object is hovered over.")]
-    public Color GlowColor = Color.yellow;
+    public Color GlowColor = Color.white;
 
     [Tooltip("Strength multiplier for the emission glow.")]
-    [Range(0f, 5f)] public float GlowIntensity = 1.5f;
+    [Range(0f, 5f)] public float GlowIntensity = 0.02f;
 
-    private Renderer _renderer;
-    private Material _materialInstance;
-    private Color _originalEmissionColor;
-    private bool _isGlowing = false;
-    private TextMeshProUGUI interactionPrompt;
+    [HideInInspector] public Renderer _renderer;
+    [HideInInspector] public Material _materialInstance;
+    [HideInInspector] public Color _originalEmissionColor;
+    [HideInInspector] public bool _isGlowing = false;
+    [HideInInspector] public TextMeshProUGUI interactionPrompt;
+
+    public string interactionText = "Press 'E' to interact";
 
     private void Awake()
     {
@@ -48,7 +50,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
     // Triggered when the player looks at this object.
     // Applies emission glow and shows prompt.
-    public void OnMouseOver()
+    public virtual void OnMouseHover()
     {
         if (_isGlowing)
             return;
@@ -62,7 +64,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
         if (interactionPrompt != null)
         {
-            interactionPrompt.text = "Press E to Interact";
+            interactionPrompt.text = interactionText;
             interactionPrompt.enabled = true;
         }
     }
@@ -72,11 +74,12 @@ public class Interactable : MonoBehaviour, IInteractable
     // Removes emission glow and hides prompt.
     public void OnMouseOff()
     {
+        interactionPrompt.text = interactionText;
         if (!_isGlowing)
             return;
 
         _isGlowing = false;
-        if (_materialInstance.HasProperty("_EmissionColor"))
+        if (_materialInstance && _materialInstance.HasProperty("_EmissionColor"))
             _materialInstance.SetColor("_EmissionColor", _originalEmissionColor);
 
         if (interactionPrompt != null)

@@ -63,7 +63,7 @@ public class DisplayItemData : MonoBehaviour
         }
 
         // this is all tempoary but you get the idea, set the text to the data.
-        itemNameDisplay.text = data.name;
+        itemNameDisplay.text = data.ItemName;
 
         itemIcon.sprite = data.Icon;
 

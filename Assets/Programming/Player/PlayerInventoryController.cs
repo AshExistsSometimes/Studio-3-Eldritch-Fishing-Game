@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerInventoryController : MonoBehaviour
 {
     public Inventory inventory;
-    public PlayerMovement player;
+    public PlayerController player;
 
     void Update()
     {
@@ -17,7 +17,7 @@ public class PlayerInventoryController : MonoBehaviour
             }
             else
             {
-                inventory.OpenInventory(false);
+                inventory.OpenInventory(false, false);
             }
         }
 

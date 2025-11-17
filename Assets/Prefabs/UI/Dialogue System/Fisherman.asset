@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d78c963316ee784e92f8ec97a335447, type: 3}
+  m_Name: Fisherman
+  m_EditorClassIdentifier: 
+  dialogueText: You there, you look capable enough, go out and get me some fish.
+  availableResponses:
+  - responseText: Okay
+    nextDialogueNode: {fileID: 11400000, guid: cb14f4a171cc04a4da9a0a50a3b9812c, type: 2}
+  - responseText: Nah
+    nextDialogueNode: {fileID: 11400000, guid: ae7ae01bbd702084a8f87032544fda59, type: 2}

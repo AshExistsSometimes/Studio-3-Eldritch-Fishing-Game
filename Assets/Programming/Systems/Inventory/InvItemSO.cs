@@ -14,7 +14,7 @@ public class InvItemSO : ScriptableObject
 {
 
     // Data
-    public string Name = "Item";
+    public string ItemName = "Item";
 
     [TextArea(1, 150)] // god fobid you exceed this amount.
     public string Description = "Lorem Ipsum";
@@ -31,7 +31,7 @@ public class InvItemSO : ScriptableObject
     [Space]
     public int BaseSellValue = 1;
     public float WeirdnessPenalty = 0f;
-    [Header("Fish Exclusive"), Tooltip("1 is default, applies a multiplier to value if higher")]
-    public float FishSize = 1f;
+    [Header("Fish Exclusive")]
+    public bool IsFish = false;
     //---------------------------------------
 }

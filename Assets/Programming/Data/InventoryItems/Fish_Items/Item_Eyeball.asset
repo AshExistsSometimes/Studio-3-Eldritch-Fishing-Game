@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511e2b32049a77a4d8dbb722747eb956, type: 3}
   m_Name: Item_Eyeball
   m_EditorClassIdentifier: 
-  Name: Eyeball
+  ItemName: Eyeball
   Description: Ew.
-  Icon: {fileID: 21300000, guid: 7816cac28f36fc041b3b2e51b5d5744f, type: 3}
+  Icon: {fileID: 21300000, guid: 5c8c81df4834a7f4ea0297e3f856a315, type: 3}
   Prefab: {fileID: 5131454222236064084, guid: 5cc060d209d53ae47afbabd4e6a43c22, type: 3}
   Equippable: 0
   Usable: 0
   BaseSellValue: 1
-  WeirdnessPenalty: 0.5
-  FishSize: 1
+  WeirdnessPenalty: 0.1
+  IsFish: 1

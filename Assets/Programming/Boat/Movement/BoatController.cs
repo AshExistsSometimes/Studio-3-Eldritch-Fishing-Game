@@ -8,6 +8,7 @@ public class BoatController : MonoBehaviour
     public GameObject player;
     public Camera playerCamera;
     public Transform standingPoint;
+    public FishingRod rod;
     public float walkSpeed = 2f;
     public float runSpeed = 2f;
     public float acceleration = 2f;
@@ -15,7 +16,8 @@ public class BoatController : MonoBehaviour
     public float turnSpeed = 2f;
 
     private float currentSpeed = 0;
-    private bool isMounted = false;
+    public float fuelDepletionTimer = 0;
+    [HideInInspector] public bool isMounted = false;
 
     private Vector3 verticalVelocity = Vector3.zero;
 
@@ -26,26 +28,42 @@ public class BoatController : MonoBehaviour
     float rotationX = 0;
 
     private Transform driver;
-    private CharacterController characterController;
+    private Vector3 lastPosition;
 
-    public PlayerMovement playerMovement { get; private set; }
+    private CharacterController characterController;
+    private PlayerController playerController;
+    private BoatFuelManager fuelManager;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        playerMovement = FindFirstObjectByType<PlayerMovement>();    
+        playerController = FindFirstObjectByType<PlayerController>();
+        fuelManager = GetComponent<BoatFuelManager>();
+        lastPosition = transform.position;
     }
 
     void Update()
     {
+        float yPos = transform.position.y;
+
         if (!isMounted || driver == null)
         {
             return;
         }
 
-        HandleMovement();
+        if (yPos > 2.8)
+        {
+            yPos = 2.8f;
+        }
+        Physics.IgnoreLayerCollision(8, 9);
+        Physics.IgnoreLayerCollision(8, 10);
 
-        characterController.Move(moveDirection * Time.deltaTime);
+        CheckIfMoving();
+
+        if (fuelManager.fuelAmount > 0)
+        {
+            HandleMovement();
+        }
 
         rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
         rotationX = Mathf.Clamp(rotationX, -lookXlimit, lookXlimit);
@@ -58,7 +76,7 @@ public class BoatController : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         float targetSpeed = 0f;
-        
+
         if (vertical > 0.1f)
         {
             targetSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
@@ -74,7 +92,7 @@ public class BoatController : MonoBehaviour
             transform.Rotate(Vector3.up * (horizontal * turnSpeed) * 60f * Time.deltaTime);
         }
 
-        Vector3 move = transform.forward * currentSpeed + verticalVelocity;
+        Vector3 move = transform.forward * currentSpeed;
         characterController.Move(move * Time.deltaTime);
     }
 
@@ -92,7 +110,8 @@ public class BoatController : MonoBehaviour
         driver.localPosition = Vector3.zero;
         driver.localRotation = Quaternion.identity;
 
-        playerMovement.enabled = false;
+        rod.gameObject.SetActive(false);
+        playerController.enabled = false;
     }
 
     public void Dismount()
@@ -104,10 +123,44 @@ public class BoatController : MonoBehaviour
 
         driver.SetParent(null);
 
-        playerMovement.enabled = true;
+        playerController.enabled = true;
 
         isMounted = false;
         driver = null;
         currentSpeed = 0f;
+        rod.gameObject.SetActive(true);
+    }
+
+
+    // UPGRADES - Ashley
+
+    public void UpgradeSpeed(float UpgradeAmount)
+    {
+        walkSpeed += UpgradeAmount;
+        runSpeed += UpgradeAmount;
+    }
+    public void UpgradeAcceleration(float UpgradeAmount)
+    {
+        acceleration += UpgradeAmount;
+    }
+    public void UpgradeTurnSpeed(float UpgradeAmount)
+    {
+        turnSpeed += UpgradeAmount;
+    }
+
+    private void CheckIfMoving()
+    {
+        if (transform.position != lastPosition)
+        {
+            fuelDepletionTimer += Time.deltaTime;
+        }
+
+        if (fuelDepletionTimer > 5)
+        {
+            fuelDepletionTimer = 0;
+            fuelManager.DepleteFuel(1);
+        }
+
+        lastPosition = transform.position;
     }
 }

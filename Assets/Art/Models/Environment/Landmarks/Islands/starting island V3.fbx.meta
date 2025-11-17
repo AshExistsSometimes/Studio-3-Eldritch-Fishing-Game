@@ -24,6 +24,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: skull1
     second: {fileID: 2100000, guid: f8b8cfb617409204a975ec5025c5f117, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_rocks
+    second: {fileID: 2100000, guid: 92ee604decb0a9b47a7ffa620bc1603d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

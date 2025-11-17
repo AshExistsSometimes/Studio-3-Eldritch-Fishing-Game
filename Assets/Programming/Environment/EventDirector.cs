@@ -23,7 +23,7 @@ public class EventDirector : MonoBehaviour
 
     private void Update()
     {
-        if (!isEventActive) 
+        if (!isEventActive && sceneManager.IsNight) 
         {
             eventTimer += Time.deltaTime;
         }

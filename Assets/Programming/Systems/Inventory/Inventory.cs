@@ -57,11 +57,11 @@ public class Inventory : MonoBehaviour
 
     // How many slots you want the inventory to be.
     [SerializeField]
-    int invSize = 6;
+    public int invSize = 6;
 
     // how many slots you want the boat to have.
     [SerializeField]
-    int boatInvSize = 30;
+    public int boatInvSize = 30;
 
     // how many slots you want the shop to have.
     [SerializeField]
@@ -86,10 +86,7 @@ public class Inventory : MonoBehaviour
     public bool inventoryOpen = false;
 
     public PlayerController player;
-
-    public BoatFuelManager fuelManager;
-
-    public BiofuelConverterInteraction biofuelUI;
+    public EconomyManager econManager;
 
     public FishingRod rod;
 
@@ -124,6 +121,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
+        money = econManager.Currency;
         moneyText.text = "$" + money;
     }
 
@@ -212,16 +210,6 @@ public class Inventory : MonoBehaviour
                     moneyText.text = "$" + EconomyManager.instance.Currency;
 
                 // Clear selection (so the UI doesn't keep dragging an empty item)
-                ClearSelected();
-            }
-
-            selectedData = GetSlotData(selectedID);
-            if (selectedData != null && biofuelUI.isOpen)
-            {
-                fuelManager.AddFuel(10);
-
-                RemoveItemAtSlot(selectedID);
-
                 ClearSelected();
             }
         }

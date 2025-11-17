@@ -17,8 +17,7 @@ public class BoatController : MonoBehaviour
     public float turnSpeed = 2f;
 
     private float currentSpeed = 0;
-    public float fuelDepletionTimer = 0;
-    [HideInInspector] public bool isMounted = false;
+    public bool isMounted = false;
 
     private Vector3 verticalVelocity = Vector3.zero;
 
@@ -29,18 +28,14 @@ public class BoatController : MonoBehaviour
     float rotationX = 0;
 
     private Transform driver;
-    private Vector3 lastPosition;
-
     private CharacterController characterController;
-    private PlayerController playerController;
-    private BoatFuelManager fuelManager;
+
+    public PlayerController playerController { get; private set; }
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         playerController = FindFirstObjectByType<PlayerController>();    
-        fuelManager = GetComponent<BoatFuelManager>();
-        lastPosition = transform.position;
     }
 
     void Update()
@@ -59,12 +54,9 @@ public class BoatController : MonoBehaviour
         Physics.IgnoreLayerCollision(8, 9);
         Physics.IgnoreLayerCollision(8, 10);
 
-        CheckIfMoving();
+        HandleMovement();
 
-        if (fuelManager.fuelAmount > 0)
-        {
-            HandleMovement();
-        }
+        //characterController.Move(moveDirection * Time.deltaTime);
 
         rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
         rotationX = Mathf.Clamp(rotationX, -lookXlimit, lookXlimit);
@@ -147,21 +139,5 @@ public class BoatController : MonoBehaviour
     public void UpgradeTurnSpeed(float UpgradeAmount)
     {
         turnSpeed += UpgradeAmount;
-    }
-
-    private void CheckIfMoving()
-    {
-        if (transform.position != lastPosition)
-        {
-            fuelDepletionTimer += Time.deltaTime;
-        }
-
-        if (fuelDepletionTimer > 5)
-        {
-            fuelDepletionTimer = 0;
-            fuelManager.DepleteFuel(1);
-        }
-        
-        lastPosition = transform.position;
     }
 }

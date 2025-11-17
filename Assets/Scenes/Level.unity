@@ -10245,7 +10245,7 @@ MonoBehaviour:
   FogOverwritten: 0
   FogOverwriteColour: {r: 0.254717, g: 0.056470275, b: 0.056470275, a: 1}
   FogOverwriteDensity: 0.005
-  Weirdness: 0.1
+  Weirdness: 1.0000001
   WeirdnessIncreaseAmount: 0.1
   WeirdnessIncreaseSpeed: 10
   DayTracker: 0
@@ -17704,6 +17704,9 @@ MonoBehaviour:
     locked: 0
   - fish: {fileID: 11400000, guid: 32bb5ec9ee77a7249ae2f695596b5488, type: 2}
     rarity: 3
+    locked: 0
+  - fish: {fileID: 11400000, guid: 685e3c879ee50ff4eb440a83881806e7, type: 2}
+    rarity: 2
     locked: 0
 --- !u!4 &1455685332 stripped
 Transform:

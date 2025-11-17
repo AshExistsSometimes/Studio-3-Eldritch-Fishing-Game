@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 511e2b32049a77a4d8dbb722747eb956, type: 3}
-  m_Name: Item_ToxicFish
+  m_Name: Item_CookieFish
   m_EditorClassIdentifier: 
-  ItemName: Toxic Fish
-  Description: This fish seems like it would enjoy Overwatch
-  Icon: {fileID: 21300000, guid: 9151dfa086d19fb4687184374974bec2, type: 3}
-  Prefab: {fileID: 8614150309475289692, guid: 126dda9873ab32c43b4af0d9973b19fc, type: 3}
+  ItemName: Cookie Fish
+  Description: I'm sure it would be tasty, but its a little soggy
+  Icon: {fileID: 21300000, guid: e03ef519c498e544889bb73b7ccfc5c3, type: 3}
+  Prefab: {fileID: 9063934023236869986, guid: 63172d5ddc10bfc43bcf9946e81522e6, type: 3}
   Equippable: 0
   Usable: 0
-  BaseSellValue: 25
-  WeirdnessPenalty: 2
+  BaseSellValue: 15
+  WeirdnessPenalty: 3
   IsFish: 1

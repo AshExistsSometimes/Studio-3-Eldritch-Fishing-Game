@@ -111,12 +111,13 @@ public class SceneManager : MonoBehaviour
             if (!DayTickedOver)
             {
                 DayTickedOver = true;
-                DayTracker += 1;
                 CalenderText.text = DayTracker.ToString();
 
                 debtManager.DayPassed();
                 deathManager.SaveProgress(); Debug.Log("Attempting to Save Data");
                 deathManager.SaveDataToFile(); Debug.Log("Attempting to Save Data to file");
+
+                DayTracker += 1;
             }
 
             if (!FogOverwritten)

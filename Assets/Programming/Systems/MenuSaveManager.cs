@@ -1,8 +1,9 @@
 using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.IO;
+using static DeathManager;
 
 public class MenuSaveManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class MenuSaveManager : MonoBehaviour
 
     [Header("UI")]
     public Button LoadGameButton;
+    public string SaveFilePath = "";
 
     public string saveFilePath = "FishGameSaveData.Sav";
 
@@ -31,6 +33,8 @@ public class MenuSaveManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        SaveFilePath = Path.Combine(Application.persistentDataPath, "FishGameSaveData.sav");
     }
 
     private void UpdateLoadButtonState()
@@ -46,7 +50,16 @@ public class MenuSaveManager : MonoBehaviour
 
     public void StartNewGame(string sceneName)
     {
-        pending = PendingAction.NewGame;
+        if (File.Exists(SaveFilePath))
+        {
+            File.Delete(SaveFilePath);
+            Debug.Log("SAVE FILE DELETED: " + SaveFilePath);
+        }
+        else
+        {
+            Debug.Log("NO SAVE TO DELETE.");
+        }
+
         targetScene = sceneName;
 
         // Use your SceneLoader to load the scene so its behaviour remains intact

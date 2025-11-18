@@ -44,7 +44,7 @@ public class EventDirector : MonoBehaviour
             randomChance = 100;
         }
         
-        if (randomChance >= eventObjects[eventIndex].chanceToSpawn)
+        if (randomChance <= eventObjects[eventIndex].chanceToSpawn)
         {
             eventTimer = 0;
             isEventActive = true;

@@ -29,10 +29,6 @@ public class MenuSaveManager : MonoBehaviour
 
             UpdateLoadButtonState();
         }
-        else
-        {
-            Destroy(gameObject);
-        }
 
         SaveFilePath = Path.Combine(Application.persistentDataPath, "FishGameSaveData.sav");
     }

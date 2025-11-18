@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class MountTrigger : Interactable, IInteractable
 {
@@ -8,6 +9,14 @@ public class MountTrigger : Interactable, IInteractable
 
     public bool isMounted = false;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) & isMounted)
+        {
+            isMounted = false;
+            boat.Dismount();
+        }
+    }
     public override void OnInteract()
     {
         TriggerMount();
@@ -24,7 +33,7 @@ public class MountTrigger : Interactable, IInteractable
                 boat.Mount(playerBody);
             }
         }
-        else if ((Input.GetKeyDown(InputManager.GetKeyCode("Interact")) & isMounted) || (Input.GetKeyDown(InputManager.GetKeyCode("CloseMenu")) & isMounted))
+        else if ((Input.GetKeyDown(InputManager.GetKeyCode("Interact")) & isMounted))
         {
             isMounted = false;
             boat.Dismount();

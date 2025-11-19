@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 //by    _                 _ _                     
@@ -41,10 +42,10 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private GameObject boatSlotParent;
 
-    [SerializeField] 
+    [SerializeField]
     private GameObject shopSlotParent;
 
-    [SerializeField] 
+    [SerializeField]
     private GameObject sellSlotParent;
 
     [SerializeField]
@@ -136,6 +137,11 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!inventoryOpen) // Fixes issue #47, stops inventory from running while closed.
+        {
+            return;
+        }
+
         // handles the cursor image.
         // if we have a item then we display.
         if (selectedData != null && selectedItemOriginalSlot != -1)
@@ -352,6 +358,23 @@ public class Inventory : MonoBehaviour
     /// </summary>
     public void CloseInventory()
     {
+        // Fixes Issue #47
+        EventSystem.current?.SetSelectedGameObject(null);
+        ClearSelected();
+        cursorImage.gameObject.SetActive(false);
+
+        // reset hover if nessary. This fixes when you drag and hover, then close the inventory leaving a ghost icon.
+        if (hoverSlotID != -1)
+        {
+            SetSlotAlpha(hoverSlotID, 1f);
+            SetSlotImage(hoverSlotID, null);
+        }
+
+        // Fixes Issue #47
+        hoverSlotID = -1;
+        isSecondClick = false;
+        selectedID = -1;
+
         CursorIcon.SetActive(false);
         player.canMove = true;
         Cursor.lockState = CursorLockMode.Locked;
@@ -586,7 +609,7 @@ public class Inventory : MonoBehaviour
 
         return null;
     }
-    
+
     /// <summary>
     /// Remove the item at that slot by setting the data to null.
     /// </summary>

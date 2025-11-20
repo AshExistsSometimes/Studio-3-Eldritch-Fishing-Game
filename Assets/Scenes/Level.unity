@@ -10361,7 +10361,7 @@ MonoBehaviour:
   FogOverwritten: 0
   FogOverwriteColour: {r: 0.254717, g: 0.056470275, b: 0.056470275, a: 1}
   FogOverwriteDensity: 0.005
-  Weirdness: 0.6
+  Weirdness: 0.1
   WeirdnessIncreaseAmount: 0.1
   WeirdnessIncreaseSpeed: 10
   DayTracker: 0
@@ -26539,6 +26539,10 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 23266831}
+    - target: {fileID: 2792504837491288877, guid: 7640939591701c649b1f25338e3f167d, type: 3}
+      propertyPath: m_StepOffset
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5274885054474883932, guid: 7640939591701c649b1f25338e3f167d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -26562,6 +26566,14 @@ PrefabInstance:
     - target: {fileID: 7687683550627486606, guid: 7640939591701c649b1f25338e3f167d, type: 3}
       propertyPath: m_Intensity
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689158334388678059, guid: 7640939591701c649b1f25338e3f167d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689158334388678059, guid: 7640939591701c649b1f25338e3f167d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8689158334388678059, guid: 7640939591701c649b1f25338e3f167d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26601,6 +26613,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8689158334388678059, guid: 7640939591701c649b1f25338e3f167d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689158334388678059, guid: 7640939591701c649b1f25338e3f167d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8730478597598395710, guid: 7640939591701c649b1f25338e3f167d, type: 3}

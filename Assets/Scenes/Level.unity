@@ -3313,6 +3313,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266447592}
   m_Mesh: {fileID: -9189612823058448048, guid: a905026e691462d4abfad5f62e6e8b10, type: 3}
+--- !u!1 &269787544 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 16b70eff0fcaaf84bb5018c220d27de0, type: 3}
+  m_PrefabInstance: {fileID: 2006455866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &269787545
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269787544}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 100, y: 11.178551, z: 100}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &274284119 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6479973701354612419, guid: 82f3d73eb92184a429f9fbc82877f490, type: 3}
@@ -10184,8 +10210,48 @@ MonoBehaviour:
     HeightVariation: {x: -3, y: 0}
     IslandFishPool: []
     FishSpawnRadius: 0
-    SpawnedInstances: []
-    TargetSpawnCount: 0
+    SpawnedInstances:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    TargetSpawnCount: 18
     IsLargeIsland: 0
     PlayerInsideRadius: 0
   - Landmark: {fileID: 8515545171689362039, guid: 486d5cf1ebf297448af05324936bfbd5, type: 3}
@@ -10195,10 +10261,24 @@ MonoBehaviour:
     ScaleVariation: {x: 1, y: 1}
     SpaceRequired: 4
     HeightVariation: {x: 0, y: 10}
-    IslandFishPool: []
+    IslandFishPool:
+    - fish: {fileID: 11400000, guid: ce9b8033fc68a684a85fcd1ce61094d0, type: 2}
+      rarity: 0
+      caughtAtNight: 0
+      locked: 0
     FishSpawnRadius: 20
-    SpawnedInstances: []
-    TargetSpawnCount: 0
+    SpawnedInstances:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    TargetSpawnCount: 2
     IsLargeIsland: 0
     PlayerInsideRadius: 0
   - Landmark: {fileID: 28296363210626272, guid: cce974e2c85f8764182baac896c7f828, type: 3}
@@ -10211,11 +10291,23 @@ MonoBehaviour:
     IslandFishPool:
     - fish: {fileID: 11400000, guid: 6fdb9e7faf89f8c4581146c91e1e7de5, type: 2}
       rarity: 0
+      caughtAtNight: 1
+      locked: 0
+    - fish: {fileID: 11400000, guid: 084dd041e443e01439ce5e0c996bb2ac, type: 2}
+      rarity: 1
+      caughtAtNight: 1
+      locked: 0
+    - fish: {fileID: 11400000, guid: 780bdcd45fe4d5f4a8aa5a06cff862bf, type: 2}
+      rarity: 0
+      caughtAtNight: 1
+      locked: 0
+    - fish: {fileID: 11400000, guid: 780bdcd45fe4d5f4a8aa5a06cff862bf, type: 2}
+      rarity: 2
       caughtAtNight: 0
       locked: 0
     FishSpawnRadius: 5
     SpawnedInstances: []
-    TargetSpawnCount: 0
+    TargetSpawnCount: 1
     IsLargeIsland: 1
     PlayerInsideRadius: 0
   - Landmark: {fileID: 6871493212940628318, guid: 9eb1cdb5a36450c4cbf878b78ceb7338, type: 3}
@@ -10231,8 +10323,7 @@ MonoBehaviour:
       caughtAtNight: 1
       locked: 0
     FishSpawnRadius: 150
-    SpawnedInstances:
-    - {fileID: 0}
+    SpawnedInstances: []
     TargetSpawnCount: 0
     IsLargeIsland: 1
     PlayerInsideRadius: 0
@@ -10249,9 +10340,8 @@ MonoBehaviour:
       caughtAtNight: 1
       locked: 0
     FishSpawnRadius: 70
-    SpawnedInstances:
-    - {fileID: 0}
-    TargetSpawnCount: 1
+    SpawnedInstances: []
+    TargetSpawnCount: 0
     IsLargeIsland: 0
     PlayerInsideRadius: 0
   - Landmark: {fileID: 6138250008469735205, guid: 3df3c200e1003fc4fb207b13cc452bbc, type: 3}
@@ -10267,9 +10357,8 @@ MonoBehaviour:
       caughtAtNight: 1
       locked: 0
     FishSpawnRadius: 70
-    SpawnedInstances:
-    - {fileID: 0}
-    TargetSpawnCount: 1
+    SpawnedInstances: []
+    TargetSpawnCount: 0
     IsLargeIsland: 0
     PlayerInsideRadius: 0
   - Landmark: {fileID: 3668678877496784741, guid: 5008c5528b35c2845af052ce1c48efc8, type: 3}
@@ -10289,10 +10378,57 @@ MonoBehaviour:
       caughtAtNight: 1
       locked: 0
     FishSpawnRadius: 45
+    SpawnedInstances: []
+    TargetSpawnCount: 0
+    IsLargeIsland: 0
+    PlayerInsideRadius: 0
+  - Landmark: {fileID: 42301168985584767, guid: 2b72c51bff6c2a74c94bf7dff536bc7b, type: 3}
+    LandmarkName: Hastur's Crown
+    MaxSpawnNum: 1
+    Rarity: 0.001
+    ScaleVariation: {x: 1, y: 1}
+    SpaceRequired: 190
+    HeightVariation: {x: 0, y: 0}
+    IslandFishPool:
+    - fish: {fileID: 11400000, guid: ca161e6abb388c944a72b86acf34d2c3, type: 2}
+      rarity: 4
+      caughtAtNight: 1
+      locked: 0
+    FishSpawnRadius: 150
+    SpawnedInstances: []
+    TargetSpawnCount: 1
+    IsLargeIsland: 1
+    PlayerInsideRadius: 1
+  - Landmark: {fileID: 3908293802762743621, guid: 0485f3b5a1d46d2498b527e56212fa9e, type: 3}
+    LandmarkName: Tusk Mountains
+    MaxSpawnNum: 1
+    Rarity: 0.01
+    ScaleVariation: {x: 1, y: 1}
+    SpaceRequired: 250
+    HeightVariation: {x: -7, y: -7}
+    IslandFishPool:
+    - fish: {fileID: 11400000, guid: 21def882441589347a1247412549200c, type: 2}
+      rarity: 1
+      caughtAtNight: 1
+      locked: 0
+    FishSpawnRadius: 240
     SpawnedInstances:
     - {fileID: 0}
     TargetSpawnCount: 1
-    IsLargeIsland: 0
+    IsLargeIsland: 1
+    PlayerInsideRadius: 0
+  - Landmark: {fileID: 8948537244382717271, guid: dde916289fab97e4f8b8f645f47a5cca, type: 3}
+    LandmarkName: Mountain
+    MaxSpawnNum: 1
+    Rarity: 0.01
+    ScaleVariation: {x: 1, y: 1}
+    SpaceRequired: 150
+    HeightVariation: {x: -7, y: -7}
+    IslandFishPool: []
+    FishSpawnRadius: 100
+    SpawnedInstances: []
+    TargetSpawnCount: 1
+    IsLargeIsland: 1
     PlayerInsideRadius: 0
   Player: {fileID: 8998172826818980595}
   SpawnRadius: 225
@@ -16918,6 +17054,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a928e10981f0c043bb7617fab8c1def, type: 3}
+--- !u!1001 &1372959613
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 3ccd760d18a2857458254b286d323bc5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.087653
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3ccd760d18a2857458254b286d323bc5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.0185146
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3ccd760d18a2857458254b286d323bc5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 29.22
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3ccd760d18a2857458254b286d323bc5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3ccd760d18a2857458254b286d323bc5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3ccd760d18a2857458254b286d323bc5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3ccd760d18a2857458254b286d323bc5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3ccd760d18a2857458254b286d323bc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3ccd760d18a2857458254b286d323bc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3ccd760d18a2857458254b286d323bc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3ccd760d18a2857458254b286d323bc5, type: 3}
+      propertyPath: m_Name
+      value: tentacle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3ccd760d18a2857458254b286d323bc5, type: 3}
 --- !u!1 &1375059455
 GameObject:
   m_ObjectHideFlags: 0
@@ -25080,6 +25273,66 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1245326268277206862, guid: b05a5c3d1939e114faf3069a186bf8f9, type: 3}
   m_PrefabInstance: {fileID: 2064056110}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2006455866
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 16b70eff0fcaaf84bb5018c220d27de0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.717421
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 16b70eff0fcaaf84bb5018c220d27de0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.0185149
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 16b70eff0fcaaf84bb5018c220d27de0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 17.372099
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 16b70eff0fcaaf84bb5018c220d27de0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 16b70eff0fcaaf84bb5018c220d27de0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 16b70eff0fcaaf84bb5018c220d27de0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 16b70eff0fcaaf84bb5018c220d27de0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 16b70eff0fcaaf84bb5018c220d27de0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 16b70eff0fcaaf84bb5018c220d27de0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 16b70eff0fcaaf84bb5018c220d27de0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 16b70eff0fcaaf84bb5018c220d27de0, type: 3}
+      propertyPath: m_Name
+      value: book
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16b70eff0fcaaf84bb5018c220d27de0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 269787545}
+  m_SourcePrefab: {fileID: 100100000, guid: 16b70eff0fcaaf84bb5018c220d27de0, type: 3}
 --- !u!1 &2007831814
 GameObject:
   m_ObjectHideFlags: 0
@@ -27510,3 +27763,5 @@ SceneRoots:
   - {fileID: 1315845748}
   - {fileID: 1851909539}
   - {fileID: 1626141090}
+  - {fileID: 2006455866}
+  - {fileID: 1372959613}

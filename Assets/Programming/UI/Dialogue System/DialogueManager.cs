@@ -106,11 +106,7 @@ public class DialogueManager : MonoBehaviour
     {
         isInDialogue = false;
         player.canMove = true;
-        Cursor.lockState = CursorLockMode.Locked;
 
-
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         DialogueParent.SetActive(false);
     }
 

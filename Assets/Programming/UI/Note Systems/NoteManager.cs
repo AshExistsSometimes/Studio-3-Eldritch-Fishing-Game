@@ -5,6 +5,18 @@ public class NoteManager : Interactable
     public GameObject noteUI;
     public PlayerController player;
 
+    private void Awake()
+    {
+        if (player == null)
+        {
+            player = GameObject.Find("Player").GetComponent<PlayerController>();
+        }
+        else
+        {
+            Debug.Log("No Player Found");
+            return;
+        }
+    }
     private void Start()
     {
         noteUI.SetActive(false);

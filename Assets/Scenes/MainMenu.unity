@@ -2755,6 +2755,51 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &898855428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 898855430}
+  - component: {fileID: 898855429}
+  m_Layer: 0
+  m_Name: AnalyticsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &898855429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898855428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 583e1403598ea6b4cbf9e1d24a094390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: 
+--- !u!4 &898855430
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898855428}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 491.84018, y: 298.15518, z: -453.393}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &949566979
 GameObject:
   m_ObjectHideFlags: 0
@@ -4676,7 +4721,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Name TBD]'
+  m_text: Darker Shores
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b3f2708febeae244282ad7322519ec0f, type: 2}
   m_sharedMaterial: {fileID: -7777486217354221021, guid: b3f2708febeae244282ad7322519ec0f, type: 2}
@@ -6454,7 +6499,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Name TBD]'
+  m_text: Darker Shores
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b3f2708febeae244282ad7322519ec0f, type: 2}
   m_sharedMaterial: {fileID: -7777486217354221021, guid: b3f2708febeae244282ad7322519ec0f, type: 2}
@@ -7805,3 +7850,4 @@ SceneRoots:
   - {fileID: 2029743939}
   - {fileID: 1324871524}
   - {fileID: 1918659586}
+  - {fileID: 898855430}

@@ -9,6 +9,8 @@ public class SceneManager : MonoBehaviour
 {
     public static SceneManager instance { get; private set; }
 
+    private AnalyticsManager analytics;
+
     [Header("DEBUG")]
     public int ClockTime;
     [SerializeField] private float MinutesPerDay;
@@ -82,6 +84,8 @@ public class SceneManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        analytics = AnalyticsManager.Instance;
     }
     private void Start()
     {
@@ -116,6 +120,8 @@ public class SceneManager : MonoBehaviour
                 debtManager.DayPassed();
                 deathManager.SaveProgress(); Debug.Log("Attempting to Save Data");
                 deathManager.SaveDataToFile(); Debug.Log("Attempting to Save Data to file");
+                analytics.AddString("New Day started, player is on: Day" + DayTracker);
+                analytics.AddString("Weirdness at start of day" + DayTracker + " is " + Weirdness);
 
                 DayTracker += 1;
             }

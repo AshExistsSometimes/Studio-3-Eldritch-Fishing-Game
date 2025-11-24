@@ -1,4 +1,6 @@
 using UnityEngine;
+using static UnityEditor.Progress;
+using static UnityEngine.EventSystems.EventTrigger;
 
 /// <summary>
 /// Handles opening vendors, buying and selling with vendors.
@@ -15,16 +17,21 @@ public class ShopManager : MonoBehaviour
 
     public VendorSO ActiveVendor;
 
+    private AnalyticsManager analytics;
+
     private void Awake()
     {
         Instance = this;
 
         sceneManager = GetComponent<SceneManager>();
+
+        analytics = AnalyticsManager.Instance;
     }
 
     public void OpenVendor(VendorSO vendor)
     {
         ActiveVendor = vendor;
+        analytics.AddString("Player started trading with " + ActiveVendor.VendorName);
 
         // Show player inventory, hide boat inventory, show shop display
         Inventory.Instance.OpenInventory(false, true);
@@ -36,6 +43,7 @@ public class ShopManager : MonoBehaviour
     public void CloseVendor()
     {
         ActiveVendor = null;
+        analytics.AddString("Player left shop");
     }
 
     private void PopulateShopUI()
@@ -70,6 +78,7 @@ public class ShopManager : MonoBehaviour
         EconomyManager.instance.TryRemoveMoney(entry.Price);
 
         Inventory.Instance.AttemptAddItemToInventory(entry.Item);
+        analytics.AddString("Player bought " + entry.ItemName + " for $" + entry.Price);
     }
 
     /// <summary>
@@ -86,8 +95,9 @@ public class ShopManager : MonoBehaviour
         // If vendor applies weirdness penalty on selling, add it to scene manager
         if (ActiveVendor.AppliesWeirdnessPenaltyWhenSelling)
         {
-            sceneManager.Weirdness += weirdnessToAdd;
+            sceneManager.Weirdness += weirdnessToAdd;            
         }
+        analytics.AddString("Player sold " + item.ItemName + " for $" + item.BaseSellValue + ", gaining " + weirdnessToAdd + " weirdness");
 
         // Add money via your EconomyManager singleton
         EconomyManager.instance.AddMoney(value);

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7215d5746a512cb43b4eda19b923af1b, type: 3}
   m_Name: Fish_Lamprey
   m_EditorClassIdentifier: 
+  fishIcon: {fileID: 21300000, guid: 111f755821221ad46822a6163dde2f86, type: 3}
   fishName: Lamprey
+  fishInfo: A fish
   weirdnessLevel: 0
   difficulty: 3.5
   persistence: 0.3

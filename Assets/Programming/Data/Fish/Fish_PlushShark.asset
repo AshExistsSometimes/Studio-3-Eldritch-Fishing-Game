@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7215d5746a512cb43b4eda19b923af1b, type: 3}
   m_Name: Fish_PlushShark
   m_EditorClassIdentifier: 
+  fishIcon: {fileID: 21300000, guid: 7d053a3e10b7f4043b4f3ec4bc27f45c, type: 3}
   fishName: Plush Shark
+  fishInfo: Rarely found anywhere at night
   weirdnessLevel: 2
   difficulty: 1.5
   persistence: 1.5

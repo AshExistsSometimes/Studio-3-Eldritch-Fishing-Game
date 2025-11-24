@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7215d5746a512cb43b4eda19b923af1b, type: 3}
   m_Name: Fish_Eel
   m_EditorClassIdentifier: 
+  fishIcon: {fileID: 21300000, guid: a52a96dc9393ab44d8045f7296994ffc, type: 3}
   fishName: Eel
+  fishInfo: Rarely found anywhere in the daytime
   weirdnessLevel: 1
   difficulty: 1
   persistence: 1

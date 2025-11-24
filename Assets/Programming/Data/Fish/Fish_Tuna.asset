@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7215d5746a512cb43b4eda19b923af1b, type: 3}
   m_Name: Fish_Tuna
   m_EditorClassIdentifier: 
+  fishIcon: {fileID: 21300000, guid: 4cc41864041f76b4686a09e75f0b86a2, type: 3}
   fishName: Tuna
+  fishInfo: Found anywhere in the day
   weirdnessLevel: 0
   difficulty: 1.2
   persistence: 1.2

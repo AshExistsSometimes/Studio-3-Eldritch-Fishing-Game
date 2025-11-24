@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7215d5746a512cb43b4eda19b923af1b, type: 3}
   m_Name: Fish_TuskFish
   m_EditorClassIdentifier: 
+  fishIcon: {fileID: 21300000, guid: 410829019a8f2444ab84c1ff34ae3e9c, type: 3}
   fishName: Tusk Fish
+  fishInfo: Found near the tusked island
   weirdnessLevel: 3
   difficulty: 1
   persistence: 1

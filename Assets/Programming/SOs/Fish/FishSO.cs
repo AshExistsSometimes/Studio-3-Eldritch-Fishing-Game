@@ -5,7 +5,9 @@ using UnityEngine;
 public class FishSO : ScriptableObject
 {
     [Header("Fish Information")]
+    public Sprite fishIcon;
     public string fishName = "Fish";
+    public string fishInfo = "A fish";
 
     [Header("Minigame Stats")]
     public float weirdnessLevel;

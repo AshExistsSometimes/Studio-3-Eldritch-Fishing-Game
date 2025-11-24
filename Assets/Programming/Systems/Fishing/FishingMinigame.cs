@@ -221,6 +221,7 @@ public class FishingMinigame : MonoBehaviour
         ResultText.text = "Caught It!";
         analytics.AddString("Fishing Minigame Succeeded, caught: " + selectedFish.fishName);
         analytics.AddFishToCounter(selectedFish.fishName);
+        NoteManager.Instance.UnlockFish(selectedFish);
         if (inventory != null)
         {
             AddToInventory();

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7215d5746a512cb43b4eda19b923af1b, type: 3}
   m_Name: Fish_Unwrapped
   m_EditorClassIdentifier: 
+  fishIcon: {fileID: 21300000, guid: 08392b5375bf64c47a88fae7a950db65, type: 3}
   fishName: Unwrapped Cod
+  fishInfo: found.. somewhere?
   weirdnessLevel: 2
   difficulty: 1.3
   persistence: 1.3

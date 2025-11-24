@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7215d5746a512cb43b4eda19b923af1b, type: 3}
   m_Name: Fish_GoldenAngler
   m_EditorClassIdentifier: 
+  fishIcon: {fileID: 21300000, guid: cdf02350591cee04082d9ed01fcef414, type: 3}
   fishName: Golden Angler
+  fishInfo: A fish
   weirdnessLevel: 5
   difficulty: 1.2
   persistence: 1.2

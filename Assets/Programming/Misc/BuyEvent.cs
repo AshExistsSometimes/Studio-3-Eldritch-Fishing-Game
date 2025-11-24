@@ -19,16 +19,6 @@ public class BuyEvent : Interactable
     public override void OnMouseHover()
     {
         {
-            if (_isGlowing)
-                return;
-
-            _isGlowing = true;
-            if (_materialInstance.HasProperty("_EmissionColor"))
-            {
-                _materialInstance.EnableKeyword("_EMISSION");
-                _materialInstance.SetColor("_EmissionColor", GlowColor * GlowIntensity);
-            }
-
             if (interactionPrompt != null)
             {
                 if (EconomyManager.instance.Currency < Cost)// If players money is lower than cost

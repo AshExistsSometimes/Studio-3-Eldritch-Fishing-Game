@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7215d5746a512cb43b4eda19b923af1b, type: 3}
   m_Name: Fish_EyeFish
   m_EditorClassIdentifier: 
+  fishIcon: {fileID: 21300000, guid: a23b654b60f1d2548a27b0f50e04a4bf, type: 3}
   fishName: EyeFish
+  fishInfo: Can be found at the eye island at night
   weirdnessLevel: 6
   difficulty: 1
   persistence: 1.4

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7215d5746a512cb43b4eda19b923af1b, type: 3}
   m_Name: Fish_Cod
   m_EditorClassIdentifier: 
+  fishIcon: {fileID: 21300000, guid: 27389138b9a4ad343ab316fa85b0f603, type: 3}
   fishName: Cod
+  fishInfo: Can be found anywhere in the daytime
   weirdnessLevel: 0
   difficulty: 1
   persistence: 1

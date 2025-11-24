@@ -8,6 +8,14 @@ public class BuyEvent : Interactable
 
     public UnityEvent ItemBought;
 
+    private AnalyticsManager analytics;
+
+    private void Awake()
+    {
+        analytics = AnalyticsManager.Instance;
+    }
+
+
     public override void OnMouseHover()
     {
         {
@@ -43,6 +51,7 @@ public class BuyEvent : Interactable
         if (EconomyManager.instance.Currency < Cost)// If it costs more than the player has
         {
             interactionText = "Can't afford this right now";
+            analytics.AddString("Player tried to buy " + gameObject.name + " for " + Cost + " but couldn't afford it - They had: $" + EconomyManager.instance.Currency);
             interactionPrompt.enabled = true;
             StartCoroutine(CantAfford());
             return;
@@ -50,6 +59,7 @@ public class BuyEvent : Interactable
         else// If player can afford it
         {
             Debug.Log("- Buying " + gameObject.name);
+            analytics.AddString("Player bought " + gameObject.name + " for " + Cost);
             EconomyManager.instance.TryRemoveMoney(Cost);
             ItemBought.Invoke();
         }

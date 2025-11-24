@@ -40,6 +40,7 @@ public class FishingMinigame : MonoBehaviour
     public PlayerController player;
     public Transform FishDropPoint;
     public FishingRod rod;
+    private AnalyticsManager analytics;
 
     [Header("Bar Values")]
     float width = 0f;
@@ -88,7 +89,7 @@ public class FishingMinigame : MonoBehaviour
     public List<FishEntry> NightFishPool = new List<FishEntry>();
 
     private void Awake()
-    {
+    {   
         if (instance == null)
         {
             instance = this;
@@ -100,6 +101,8 @@ public class FishingMinigame : MonoBehaviour
 
         if (sceneManager == null)
             sceneManager = FindObjectOfType<SceneManager>();
+
+        analytics = AnalyticsManager.Instance;
     }
 
     void Start()
@@ -216,7 +219,8 @@ public class FishingMinigame : MonoBehaviour
         rod.PullBobberBackIn();
         ResultText.gameObject.SetActive(true);
         ResultText.text = "Caught It!";
-        if(inventory != null)
+        analytics.AddString("Fishing Minigame Succeeded, caught: " + selectedFish.fishName);
+        if (inventory != null)
         {
             AddToInventory();
         }
@@ -229,6 +233,7 @@ public class FishingMinigame : MonoBehaviour
         rod.PullBobberBackIn();
         ResultText.gameObject.SetActive(true);
         ResultText.text = "It Got Away!";
+        analytics.AddString("Fishing Minigame Failed");
         isFishing = false;
         StartCoroutine(MinigameCanEnd());
     }
@@ -256,6 +261,8 @@ public class FishingMinigame : MonoBehaviour
         player.canMove = false;
         isFishing = true;
         MinigameOpen = true;
+
+        analytics.AddString("Fishing Minigame Started - Rolled fish: " + selectedFish.fishName + ", Weirdness at Minigame Start: " + sceneManager.Weirdness + ", Fish Weirdness: " + selectedFish.weirdnessLevel);
     }
    
     // Randomly selects a fish from the active pool based on time of day, rarity, and scene weirdness. ////////////////////
@@ -406,6 +413,7 @@ public class FishingMinigame : MonoBehaviour
     {
         InvItemSO fishToAdd = selectedFish.InventoryItem;
         inventory.AttemptAddItemToInventory(fishToAdd);
+        analytics.AddString("Added " + selectedFish.fishName + " to inventory");
     }
 
     private void DropFishOnGround()

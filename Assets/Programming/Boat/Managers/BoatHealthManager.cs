@@ -7,9 +7,17 @@ public class BoatHealthManager : MonoBehaviour, IDamagable
 
     public float MaxHP = 100f;
 
+    private AnalyticsManager analytics;
+
     [Header("Death Settings")]
     public float DeathReloadDelay = 2.5f;
     public GameObject DeathScreen;
+
+
+    private void Awake()
+    {
+        analytics = AnalyticsManager.Instance;
+    }
 
     public void TakeDamage(float amount)
     {
@@ -20,6 +28,7 @@ public class BoatHealthManager : MonoBehaviour, IDamagable
     public void Die()
     {
         Debug.Log("Boat Sank");
+        analytics.AddString("Players Boat Sank, Had Max HP of " + MaxHP + " at time of death");
 
         // Show death screen
         if (DeathScreen != null)
@@ -38,6 +47,7 @@ public class BoatHealthManager : MonoBehaviour, IDamagable
     public void UpgradeMaxHP(float UpgradeAmount)
     {
         MaxHP += UpgradeAmount;
+        analytics.AddString("Player upgraded Boat HP to" + MaxHP);
     }
 
 

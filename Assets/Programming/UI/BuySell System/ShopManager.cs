@@ -43,7 +43,6 @@ public class ShopManager : MonoBehaviour
     public void CloseVendor()
     {
         ActiveVendor = null;
-        analytics.AddString("Player left shop");
     }
 
     private void PopulateShopUI()

@@ -220,6 +220,7 @@ public class FishingMinigame : MonoBehaviour
         ResultText.gameObject.SetActive(true);
         ResultText.text = "Caught It!";
         analytics.AddString("Fishing Minigame Succeeded, caught: " + selectedFish.fishName);
+        analytics.AddFishToCounter(selectedFish.fishName);
         if (inventory != null)
         {
             AddToInventory();

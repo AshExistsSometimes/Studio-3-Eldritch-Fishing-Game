@@ -120,8 +120,8 @@ public class SceneManager : MonoBehaviour
                 debtManager.DayPassed();
                 deathManager.SaveProgress(); Debug.Log("Attempting to Save Data");
                 deathManager.SaveDataToFile(); Debug.Log("Attempting to Save Data to file");
-                analytics.AddString("New Day started, player is on: Day" + DayTracker);
-                analytics.AddString("Weirdness at start of day" + DayTracker + " is " + Weirdness);
+                analytics.AddString("New Day started, player is on: Day " + DayTracker + " - Weirdness is: " + Weirdness);
+                analytics.UpdateHeaderInFile();
 
                 DayTracker += 1;
             }

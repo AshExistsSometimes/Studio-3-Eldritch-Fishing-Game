@@ -29,6 +29,7 @@ public class BoatHealthManager : MonoBehaviour, IDamagable
     {
         Debug.Log("Boat Sank");
         analytics.AddString("Players Boat Sank, Had Max HP of " + MaxHP + " at time of death");
+        analytics.AddDeathToCounter();
 
         // Show death screen
         if (DeathScreen != null)

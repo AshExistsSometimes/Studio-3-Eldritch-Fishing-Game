@@ -11418,7 +11418,7 @@ MonoBehaviour:
       rarity: 2
       caughtAtNight: 0
       locked: 0
-    FishSpawnRadius: 5
+    FishSpawnRadius: 50
     SpawnedInstances: []
     TargetSpawnCount: 1
     IsLargeIsland: 1
@@ -11615,7 +11615,7 @@ MonoBehaviour:
   WeirdnessIncreaseSpeed: 10
   DayTracker: 0
   TimeOfDay: 0
-  TimeOfDayAtStart: 8
+  TimeOfDayAtStart: 7.85
   SecondsInAnHour: 5
   MorningHour: 6
   EveningHour: 18

@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.Analytics;
+using Unity.VisualScripting;
+
+
 
 
 #if UNITY_EDITOR
@@ -79,12 +83,16 @@ public class LandmarkSpawner : MonoBehaviour
     private bool respawnRequested = false;
     private FishingMinigame fishingMinigame;
 
+    private AnalyticsManager analytics;
+
     private void Start()
     {
         if (!Player)
             Player = GameObject.FindGameObjectWithTag("Player");
 
         fishingMinigame = FindObjectOfType<FishingMinigame>();
+
+        analytics = AnalyticsManager.Instance;
 
         InitializeSpawnTargets();
         InitialGenerate();
@@ -254,6 +262,12 @@ public class LandmarkSpawner : MonoBehaviour
 
                 if (inside && !data.PlayerInsideRadius)
                 {
+                    if (data.LandmarkName != "Seagulls")// Prevent seagull spam
+                    {
+                        analytics.AddString("Player visited: " + data.LandmarkName);
+                        analytics.AddIslandToCounter(data.LandmarkName);
+                    }
+                    
                     // Add fish to pools
                     foreach (var fish in data.IslandFishPool)
                     {

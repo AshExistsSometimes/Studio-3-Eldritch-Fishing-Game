@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AnalyticsManager : MonoBehaviour
@@ -7,17 +9,23 @@ public class AnalyticsManager : MonoBehaviour
     public static AnalyticsManager Instance { get; private set; }
 
     [Header("Analytics Settings")]
-    [Tooltip("Full path to the current analytics file.")]
     public string FilePath { get; private set; }
-    public string path;
 
-    private string fileNameBase = "PlayTestAnalytics";
+    private string fileNameBase = "PlayTestAnalytics_";
     private string fileExtension = ".Analyt";
     private int currentID = 0;
 
+    // Counters
+    private int fishCaught = 0;
+    private int islandsVisited = 0;
+    private int boatSank = 0;
+
+    // Dictionaries to track counts
+    private Dictionary<string, int> fishCaughtDict = new Dictionary<string, int>();
+    private Dictionary<string, int> islandsVisitedDict = new Dictionary<string, int>();
+
     private void Awake()
     {
-        // Singleton pattern
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -27,17 +35,13 @@ public class AnalyticsManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         SetupAnalyticsFile();
-        path = FilePath;
     }
 
-    /// <summary>
-    /// Sets up the analytics file, incrementing the ID to avoid overwriting previous runs.
-    /// </summary>
     private void SetupAnalyticsFile()
     {
         string directory = Application.persistentDataPath;
 
-        // Find the next available ID
+        // Find next available ID
         while (File.Exists(Path.Combine(directory, $"{fileNameBase}{currentID}{fileExtension}")))
         {
             currentID++;
@@ -45,29 +49,38 @@ public class AnalyticsManager : MonoBehaviour
 
         FilePath = Path.Combine(directory, $"{fileNameBase}{currentID}{fileExtension}");
 
-        try
+        using (StreamWriter writer = new StreamWriter(FilePath, false))
         {
-            using (StreamWriter writer = new StreamWriter(FilePath, false))
-            {
-                writer.WriteLine($"Analytics of Player ID : {currentID}");
-            }
-            Debug.Log($"Analytics file created at: {FilePath}");
+            writer.WriteLine($"Analytics of Player ID : {currentID}");
+            WriteHeader(writer);
+            writer.WriteLine("--- LOG ---");
         }
-        catch (Exception e)
-        {
-            Debug.LogError($"Failed to create analytics file: {e}");
-        }
+
+        Debug.Log($"Analytics file created at: {FilePath}");
+    }
+
+    private void WriteHeader(StreamWriter writer)
+    {
+        writer.WriteLine($"Fish Caught: {fishCaught}");
+        writer.WriteLine($"Islands Visited: {islandsVisited}");
+        writer.WriteLine($"Times Boat Sank: {boatSank}");
+        writer.WriteLine();
+
+        writer.WriteLine("Number of Each Fish Caught:");
+        foreach (var pair in fishCaughtDict.OrderByDescending(x => x.Value))
+            writer.WriteLine($"{pair.Key} - {pair.Value}");
+        writer.WriteLine();
+
+        writer.WriteLine("Number of Times Visited Each Island:");
+        foreach (var pair in islandsVisitedDict.OrderByDescending(x => x.Value))
+            writer.WriteLine($"{pair.Key} - {pair.Value}");
+        writer.WriteLine();
     }
 
     public void AddString(string message)
     {
-        if (string.IsNullOrEmpty(FilePath))
-        {
-            Debug.LogWarning("Analytics file path not set. Call SetupAnalyticsFile first.");
-            return;
-        }
+        if (string.IsNullOrEmpty(FilePath)) return;
 
-        // Use Time.time to get playtime in seconds
         float playTime = Time.time;
         int hours = Mathf.FloorToInt(playTime / 3600f);
         int minutes = Mathf.FloorToInt((playTime % 3600f) / 60f);
@@ -89,4 +102,65 @@ public class AnalyticsManager : MonoBehaviour
             Debug.LogError($"Failed to write to analytics file: {e}");
         }
     }
+
+    public void AddFishToCounter(string fishName)
+    {
+        fishCaught++;
+        if (fishCaughtDict.ContainsKey(fishName)) fishCaughtDict[fishName]++;
+        else fishCaughtDict[fishName] = 1;
+
+        UpdateHeaderInFile();
+    }
+
+    public void AddIslandToCounter(string islandName)
+    {
+        islandsVisited++;
+        if (islandsVisitedDict.ContainsKey(islandName)) islandsVisitedDict[islandName]++;
+        else islandsVisitedDict[islandName] = 1;
+
+        UpdateHeaderInFile();
+    }
+
+    public void AddDeathToCounter()
+    {
+        boatSank++;
+        UpdateHeaderInFile();
+    }
+
+    /// <summary>
+    /// Updates only the header portion of the file, leaving the event log untouched.
+    /// </summary>
+    public void UpdateHeaderInFile()
+    {
+        if (string.IsNullOrEmpty(FilePath) || !File.Exists(FilePath)) return;
+
+        string[] allLines = File.ReadAllLines(FilePath);
+        int logStartIndex = Array.FindIndex(allLines, l => l.StartsWith("--- LOG ---"));
+
+        if (logStartIndex == -1)
+        {
+            Debug.LogError("Could not find event log marker.");
+            return;
+        }
+
+        // Extract current event log
+        string[] logLines = allLines.Skip(logStartIndex).ToArray();
+
+        // Rewrite file with updated header
+        using (StreamWriter writer = new StreamWriter(FilePath, false))
+        {
+            writer.WriteLine($"Analytics of Player ID : {currentID}");
+            WriteHeader(writer);
+            foreach (var line in logLines)
+                writer.WriteLine(line);
+        }
+    }
+
+    private void OnApplicationQuit() => UpdateHeaderInFile();
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause) UpdateHeaderInFile();
+    }
 }
+
+

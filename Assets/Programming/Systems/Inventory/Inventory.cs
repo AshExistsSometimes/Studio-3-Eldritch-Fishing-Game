@@ -298,6 +298,28 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public List<InventorySlotUI> GetAllItemsInInventory()
+    {
+        
+
+        return inventorySlots;
+    }
+
+    public List<InventorySlotUI> GetAllItemsInBoatInventory()
+    {
+        
+
+        return boatSlots;
+    }
+
+    public void SetInventorySlots(List<InventorySlotUI> items)
+    {
+        foreach (InventorySlotUI item in items) 
+        {
+            AddItemToSlot(item.GetID(), item.GetStoredData());
+        }
+    }
+
     /// <summary>
     /// Remnoves all data relating to the selected slot.
     /// </summary>
@@ -481,6 +503,8 @@ public class Inventory : MonoBehaviour
 
         return -1;
     }
+
+    
 
     /// <summary>
     /// Add item to the provided slot. Will override the original data.

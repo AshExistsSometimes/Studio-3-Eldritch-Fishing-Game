@@ -1,11 +1,5 @@
 using UnityEngine;
-using static UnityEditor.Progress;
-using static UnityEngine.EventSystems.EventTrigger;
 
-/// <summary>
-/// Handles opening vendors, buying and selling with vendors.
-/// Uses EconomyManager.instance for money operations.
-/// </summary>
 public class ShopManager : MonoBehaviour
 {
     [SerializeField] private Transform ShopItemContainer;

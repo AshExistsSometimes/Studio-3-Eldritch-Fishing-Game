@@ -2784,7 +2784,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583e1403598ea6b4cbf9e1d24a094390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: 
 --- !u!4 &898855430
 Transform:
   m_ObjectHideFlags: 0
@@ -6343,7 +6342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0228344e7ad79c74084118bc8b9478a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  creditsScrollSpeed: 0.5
+  creditsScrollSpeed: 0.75
   creditsTextContent: 'INTERNAL
 
 

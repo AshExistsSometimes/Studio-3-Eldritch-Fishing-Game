@@ -10,12 +10,6 @@ using Unity.VisualScripting;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-
-/// <summary>
-/// Spawns and manages landmark prefabs around a player within defined radii,
-/// respecting spawn limits, spacing, rarity, large island rules, and despawn behavior.
-/// Integrates fish into the FishingMinigame pools dynamically based on player proximity.
-/// </summary>
 public class LandmarkSpawner : MonoBehaviour
 {
     [System.Serializable]
@@ -43,7 +37,7 @@ public class LandmarkSpawner : MonoBehaviour
         [Tooltip("Range of random height variation on the Y axis.")]
         public Vector2 HeightVariation = new Vector2(0f, 0f);
 
-        [Tooltip("Optional list of fish associated with this landmark.")]
+        [Tooltip("list of fish that can be caught near this landmark.")]
         public List<FishEntry> IslandFishPool = new List<FishEntry>();
 
         [Tooltip("Radius around landmark that fish spawn in.")]

@@ -1644,7 +1644,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &73042252
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8461,7 +8461,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 622632160}
   m_HandleRect: {fileID: 622632159}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -11403,6 +11403,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 836458877}
+  - component: {fileID: 836458885}
   - component: {fileID: 836458879}
   - component: {fileID: 836458878}
   - component: {fileID: 836458880}
@@ -11712,7 +11713,7 @@ MonoBehaviour:
   pauseDaylightCycle: 0
   IsDay: 0
   IsNight: 1
-  isLoading: 1
+  isLoading: 0
   LoadingScreen: {fileID: 73042251}
   DirectionalLight: {fileID: 2023398813}
   CalenderText: {fileID: 1174745253}
@@ -11755,6 +11756,14 @@ MonoBehaviour:
   FogOverwritten: 0
   FogOverwriteColour: {r: 0.254717, g: 0.056470275, b: 0.056470275, a: 1}
   FogOverwriteDensity: 0.005
+  waterMaterial: {fileID: 2100000, guid: 7629707c2cc99244e865723627377a06, type: 2}
+  FoamDefaultColour: {r: 0.8745098, g: 0.99215686, b: 0.96862745, a: 1}
+  ShallowDefaultColour: {r: 0.08627451, g: 0.6784314, b: 0.53333336, a: 1}
+  DeepDefaultColour: {r: 0.16078432, g: 0.30980393, b: 0.23921569, a: 1}
+  FoamOverrideColour: {r: 0.87375396, g: 0.990566, b: 0.9699956, a: 1}
+  ShallowOverrideColour: {r: 1, g: 1, b: 1, a: 1}
+  DeepOverrideColour: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
+  OceanColourOverwritten: 0
   Weirdness: 0.1
   WeirdnessIncreaseAmount: 0.1
   WeirdnessIncreaseSpeed: 10
@@ -11860,29 +11869,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventObjects:
   - eventGameObject: {fileID: 953654687}
-    chanceToSpawn: 100
+    chanceToSpawn: 60
     despawnTimer: 10
     usingDespawnTimer: 1
     posToSpawn: {fileID: 160266753}
   - eventGameObject: {fileID: 2007831814}
-    chanceToSpawn: 100
+    chanceToSpawn: 5
     despawnTimer: 0
     usingDespawnTimer: 0
     posToSpawn: {fileID: 836458877}
   - eventGameObject: {fileID: 1362025782}
-    chanceToSpawn: 5
+    chanceToSpawn: 50
     despawnTimer: 50
     usingDespawnTimer: 0
     posToSpawn: {fileID: 836458877}
   - eventGameObject: {fileID: 1626141085}
-    chanceToSpawn: 3
+    chanceToSpawn: 40
     despawnTimer: 60
     usingDespawnTimer: 0
     posToSpawn: {fileID: 836458877}
   - eventGameObject: {fileID: 670875532}
-    chanceToSpawn: 5
-    despawnTimer: 60
-    usingDespawnTimer: 0
+    chanceToSpawn: 20
+    despawnTimer: 180
+    usingDespawnTimer: 1
+    posToSpawn: {fileID: 836458877}
+  - eventGameObject: {fileID: 1759953314}
+    chanceToSpawn: 30
+    despawnTimer: 300
+    usingDespawnTimer: 1
     posToSpawn: {fileID: 836458877}
   randomChance: 0
   eventTimer: 0
@@ -11979,6 +11993,21 @@ MonoBehaviour:
   SavedDebtPaidOffState: 0
   SavedPlayerInvSize: 0
   SavedBoatInvSize: 0
+--- !u!114 &836458885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836458875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d95eb2234e4a64ca3954e726cbdef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugEnabled: 0
+  SceneManagerDebugOn: 0
+  ForceOverwriteOcean: 0
 --- !u!1001 &840881042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24538,6 +24567,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757879664}
   m_CullTransparentMesh: 1
+--- !u!1 &1759953314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1759953316}
+  - component: {fileID: 1759953315}
+  m_Layer: 0
+  m_Name: BloodMoonEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1759953315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759953314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc6c64ee3df0054ba822045cd296a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foamOverrideColour: {r: 1, g: 1, b: 1, a: 1}
+  shallowOverrideColour: {r: 0.3962264, g: 0.06541473, b: 0.06541473, a: 1}
+  deepOverrideColour: {r: 0.254717, g: 0.027634395, b: 0.027634395, a: 1}
+  FogColour: {r: 0.16037738, g: 0.055224285, b: 0.055224285, a: 1}
+  FogDensity: 0.0015
+  FishPool:
+  - fish: {fileID: 11400000, guid: 304c21f012ccb7f4699c1e9c5dbd6ab5, type: 2}
+    rarity: 0
+    locked: 0
+--- !u!4 &1759953316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759953314}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 34.201694, y: 94.2193, z: -9.419512}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1760609172
 GameObject:
   m_ObjectHideFlags: 0
@@ -28464,8 +28546,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2007831817}
   - component: {fileID: 2007831816}
-  - component: {fileID: 2007831815}
   - component: {fileID: 2007831818}
+  - component: {fileID: 2007831819}
   m_Layer: 0
   m_Name: Sea Monster
   m_TagString: Untagged
@@ -28473,44 +28555,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &2007831815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007831814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 671117891132c12428ebc6dcff0c13f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BoatTransform: {fileID: 413055527}
-  HeadTransform: {fileID: 2007831817}
-  MouthCollider: {fileID: 1176982302}
-  SpawnRadius: 400
-  circleRadius: 150
-  MovementSpeed: 20
-  attackImpulseForce: 60
-  leapImpulseForce: 40
-  leapUpForce: 20
-  submergeDepth: -10
-  SubmergeRadius: 75
-  submergeSpeed: 5
-  fleeSpeed: 75
-  OceanHeight: 0
-  ResurfaceSpeed: 5
-  velocitySmoothing: 6
-  LeapCooldown: 3
-  Damage: 20
-  MaxHP: 50
-  CircleTimeRange: {x: 4, y: 8}
-  AttackTimeRange: {x: 2, y: 5}
-  SubmergeTimeRange: {x: 3, y: 6}
-  FleeTimeRange: {x: 5, y: 10}
-  StunTimeRange: {x: 3, y: 5}
-  currentState: 2
-  hp: 0
 --- !u!54 &2007831816
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28581,6 +28625,24 @@ CapsuleCollider:
   m_Height: 161.07042
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: -51.486176}
+--- !u!114 &2007831819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007831814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c33d696e771e04f8582b314654554f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 5
+  Damage: 10
+  SpawnRadius: 40
+  Ypos: 0
+  hp: 20
+  BoatTransform: {fileID: 413055527}
 --- !u!4 &2012745765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3631001848105467415, guid: cd74fa376c8aeb943bfd78d34e190e71, type: 3}
@@ -30988,6 +31050,7 @@ SceneRoots:
   - {fileID: 489379931}
   - {fileID: 1972176237}
   - {fileID: 2031584341}
+  - {fileID: 1759953316}
   - {fileID: 2007831817}
   - {fileID: 670875534}
   - {fileID: 1851909539}

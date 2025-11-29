@@ -80,6 +80,9 @@ MonoBehaviour:
   FogDensity: 0.006
   NightFogColour: {r: 0.122641504, g: 0.10276223, b: 0.013305449, a: 1}
   NightFogDensity: 0.01
+  foamOverrideColour: {r: 1, g: 1, b: 1, a: 1}
+  shallowOverrideColour: {r: 0.509434, g: 0.3650824, b: 0.05526879, a: 1}
+  deepOverrideColour: {r: 0.16037738, g: 0.14834908, b: 0, a: 1}
 --- !u!1001 &1089302062767754822
 PrefabInstance:
   m_ObjectHideFlags: 0

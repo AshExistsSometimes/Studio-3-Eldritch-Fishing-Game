@@ -3465,8 +3465,8 @@
     "m_ObjectId": "43f8694c1ee6420aad516a5d2276a8c0",
     "m_Title": "Vert Displacement and Normals",
     "m_Position": {
-        "x": -2918.000244140625,
-        "y": -835.0001220703125
+        "x": -2918.0,
+        "y": -835.0
     }
 }
 
@@ -3538,8 +3538,8 @@
     "m_ObjectId": "4787f7a52fa44aa2a7ebd47d07610ed0",
     "m_Title": "Water & Foam Colours",
     "m_Position": {
-        "x": -2946.000244140625,
-        "y": -30.999998092651368
+        "x": -2946.0,
+        "y": -31.0
     }
 }
 

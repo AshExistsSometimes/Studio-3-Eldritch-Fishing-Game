@@ -118,11 +118,6 @@ public class FishingMinigame : MonoBehaviour
     {
         ProgressSlider.value = FishProgress;
 
-        if (Input.GetKeyDown(InputManager.GetKeyCode("DebugFishing")))
-        {
-            StartMinigame();
-        }
-
         if (MinigameCanClose && Input.anyKeyDown)
         {
             CloseMinigame();

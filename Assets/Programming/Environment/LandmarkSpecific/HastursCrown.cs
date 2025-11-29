@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HastursCrown : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class HastursCrown : MonoBehaviour
     public Color NightFogColour = Color.yellow;
     public float NightFogDensity = 0.001f;
 
+    [Header("Water")]
+    public Color foamOverrideColour = Color.white;
+    public Color shallowOverrideColour = Color.yellow;
+    public Color deepOverrideColour = Color.yellow;
+
     private void Awake()
     {
         sceneManager = GameObject.Find("> GameManager").GetComponent<SceneManager>();
@@ -18,6 +24,7 @@ public class HastursCrown : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            // Fog Colour Overwrite
             sceneManager.FogOverwritten = true;
             if (sceneManager.IsDay)
             {
@@ -29,6 +36,15 @@ public class HastursCrown : MonoBehaviour
                 sceneManager.FogOverwriteColour = NightFogColour;
                 sceneManager.FogOverwriteDensity = NightFogDensity;
             }
+
+            // Ocean Colour Overwrite
+            sceneManager.OceanColourOverwritten = true;
+
+            sceneManager.FoamOverrideColour = foamOverrideColour;
+            sceneManager.ShallowOverrideColour = shallowOverrideColour;
+            sceneManager.DeepOverrideColour = deepOverrideColour;
+
+            sceneManager.UpdateOceanColour();
         }
     }
 
@@ -36,7 +52,12 @@ public class HastursCrown : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            // Reset Fog
             sceneManager.FogOverwritten = false;
+
+            // Reset Ocean Material
+            sceneManager.OceanColourOverwritten = false;
+            sceneManager.UpdateOceanColour();
         }
     }
 }

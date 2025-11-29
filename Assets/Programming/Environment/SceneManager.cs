@@ -44,6 +44,20 @@ public class SceneManager : MonoBehaviour
     public Color FogOverwriteColour = Color.red;
     public float FogOverwriteDensity = 0.02f;
     [Space]
+    [Header("Ocean Overwrite")]
+    public Material waterMaterial;
+    [Space]
+    public Color FoamDefaultColour = Color.white;
+    public Color ShallowDefaultColour = Color.blue;
+    public Color DeepDefaultColour = Color.blue;
+    [Space]
+    public Color FoamOverrideColour = Color.white;
+    public Color ShallowOverrideColour = Color.blue;
+    public Color DeepOverrideColour = Color.blue;
+    [Space]
+    public bool OceanColourOverwritten = false;
+    [Space]
+    [Space]
     [Header("VARIABLES")]
     public float Weirdness = 0f;// THE BIG ONE
     public float WeirdnessIncreaseAmount = 1f;
@@ -91,6 +105,9 @@ public class SceneManager : MonoBehaviour
     {
         Weirdness = 0;// Set to last saved weirdness
         TimeOfDay = 0f;// Ensures lighting initialises correctly to give the void effect
+        OceanColourOverwritten = false;
+        UpdateOceanColour();
+
         if (LoadingScreen != null)
         {
             isLoading = true;
@@ -174,6 +191,21 @@ public class SceneManager : MonoBehaviour
         }
     }
 
+    public void UpdateOceanColour()// Call once when override starts, and once when it ends
+    {
+        if (OceanColourOverwritten)
+        {
+            waterMaterial.SetColor("_Foam_Colour", FoamOverrideColour);
+            waterMaterial.SetColor("_Shallow_Colour", ShallowOverrideColour);
+            waterMaterial.SetColor("_Deep_Colour", DeepOverrideColour);
+        }
+        else
+        {
+            waterMaterial.SetColor("_Foam_Colour", FoamDefaultColour);
+            waterMaterial.SetColor("_Shallow_Colour", ShallowDefaultColour);
+            waterMaterial.SetColor("_Deep_Colour", DeepDefaultColour);
+        }
+    }
     private void UpdateLightAndFog()
     {
         if (Application.isPlaying)

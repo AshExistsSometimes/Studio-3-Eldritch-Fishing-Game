@@ -9307,7 +9307,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 622632160}
   m_HandleRect: {fileID: 622632159}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -12539,7 +12539,7 @@ MonoBehaviour:
   ShallowOverrideColour: {r: 1, g: 1, b: 1, a: 1}
   DeepOverrideColour: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
   OceanColourOverwritten: 0
-  Weirdness: 0.2
+  Weirdness: 0.1
   WeirdnessIncreaseAmount: 0.1
   WeirdnessIncreaseSpeed: 10
   DayTracker: 0
@@ -13521,7 +13521,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -2.3}
+  m_AnchoredPosition: {x: 0, y: -2.300003}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &894817556

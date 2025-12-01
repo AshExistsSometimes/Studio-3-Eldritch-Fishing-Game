@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NoteName: Island Note
   NoteHeader: Crewmate's Diary (2/3)
-  NoteText: "Resouces and hope are growing thin, and all my crew are all losing their
-    mind. \nDelusions are getting to them, we found this huge dead fish, with massive
-    tusks, and all they talked about when around it was how it was a blessing of
-    some upper power.\nThe worlds endlessly looping nature is ruining them, it feels
-    like I can't even turn to them anymore"
+  NoteText: "We're running out of resources, and everyone's starting to get antsy.
+    \n\nI think some of them are hallucinating, talking to people who aren't there..
+    and to top it off, we found this dead fish, and it had tusks.. and all that did
+    was egg them on, got them talking about a sign from a higher power.\n\nThis nightmare
+    is changing them. I cant trust them anymore..\n<color=#DED2BD><size=80%>Don't
+    trust the fish\nDont trUst the Fish\nDoNt TrUst thE fish\ndonT truSt the fiSh\ndOn\"t
+    rust the Pish\ndo not trust the fish.\nDon't trust the Fish.\nIt is not what
+    it seems.\nDont trust the fish."

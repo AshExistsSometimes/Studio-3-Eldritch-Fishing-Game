@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fish_LemonPhoto
   m_EditorClassIdentifier: 
   fishIcon: {fileID: 21300000, guid: 3d7afe4e1fafe5b4aba28ab90134611e, type: 3}
-  fishName: A Picture of a Lemon
+  fishName: Picture of a Lemon
   fishInfo: Can be found anywhere at night
   weirdnessLevel: 1
   difficulty: 2.5

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NoteName: Boat Note
   NoteHeader: Things To Know
-  NoteText: "Paying your Debt\r\n-Not expecting it all immediately, but that doesn't
-    mean no deadlines. Calendar on the ship'll show you how long you\u2019ve got,
-    I wouldn\u2019t recommend falling behind schedule.\r\nUsing The Boat\r\n-Fuel
-    you can come buy from me, or if you run out mid-sail you can turn some fish into
-    fuel with the little contraption at the front of the boat \r\nGetting Fish\r\n-The
-    islands and whatever else you find have different kinds of inhabiting fish, most
-    of which sell for a good premium. If you want to pay that debt don't skip on
-    it\r\n\r\n-The Merchant \r\n"
+  NoteText: "<size=110%>Paying your Debt\r\n<size=90%>I'm not expecting it all in
+    one go, but there will still be deadlines. you can see how long you've got on
+    the calender, don't be late.\n\r\n<size=110%>Using The Boat\r\n<size=90%>You
+    can buy Fuel from me, or if you run out while you're out there, you can turn
+    fish into Biofuel with the converter at the front of the boat.\n \r\n<size=110%>Getting
+    Fish\r\n<size=90%>Most islands and structures you can find out there have unique
+    fish that can't be caught anywhere else, bring them to me and I'll make sure
+    youre compensated for your effort.\r\n\r\n<size=100%>-The Fisherman\r\n"

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b56a8729645f274f94070be076fe0e7, type: 3}
+  m_Name: Note_CrewmateStartIsland
+  m_EditorClassIdentifier: 
+  NoteName: Island Note
+  NoteHeader: Crewmate's Diary (2/3)
+  NoteText: "Resouces and hope are growing thin, and all my crew are all losing their
+    mind. \nDelusions are getting to them, we found this huge dead fish, with massive
+    tusks, and all they talked about when around it was how it was a blessing of
+    some upper power.\nThe worlds endlessly looping nature is ruining them, it feels
+    like I can't even turn to them anymore"

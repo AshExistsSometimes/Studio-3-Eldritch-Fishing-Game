@@ -8475,6 +8475,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 465482471022322995, guid: 82f3d73eb92184a429f9fbc82877f490, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1428546776}
+    - targetCorrespondingSourceObject: {fileID: 465482471022322995, guid: 82f3d73eb92184a429f9fbc82877f490, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1676515492}
     - targetCorrespondingSourceObject: {fileID: 256033924919230270, guid: 82f3d73eb92184a429f9fbc82877f490, type: 3}
       insertIndex: -1
       addedObject: {fileID: 634893285}
@@ -12629,7 +12632,7 @@ MonoBehaviour:
   ShallowOverrideColour: {r: 1, g: 1, b: 1, a: 1}
   DeepOverrideColour: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
   OceanColourOverwritten: 0
-  Weirdness: 0.1
+  Weirdness: 0.6
   WeirdnessIncreaseAmount: 0.1
   WeirdnessIncreaseSpeed: 10
   DayTracker: 0
@@ -15544,6 +15547,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025707009}
   m_CullTransparentMesh: 1
+--- !u!1 &1030552547 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6604071091084521627, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+  m_PrefabInstance: {fileID: 1841113623}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1030552548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030552547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4db33b6f3384314996701b565b1ec86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionText: Press 'E' to interact
+  noteSO: {fileID: 11400000, guid: e5231264f462fa942bbfb9eac68ab851, type: 2}
+  disableOnPickup: 1
+--- !u!4 &1030552552 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+  m_PrefabInstance: {fileID: 1841113623}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1031007710
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20097,6 +20125,115 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1320854743
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2026697699}
+    m_Modifications:
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.009999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -84.683
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.614
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.582
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305871861678413093, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_text
+      value: "Day 9\n\nThey\u2019ve established a church to worship their deity,
+        holding rituals with accompanying sacrifices, prayers and attempts at communion.
+        But this \u201CDeity\u201D has never responded, never granted them anything,
+        only robbed them of their sanity and hope. But they persist, maybe because
+        they are as hopeless for escape as me, or maybe I just can\u2019t even begin
+        to understand them anymore.  \r\nOur boat crashed, the captain could barely
+        think straight enough to steer properly anymore, and this little shack feels
+        like my only solace. \r\nThis world, it\u2019s infinite repeating seascapes,
+        have only...................................\n\n \r\nTHE NON BELIEVERS DOUBT,
+        THIS BEAUTIFUL WORLD DESTROYS THEIR MIND.\r\nA TEST FROM OUR LORD, TO SPITE
+        THOSE WHO MAY DOUBT.\r\nWE WILL CARRY HIS WILL, ELIMINATE ALL WHO OPPOSE
+        HIM.\r\n "
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305871861678413093, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_fontSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305871861678413093, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635357165541866718, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604071091084521627, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_Name
+      value: Crewmate Note 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940384555896258821, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 325
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940384555896258821, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 360
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7109874506248922942, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 5635357165541866718, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6604071091084521627, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1676515493}
+  m_SourcePrefab: {fileID: 100100000, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
 --- !u!1001 &1328456106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25521,6 +25658,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2450227104455564026, guid: 5689911ba2e05544f8d5f10e193d19b6, type: 3}
   m_PrefabInstance: {fileID: 770689470}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1676515491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6604071091084521627, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+  m_PrefabInstance: {fileID: 1320854743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1676515492 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+  m_PrefabInstance: {fileID: 1320854743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1676515493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676515491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4db33b6f3384314996701b565b1ec86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionText: Press 'E' to interact
+  noteSO: {fileID: 11400000, guid: 447db082e9fe93f4c9b761ebc6eaeb19, type: 2}
+  disableOnPickup: 1
 --- !u!23 &1678698538 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 558037631969438653, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
@@ -27827,6 +27989,115 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a928e10981f0c043bb7617fab8c1def, type: 3}
+--- !u!1001 &1841113623
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1102802185}
+    m_Modifications:
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.009999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3649997
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.35599995
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.314006
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.17364818
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9848078
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 254852133093353436, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305871861678413093, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_text
+      value: "Day 9\n\nThey\u2019ve established a church to worship their deity,
+        holding rituals with accompanying sacrifices, prayers and attempts at communion.
+        But this \u201CDeity\u201D has never responded, never granted them anything,
+        only robbed them of their sanity and hope. But they persist, maybe because
+        they are as hopeless for escape as me, or maybe I just can\u2019t even begin
+        to understand them anymore.  \r\nOur boat crashed, the captain could barely
+        think straight enough to steer properly anymore, and this little shack feels
+        like my only solace. \r\nThis world, it\u2019s infinite repeating seascapes,
+        have only...................................\n\n \r\nTHE NON BELIEVERS DOUBT,
+        THIS BEAUTIFUL WORLD DESTROYS THEIR MIND.\r\nA TEST FROM OUR LORD, TO SPITE
+        THOSE WHO MAY DOUBT.\r\nWE WILL CARRY HIS WILL, ELIMINATE ALL WHO OPPOSE
+        HIM.\r\n "
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305871861678413093, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_fontSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305871861678413093, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635357165541866718, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604071091084521627, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_Name
+      value: Boat Note
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940384555896258821, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 325
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940384555896258821, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 360
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7109874506248922942, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 5635357165541866718, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6604071091084521627, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1030552548}
+  m_SourcePrefab: {fileID: 100100000, guid: 1ff9f04734b666b439c06aa7da9a5302, type: 3}
 --- !u!1 &1844843168
 GameObject:
   m_ObjectHideFlags: 0
@@ -30808,7 +31079,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16b70eff0fcaaf84bb5018c220d27de0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.627
+      value: 11.054
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16b70eff0fcaaf84bb5018c220d27de0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -33437,6 +33708,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 935763360565738830, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 269787546}
+    - targetCorrespondingSourceObject: {fileID: 935763360565738830, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1030552552}
     - targetCorrespondingSourceObject: {fileID: 4343040613440854794, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1505188035}

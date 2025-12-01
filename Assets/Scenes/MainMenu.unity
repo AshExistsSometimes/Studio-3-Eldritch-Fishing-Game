@@ -13111,6 +13111,12 @@ MonoBehaviour:
   - name: UI_TICK
     sounds:
     - {fileID: 8300000, guid: 25d6f57848f947c41b37e67d9da03b86, type: 3}
+  - name: CAST
+    sounds:
+    - {fileID: 8300000, guid: 1266d42813fb6a44b9eb02635df294b6, type: 3}
+  - name: REEL
+    sounds:
+    - {fileID: 8300000, guid: 5cd786e06b2f39c4eb231625ba028853, type: 3}
   soundSource: {fileID: 1562833702}
 --- !u!82 &1562833702
 AudioSource:

@@ -171,15 +171,19 @@ public class FishingRod : MonoBehaviour
     // Plays the cast sound.
     public void PlayCastSound()
     {
-        if (audioSource && castClip)
-            audioSource.PlayOneShot(castClip);
+        //if (audioSource && castClip)
+        //    audioSource.PlayOneShot(castClip);
+
+        SoundManager.PlaySound(Sounds.CAST);
     }
 
     // Plays the reel sound.
     public void PlayReelSound()
     {
-        if (audioSource && reelClip)
-            audioSource.PlayOneShot(reelClip);
+        //if (audioSource && reelClip)
+        //    audioSource.PlayOneShot(reelClip);
+
+        SoundManager.PlaySound(Sounds.REEL);
     }
 
     // Waits a set duration before allowing another cast.

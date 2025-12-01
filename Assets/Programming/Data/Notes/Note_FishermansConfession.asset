@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NoteName: FishermansConfession
   NoteHeader: My Confession
-  NoteText: My eyes have been opened, what we've been doing here is wrong.. tha..
-    that thing, its evil. My crew... my friends, I even sacrificed thar poor boy,
-    he was so scared..... I have to put a stop to this, even if it curses me, I have
-    to put an end to this madness.
+  NoteText: "My eyes have been opened, what we've been doing here is wrong.. tha..
+    that thing, its evil. \n\nMy crew... my friends, We even sacrificed that poor
+    lad, he was so scared..... I have to put a stop to this, even if that thing curses
+    me. I have to put an end to this madness."

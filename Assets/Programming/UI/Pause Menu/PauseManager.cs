@@ -6,23 +6,31 @@ public class PauseManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject journalUI;
     public Button buttonToSelect;
+
     private PlayerController player;
+    private BoatController boat;
+
     private bool isPaused;
 
     private void Start()
     {
         player = FindFirstObjectByType<PlayerController>();
+        boat = FindFirstObjectByType<BoatController>();
         pauseMenu.SetActive(false);
         journalUI.SetActive(false);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P) && !isPaused)
+        if (Input.GetKeyDown(InputManager.GetKeyCode("CloseMenu")) && !isPaused && !journalUI.activeSelf)
         {
             OnPause();
         }
-        else if (Input.GetKeyDown(KeyCode.P) && isPaused)
+        else if (Input.GetKeyDown(InputManager.GetKeyCode("CloseMenu")) && !isPaused && journalUI.activeSelf)
+        {
+            OnResume();
+        }
+        else if (Input.GetKeyDown(InputManager.GetKeyCode("CloseMenu")) && isPaused)
         {
             OnResume();
         }
@@ -41,6 +49,7 @@ public class PauseManager : MonoBehaviour
 
     public void OnResume()
     {
+        journalUI.SetActive(false);
         player.enabled = true;
         isPaused = false;
         Time.timeScale = 1f;

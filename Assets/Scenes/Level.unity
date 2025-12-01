@@ -1067,7 +1067,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press 'E' To Close
+  m_text: Press 'E' Or 'ESCAPE' To Close
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bb2465fa95b58734280215ac2222e1e5, type: 2}
   m_sharedMaterial: {fileID: 1786526439520867959, guid: bb2465fa95b58734280215ac2222e1e5, type: 2}
@@ -1879,7 +1879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &73042252
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9255,12 +9255,42 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1916244834195886181, guid: b921136257aba7c43946f749f2bdfc49, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1127716548}
+    - targetCorrespondingSourceObject: {fileID: 7948598190654405088, guid: b921136257aba7c43946f749f2bdfc49, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 637333147}
   m_SourcePrefab: {fileID: 100100000, guid: b921136257aba7c43946f749f2bdfc49, type: 3}
 --- !u!4 &637333145 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2902912015855397692, guid: b921136257aba7c43946f749f2bdfc49, type: 3}
   m_PrefabInstance: {fileID: 637333144}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &637333146 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7948598190654405088, guid: b921136257aba7c43946f749f2bdfc49, type: 3}
+  m_PrefabInstance: {fileID: 637333144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &637333147
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637333146}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6198525040401489066, guid: f52ad6f2244d0a346bfc16768f813624, type: 3}
 --- !u!1 &639995548
 GameObject:
   m_ObjectHideFlags: 0
@@ -12603,7 +12633,7 @@ MonoBehaviour:
   WeirdnessIncreaseAmount: 0.1
   WeirdnessIncreaseSpeed: 10
   DayTracker: 0
-  TimeOfDay: 7.85
+  TimeOfDay: 0
   TimeOfDayAtStart: 7.85
   SecondsInAnHour: 5
   MorningHour: 6
@@ -22238,18 +22268,22 @@ MonoBehaviour:
   - You've stumbled into this realm, and there is no immediate method of escape.
     But, I have a solution for you.
   - Behind you is the boat I keep here at the dock for exploration of this realm.
-  - However, there  is no safe point that you can reach by sailing for long enough,
+  - However, there is no safe point that you can reach by sailing for long enough,
     no no no.
   - You will need to fish for me. But the fish in this realm are different. Not like
     the ones where you are from.
   - These fish have a special significance to me. I won't get into that now, though.
+  - Various fish can be found at different landmarks in the ocean. These landmarks
+    are noticeable by how large they are. They aren't just some regular rock.
+  - If you see a big island or structure, go to it. You may even find more than some
+    fish...
   - You will have to venture out and capture various fish over a 7-day period, and
     then, I will have what I need to get you back to your realm.
   - But don't think you're getting off scot-free. By using this boat, you will be
     in my debt.
   - 'You will be required to pay this off before your 7-day deadline. '
-  - If you fail to provide, then the debt collector will arrive. You don't want to
-    summon him.
+  - If you fail to provide, then the debt collector will be summoned. You don't want
+    that to happen...
   - With all that being said, you have your task. Now go, and get me what I need.
   textSpeed: 0.02
   canPressSpace: 1
@@ -23595,6 +23629,12 @@ MonoBehaviour:
   - name: UI_TICK
     sounds:
     - {fileID: 8300000, guid: 25d6f57848f947c41b37e67d9da03b86, type: 3}
+  - name: CAST
+    sounds:
+    - {fileID: 8300000, guid: 1266d42813fb6a44b9eb02635df294b6, type: 3}
+  - name: REEL
+    sounds:
+    - {fileID: 8300000, guid: 5cd786e06b2f39c4eb231625ba028853, type: 3}
   soundSource: {fileID: 1543507371}
 --- !u!82 &1543507371
 AudioSource:
@@ -23608,7 +23648,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -7141415471472261118, guid: fac6385139fad8f4ab0b5015936d85ef, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -26942,10 +26982,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1102995731514270871, guid: 79e81ef02b83cda49a601dc3c7f5762e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1791773247}
+    - targetCorrespondingSourceObject: {fileID: 2991405259300267920, guid: 79e81ef02b83cda49a601dc3c7f5762e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1791773248}
   m_SourcePrefab: {fileID: 100100000, guid: 79e81ef02b83cda49a601dc3c7f5762e, type: 3}
 --- !u!4 &1791773245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 289761353871031853, guid: 79e81ef02b83cda49a601dc3c7f5762e, type: 3}
+  m_PrefabInstance: {fileID: 1791773244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1791773246 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2991405259300267920, guid: 79e81ef02b83cda49a601dc3c7f5762e, type: 3}
   m_PrefabInstance: {fileID: 1791773244}
   m_PrefabAsset: {fileID: 0}
 --- !u!23 &1791773247
@@ -26993,6 +27041,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1791773248
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791773246}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4948485920737403432, guid: ca64402a9821e4e4abf9cf7ae40d1c6e, type: 3}
 --- !u!1 &1793731600
 GameObject:
   m_ObjectHideFlags: 0
@@ -32688,6 +32758,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 23266831}
     - target: {fileID: 2792504837491288877, guid: 7640939591701c649b1f25338e3f167d, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792504837491288877, guid: 7640939591701c649b1f25338e3f167d, type: 3}
       propertyPath: m_StepOffset
       value: 0.2
       objectReference: {fileID: 0}
@@ -33015,6 +33089,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1613734543280627257, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 81
+      objectReference: {fileID: 0}
     - target: {fileID: 1690321774748499619, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -33243,9 +33321,41 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7685503517377202785, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685503517377202785, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685503517377202785, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
+      propertyPath: m_Size.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685503517377202785, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
+      propertyPath: m_Center.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685503517377202785, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
+      propertyPath: m_Center.z
+      value: 11.3
+      objectReference: {fileID: 0}
     - target: {fileID: 7806877696019778615, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8359623779117658201, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8359623779117658201, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.7499657
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381056580278270436, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -638
       objectReference: {fileID: 0}
     - target: {fileID: 8381221767033158875, guid: 9160874e02496e4428d9bce013e500fa, type: 3}
       propertyPath: m_Name

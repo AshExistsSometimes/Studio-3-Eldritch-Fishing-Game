@@ -10,6 +10,7 @@ public enum Sounds
     // Each element of the list has a list, and a random clip is picked from that embedded list when a sound is played
     // This can be used if you want a random ambience sound to be played if you have many ambience sounds for example
 
+    UI_TICK
 }
 
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]
@@ -29,7 +30,7 @@ public class SoundManager : MonoBehaviour
         soundSource = GetComponent<AudioSource>();
     }
 
-    public static void PlaySFX(Sounds sound, float volume = 1)
+    public static void PlaySound(Sounds sound, float volume = 1)
     {
         AudioClip[] clips = instance.soundList[(int)sound].Sounds;
         AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];

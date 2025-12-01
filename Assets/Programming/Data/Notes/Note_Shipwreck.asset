@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b56a8729645f274f94070be076fe0e7, type: 3}
+  m_Name: Note_Shipwreck
+  m_EditorClassIdentifier: 
+  NoteName: Shipwreck Note
+  NoteHeader: Crewmate's Diary (1/3)
+  NoteText: "Our boat was wiped out by a huge storm, and ever since me and my crew
+    have beeneternally lost in this otherwordly ocean.\nAll sense of the world I
+    knew is gone, whilst my crew is optimistic of escape, I\u2019m really worried.\r\nEveryday
+    is some new outlandish encounter, just today was some huge eyeball island, plagued
+    with these fish with eyeballs equally as creepy\r\nRight now, escape feels impossible.
+    But, with my crew with me, I at least have some hope. I hope things improve soon.\r\n"

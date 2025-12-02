@@ -22,7 +22,7 @@ public class PauseManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(InputManager.GetKeyCode("CloseMenu")) && !isPaused && !journalUI.activeSelf)
+        if (Input.GetKeyDown(InputManager.GetKeyCode("CloseMenu")) && !isPaused && !journalUI.activeSelf && !boat.isMounted)
         {
             pauseMenu.SetActive(true);
             OnPause();
@@ -51,6 +51,7 @@ public class PauseManager : MonoBehaviour
 
     public void OnResume()
     {
+        pauseMenu.SetActive(false);
         journalUI.SetActive(false);
         player.enabled = true;
         isPaused = false;

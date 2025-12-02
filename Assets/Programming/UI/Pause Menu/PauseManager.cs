@@ -24,14 +24,17 @@ public class PauseManager : MonoBehaviour
     {
         if (Input.GetKeyDown(InputManager.GetKeyCode("CloseMenu")) && !isPaused && !journalUI.activeSelf)
         {
+            pauseMenu.SetActive(true);
             OnPause();
         }
         else if (Input.GetKeyDown(InputManager.GetKeyCode("CloseMenu")) && !isPaused && journalUI.activeSelf)
         {
+            pauseMenu.SetActive(false);
             OnResume();
         }
         else if (Input.GetKeyDown(InputManager.GetKeyCode("CloseMenu")) && isPaused)
         {
+            pauseMenu.SetActive(false);
             OnResume();
         }
     }
@@ -42,7 +45,6 @@ public class PauseManager : MonoBehaviour
         player.enabled = false;
         isPaused = true;
         Time.timeScale = 0f;
-        pauseMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -53,7 +55,6 @@ public class PauseManager : MonoBehaviour
         player.enabled = true;
         isPaused = false;
         Time.timeScale = 1f;
-        pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

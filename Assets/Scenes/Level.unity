@@ -1555,6 +1555,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 5711056252459032445}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: PausePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1001 &64982836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1879,7 +1891,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &73042252
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13458,7 +13470,7 @@ MonoBehaviour:
   WeirdnessIncreaseAmount: 0.1
   WeirdnessIncreaseSpeed: 10
   DayTracker: 0
-  TimeOfDay: 7.85
+  TimeOfDay: 0
   TimeOfDayAtStart: 7.85
   SecondsInAnHour: 5
   MorningHour: 6
@@ -30643,6 +30655,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1170253897}
         m_TargetAssemblyTypeName: DebtPaymentInput, Assembly-CSharp
         m_MethodName: HideDebtWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5711056252459032445}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: UnpausePlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

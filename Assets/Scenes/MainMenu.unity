@@ -13622,6 +13622,69 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 828369350883699134, guid: 0181e22ad0c6ef34094f48017a4e4ff5, type: 3}
   m_PrefabInstance: {fileID: 1625662736}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1647264276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1647264278}
+  - component: {fileID: 1647264277}
+  m_Layer: 0
+  m_Name: Input Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1647264277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647264276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf9e52aef67e3e84f8d832c976a910d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keybinds:
+  - inputName: Jump
+    keyCode: 32
+  - inputName: Sprint
+    keyCode: 304
+  - inputName: Interact
+    keyCode: 101
+  - inputName: UseItem
+    keyCode: 324
+  - inputName: OpenInventory
+    keyCode: 9
+  - inputName: Reel
+    keyCode: 323
+  - inputName: DebugFishing
+    keyCode: 45
+  - inputName: CloseMenu
+    keyCode: 27
+  - inputName: PauseGame
+    keyCode: 27
+--- !u!4 &1647264278
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647264276}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 51.97649, y: 32.195602, z: -40.14938}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1648350752
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18978,3 +19041,4 @@ SceneRoots:
   - {fileID: 898855430}
   - {fileID: 1562833703}
   - {fileID: 538562165}
+  - {fileID: 1647264278}

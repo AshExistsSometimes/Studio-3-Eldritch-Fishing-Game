@@ -72,6 +72,15 @@ public class EventDirector : MonoBehaviour
 
         isEventActive = false;
     }
+
+    // For the cheat menu
+    public void StopAllEvents()
+    {
+        foreach (var eventObject in eventObjects)
+        {
+            eventObject.eventGameObject.SetActive(false);
+        }
+    }
 }
 
 [Serializable]

@@ -11822,7 +11822,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: v0.1.8
+  m_text: v0.1.9
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 262d5cd7740f93649a9305dd724e6b55, type: 2}
   m_sharedMaterial: {fileID: 8501004233542930578, guid: 262d5cd7740f93649a9305dd724e6b55, type: 2}
@@ -16034,7 +16034,9 @@ MonoBehaviour:
 
 
     <color=#00A976>Ashley Nicholson<color=#FFFFFF>
-    - <size=80%>( Programming - Design - Art)<size=100%>
+
+    <size=80%>(
+    Project Lead, Version Control, Programming, Design, 3D Artist, 2D Artist )<size=100%>
 
 
     <color=#00A976>Callum
@@ -16043,6 +16045,10 @@ MonoBehaviour:
 
     <color=#00A976>Ethan
     Lindley<color=#FFFFFF> - <size=80%>( 3D Artist )<size=100%>
+
+
+    <color=#00A976>Stephen
+    Nathan<color=#FFFFFF> - <size=80%>( 3D Artist )<size=100%>
 
 
     <color=#00A976>Joe
@@ -16163,23 +16169,30 @@ MonoBehaviour:
 
 
     <color=#00A976>Ashley
-    Nicholson<color=#FFFFFF> - <size=80%>( Programming - Design - Art)<size=100%>
+    Nicholson<color=#FFFFFF>
+
+    <size=80%>( Project Lead, Version Control, Programming,
+    Design, 3D Artist, 2D Artist )<size=100%>
 
 
-    <color=#00A976>Callum
-    Kelly<color=#FFFFFF> - <size=80%>( Programming - Design )<size=100%>
+    <color=#00A976>Callum Kelly<color=#FFFFFF>
+    - <size=80%>( Programming - Design )<size=100%>
 
 
-    <color=#00A976>Ethan
-    Lindley<color=#FFFFFF> - <size=80%>( 3D Artist )<size=100%>
+    <color=#00A976>Ethan Lindley<color=#FFFFFF>
+    - <size=80%>( 3D Artist )<size=100%>
 
 
-    <color=#00A976>Joe
-    Clarkson<color=#FFFFFF> - <size=80%>( Narrative Concepting )<size=100%>
+    <color=#00A976>Stephen Nathan<color=#FFFFFF>
+    - <size=80%>( 3D Artist )<size=100%>
 
 
-    <color=#00A976>Alex
-    Finni<color=#FFFFFF> - <size=80%>( Concept Artist )<size=100%>
+    <color=#00A976>Joe Clarkson<color=#FFFFFF>
+    - <size=80%>( Narrative Concepting )<size=100%>
+
+
+    <color=#00A976>Alex Finni<color=#FFFFFF>
+    - <size=80%>( Concept Artist )<size=100%>
 
 
 

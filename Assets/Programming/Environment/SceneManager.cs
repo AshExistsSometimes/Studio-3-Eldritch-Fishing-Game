@@ -189,6 +189,11 @@ public class SceneManager : MonoBehaviour
         }
     }
 
+    public void SetTimeOfDay(float timeOfDay)
+    {
+        TimeOfDay = timeOfDay;
+    }
+
     public void UpdateOceanColour()// Call once when override starts, and once when it ends
     {
         if (OceanColourOverwritten)

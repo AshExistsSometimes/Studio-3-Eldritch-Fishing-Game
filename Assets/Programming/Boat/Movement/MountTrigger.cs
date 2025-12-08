@@ -11,7 +11,7 @@ public class MountTrigger : Interactable, IInteractable
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) & isMounted)
+        if (Input.GetKey(InputManager.GetKeyCode("Sprint")) && isMounted)
         {
             isMounted = false;
             boat.Dismount();

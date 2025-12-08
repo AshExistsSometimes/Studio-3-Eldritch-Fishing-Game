@@ -32,6 +32,12 @@ public class EventDirector : MonoBehaviour
         {
             PickEventToTrigger();
         }
+
+        // Added to make sure events despawn when it becomes day
+        if (!sceneManager.IsNight)
+        {
+            eventObjects[eventIndex].eventGameObject.SetActive(false);
+        }
     }
 
     private void PickEventToTrigger()

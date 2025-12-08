@@ -6,24 +6,35 @@ public class PauseManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject journalUI;
     public Button buttonToSelect;
+
     private PlayerController player;
+    private BoatController boat;
+
     private bool isPaused;
 
     private void Start()
     {
         player = FindFirstObjectByType<PlayerController>();
+        boat = FindFirstObjectByType<BoatController>();
         pauseMenu.SetActive(false);
         journalUI.SetActive(false);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P) && !isPaused)
+        if (Input.GetKeyDown(InputManager.GetKeyCode("CloseMenu")) && !isPaused && !journalUI.activeSelf && !boat.isMounted)
         {
+            pauseMenu.SetActive(true);
             OnPause();
         }
-        else if (Input.GetKeyDown(KeyCode.P) && isPaused)
+        else if (Input.GetKeyDown(InputManager.GetKeyCode("CloseMenu")) && !isPaused && journalUI.activeSelf)
         {
+            pauseMenu.SetActive(false);
+            OnResume();
+        }
+        else if (Input.GetKeyDown(InputManager.GetKeyCode("CloseMenu")) && isPaused)
+        {
+            pauseMenu.SetActive(false);
             OnResume();
         }
     }
@@ -34,17 +45,17 @@ public class PauseManager : MonoBehaviour
         player.enabled = false;
         isPaused = true;
         Time.timeScale = 0f;
-        pauseMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
     public void OnResume()
     {
+        pauseMenu.SetActive(false);
+        journalUI.SetActive(false);
         player.enabled = true;
         isPaused = false;
         Time.timeScale = 1f;
-        pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

@@ -382,13 +382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4db33b6f3384314996701b565b1ec86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlowColor: {r: 1, g: 1, b: 1, a: 1}
-  GlowIntensity: 0.02
-  _renderer: {fileID: 0}
-  _materialInstance: {fileID: 0}
-  _originalEmissionColor: {r: 0, g: 0, b: 0, a: 0}
-  _isGlowing: 0
-  interactionPrompt: {fileID: 0}
   interactionText: Press 'E' to interact
   noteSO: {fileID: 11400000, guid: 4efba3ce67f178f4986a0a2d82945fa7, type: 2}
   disableOnPickup: 1
@@ -2631,13 +2624,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4db33b6f3384314996701b565b1ec86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlowColor: {r: 1, g: 1, b: 1, a: 1}
-  GlowIntensity: 0.02
-  _renderer: {fileID: 0}
-  _materialInstance: {fileID: 0}
-  _originalEmissionColor: {r: 0, g: 0, b: 0, a: 0}
-  _isGlowing: 0
-  interactionPrompt: {fileID: 0}
   interactionText: Press 'E' to interact
   noteSO: {fileID: 11400000, guid: b4e57d3d4f8d4ad40a5aa6e6f7d94e97, type: 2}
   disableOnPickup: 1

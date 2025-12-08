@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b56a8729645f274f94070be076fe0e7, type: 3}
+  m_Name: Note_BoatFisherman
+  m_EditorClassIdentifier: 
+  NoteName: Boat Note
+  NoteHeader: Things To Know
+  NoteText: "<size=110%>Paying your Debt\r\n<size=90%>I'm not expecting it all in
+    one go, but there will still be deadlines. you can see how long you've got on
+    the calender, don't be late.\n\r\n<size=110%>Using The Boat\r\n<size=90%>You
+    can buy Fuel from me, or if you run out while you're out there, you can turn
+    fish into Biofuel with the converter at the front of the boat.\n \r\n<size=110%>Getting
+    Fish\r\n<size=90%>Most islands and structures you can find out there have unique
+    fish that can't be caught anywhere else, bring them to me and I'll make sure
+    youre compensated for your effort.\r\n\r\n<size=100%>-The Fisherman\r\n"

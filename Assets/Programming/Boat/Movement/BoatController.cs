@@ -51,6 +51,11 @@ public class BoatController : MonoBehaviour
             return;
         }
 
+        if (isMounted)
+        {
+            rod.gameObject.SetActive(false);
+        }
+
         if (yPos > 2.8)
         {
             yPos = 2.8f;

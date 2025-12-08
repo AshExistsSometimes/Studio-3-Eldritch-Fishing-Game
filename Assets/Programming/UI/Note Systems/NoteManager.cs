@@ -180,11 +180,23 @@ public class NoteManager : Interactable
     {
         if (noteUI.activeSelf)
         {
+            if (noteUI.gameObject.name == "Journal UI")
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+
             player.enabled = true;
             noteUI.SetActive(false);
         }
         else
         {
+            if (noteUI.gameObject.name == "Journal UI")
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+
             player.enabled = false;
             noteUI.SetActive(true);
 

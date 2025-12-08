@@ -65,7 +65,10 @@ public class PlayerController : MonoBehaviour
             moveDirection.y -= gravity * Time.deltaTime;
         }
 
-        characterController.Move(moveDirection * Time.deltaTime);
+        if (characterController.enabled)
+        {
+            characterController.Move(moveDirection * Time.deltaTime);
+        }
 
         if (canMove)
         {
@@ -79,8 +82,6 @@ public class PlayerController : MonoBehaviour
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
     }
-
-
 
 
 
@@ -103,5 +104,25 @@ public class PlayerController : MonoBehaviour
             headbobTimer = 0f;
             headTransform.localPosition = Vector3.Lerp(headTransform.localPosition, defaultHeadPos, Time.deltaTime * headbobSpeed);
         }
+    }
+
+    public void PausePlayer()
+    {
+        Time.timeScale = 0;
+
+        characterController.enabled = false;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void UnpausePlayer()
+    {
+        Time.timeScale = 1f;
+
+        characterController.enabled = true;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

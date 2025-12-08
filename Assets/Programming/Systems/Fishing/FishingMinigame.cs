@@ -36,7 +36,11 @@ public class FishingMinigame : MonoBehaviour
     public RectTransform bounds;
     public GameObject MinigameUI;
     public Slider ProgressSlider;
+    [Space]
     public TMP_Text ResultText;
+    public Image ResultImage;
+    public Sprite DefaulticonSprite;
+    [Space]
     public PlayerController player;
     public Transform FishDropPoint;
     public FishingRod rod;
@@ -117,11 +121,6 @@ public class FishingMinigame : MonoBehaviour
     void Update()
     {
         ProgressSlider.value = FishProgress;
-
-        if (Input.GetKeyDown(InputManager.GetKeyCode("DebugFishing")))
-        {
-            StartMinigame();
-        }
 
         if (MinigameCanClose && Input.anyKeyDown)
         {
@@ -218,7 +217,9 @@ public class FishingMinigame : MonoBehaviour
     {
         rod.PullBobberBackIn();
         ResultText.gameObject.SetActive(true);
-        ResultText.text = "Caught It!";
+        ResultText.text = "Caught a " + selectedFish.fishName;
+        ResultImage.sprite = selectedFish.fishIcon;
+
         analytics.AddString("Fishing Minigame Succeeded, caught: " + selectedFish.fishName);
         analytics.AddFishToCounter(selectedFish.fishName);
         NoteManager.Instance.UnlockFish(selectedFish);

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511e2b32049a77a4d8dbb722747eb956, type: 3}
+  m_Name: Item_Eel
+  m_EditorClassIdentifier: 
+  ItemName: Eel
+  Description: Wriggly
+  Icon: {fileID: 21300000, guid: a52a96dc9393ab44d8045f7296994ffc, type: 3}
+  Prefab: {fileID: 4216559771229945658, guid: ce98fc5c6614a554dabfabbd6be07167, type: 3}
+  Equippable: 0
+  Usable: 0
+  BaseSellValue: 6
+  WeirdnessPenalty: 0
+  IsFish: 1

@@ -34,7 +34,7 @@ public class Interactor : MonoBehaviour
                 {
                     ClearCurrentTarget();
                     currentTarget = interactable;
-                    currentTarget.OnMouseOver();
+                    currentTarget.OnMouseHover();
                 }
                 return;
             }

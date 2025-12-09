@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511e2b32049a77a4d8dbb722747eb956, type: 3}
   m_Name: Item_GhostFish
   m_EditorClassIdentifier: 
-  Name: Ghost Fish
+  ItemName: Ghost FIsh
   Description: He's a little shy
-  Icon: {fileID: 21300000, guid: 7816cac28f36fc041b3b2e51b5d5744f, type: 3}
+  Icon: {fileID: 21300000, guid: 75df0c0ba6721114f96f0b2a7570d7a1, type: 3}
   Prefab: {fileID: 6927056428827809821, guid: 8790df506c2085e4185c98a9fcda5097, type: 3}
   Equippable: 0
   Usable: 0
   BaseSellValue: 2
-  WeirdnessPenalty: 0.7
-  FishSize: 1
+  WeirdnessPenalty: 0.2
+  IsFish: 1

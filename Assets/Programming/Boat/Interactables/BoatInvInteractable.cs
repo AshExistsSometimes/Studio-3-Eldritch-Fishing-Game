@@ -3,7 +3,7 @@ using UnityEngine;
 public class BoatInvInteractable : Interactable
 {
     public Inventory inventory;
-    public PlayerMovement player;
+    public PlayerController player;
 
     public override void OnInteract()
     {
@@ -14,7 +14,7 @@ public class BoatInvInteractable : Interactable
             }
             else
             {
-                inventory.OpenInventory(true);// Boat inventory is true
+                inventory.OpenInventory(true, false);// Boat inventory is true
             }
         }
     }

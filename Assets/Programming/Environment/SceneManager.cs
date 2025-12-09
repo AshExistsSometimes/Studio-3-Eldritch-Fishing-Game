@@ -9,6 +9,8 @@ public class SceneManager : MonoBehaviour
 {
     public static SceneManager instance { get; private set; }
 
+    private AnalyticsManager analytics;
+
     [Header("DEBUG")]
     public int ClockTime;
     [SerializeField] private float MinutesPerDay;
@@ -25,6 +27,8 @@ public class SceneManager : MonoBehaviour
     [Space]
     public Light DirectionalLight;
     public TMP_Text CalenderText;
+    public DebtManager debtManager;
+    public DeathManager deathManager;
 
     [Header("Fog")]
     public Gradient FogGradient;
@@ -33,9 +37,33 @@ public class SceneManager : MonoBehaviour
     [Space]
     public float NightFogDensity = 0.02f;
     public float NightFogLerpTime = 10f;
-
+    [Space]
+    [Space]
+    [Space]
+    public bool FogOverwritten = false;
+    public Color FogOverwriteColour = Color.red;
+    public float FogOverwriteDensity = 0.02f;
+    [Space]
+    [Header("Ocean Overwrite")]
+    public Material waterMaterial;
+    [Space]
+    public Color FoamDefaultColour = Color.white;
+    public Color ShallowDefaultColour = Color.blue;
+    public Color DeepDefaultColour = Color.blue;
+    [Space]
+    public Color FoamOverrideColour = Color.white;
+    public Color ShallowOverrideColour = Color.blue;
+    public Color DeepOverrideColour = Color.blue;
+    [Space]
+    public bool OceanColourOverwritten = false;
+    [Space]
+    [Space]
     [Header("VARIABLES")]
     public float Weirdness = 0f;// THE BIG ONE
+    public float WeirdnessIncreaseAmount = 1f;
+    public float WeirdnessIncreaseSpeed = 1f;
+    private bool WeirdnessCanIncrease = true;
+    [Space]
     [Space]
     public int DayTracker = 0;
     private bool DayTickedOver = false;
@@ -70,10 +98,16 @@ public class SceneManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        analytics = AnalyticsManager.Instance;
     }
     private void Start()
     {
+        Weirdness = 0;// Set to last saved weirdness
         TimeOfDay = 0f;// Ensures lighting initialises correctly to give the void effect
+        OceanColourOverwritten = false;
+        UpdateOceanColour();
+
         if (LoadingScreen != null)
         {
             isLoading = true;
@@ -84,30 +118,12 @@ public class SceneManager : MonoBehaviour
     }
     private void Update()
     {
-
-
-        if (Application.isPlaying)
+        if (WeirdnessCanIncrease)
         {
-            if (!pauseDaylightCycle)
-            {
-                TimeOfDay += Time.deltaTime * (SecondsInAnHour / 100);
-            }
-            TimeOfDay %= 24; // Clamp between 0 and 24
-            ClockTime = Mathf.FloorToInt(TimeOfDay %= 24);
-            UpdateLighting(TimeOfDay / 24f);
-            MinutesPerDay = ((SecondsInAnHour * 24) / 60);
-
-
-            Color currentFogColour = FogGradient.Evaluate(TimeOfDay / 24);
-            RenderSettings.fogColor = currentFogColour;
-
+            StartCoroutine(TickUpWeirdness());
         }
-        else
-        {
-            UpdateLighting(TimeOfDay / 24f);
-            MinutesPerDay = ((SecondsInAnHour * 24) / 60);
-            TimeOfDay = 0f;
-        }
+
+        UpdateLightAndFog();
 
         if (MorningHour < TimeOfDay && TimeOfDay < EveningHour)// 6am and 6pm | Daytime Check
         {
@@ -116,10 +132,22 @@ public class SceneManager : MonoBehaviour
             if (!DayTickedOver)
             {
                 DayTickedOver = true;
-                DayTracker += 1;
                 CalenderText.text = DayTracker.ToString();
+
+                debtManager.DayPassed();
+                deathManager.SaveProgress(); Debug.Log("Attempting to Save Data");
+                deathManager.SaveDataToFile(); Debug.Log("Attempting to Save Data to file");
+                analytics.AddString("New Day started, player is on: Day " + DayTracker + " - Weirdness is: " + Weirdness);
+                analytics.UpdateHeaderInFile();
+
+                DayTracker += 1;
             }
-            RenderSettings.fogDensity = Mathf.Lerp(NightFogDensity, DayFogDensity, DayFogLerpTime);
+
+            if (!FogOverwritten)
+            {
+                RenderSettings.fogDensity = Mathf.Lerp(NightFogDensity, DayFogDensity, DayFogLerpTime);
+            }
+
             IsDawn.Invoke();
         }
         else if (TimeOfDay < MorningHour)
@@ -130,8 +158,12 @@ public class SceneManager : MonoBehaviour
             {
                 DayTickedOver = false;
             }
-            RenderSettings.fogDensity = Mathf.Lerp(DayFogDensity, NightFogDensity, NightFogLerpTime);
-            IsDusk.Invoke();    
+
+            if (!FogOverwritten)
+            {
+                RenderSettings.fogDensity = Mathf.Lerp(DayFogDensity, NightFogDensity, NightFogLerpTime);
+            }
+            IsDusk.Invoke();
         }
         else if (TimeOfDay > EveningHour)
         {
@@ -145,7 +177,72 @@ public class SceneManager : MonoBehaviour
             IsDusk.Invoke();
         }
 
+
+
+        if (MorningHour > TimeOfDay - 1 || TimeOfDay > EveningHour + 1)// 6am and 6pm | NightTime Check
+        {
+            DirectionalLight.intensity = 0f;
+        }
+        else
+        {
+            DirectionalLight.intensity = 2f;
+        }
     }
+
+    public void SetTimeOfDay(float timeOfDay)
+    {
+        TimeOfDay = timeOfDay;
+    }
+
+    public void UpdateOceanColour()// Call once when override starts, and once when it ends
+    {
+        if (OceanColourOverwritten)
+        {
+            waterMaterial.SetColor("_Foam_Colour", FoamOverrideColour);
+            waterMaterial.SetColor("_Shallow_Colour", ShallowOverrideColour);
+            waterMaterial.SetColor("_Deep_Colour", DeepOverrideColour);
+        }
+        else
+        {
+            waterMaterial.SetColor("_Foam_Colour", FoamDefaultColour);
+            waterMaterial.SetColor("_Shallow_Colour", ShallowDefaultColour);
+            waterMaterial.SetColor("_Deep_Colour", DeepDefaultColour);
+        }
+    }
+    private void UpdateLightAndFog()
+    {
+        if (Application.isPlaying)
+        {
+            if (!pauseDaylightCycle)
+            {
+                TimeOfDay += Time.deltaTime * (SecondsInAnHour / 100);
+            }
+            TimeOfDay %= 24; // Clamp between 0 and 24
+            ClockTime = Mathf.FloorToInt(TimeOfDay %= 24);
+            UpdateLighting(TimeOfDay / 24f);
+            MinutesPerDay = ((SecondsInAnHour * 24) / 60);
+
+            if (!FogOverwritten)
+            {
+                Color currentFogColour = FogGradient.Evaluate(TimeOfDay / 24);
+                RenderSettings.fogColor = currentFogColour;
+            }
+            else
+            {
+                Color currentFogColour = FogOverwriteColour;
+                RenderSettings.fogColor = currentFogColour;
+
+                RenderSettings.fogDensity = FogOverwriteDensity;
+            }
+        }
+        else
+        {
+            UpdateLighting(TimeOfDay / 24f);
+            MinutesPerDay = ((SecondsInAnHour * 24) / 60);
+            TimeOfDay = 0f;
+        }
+    }
+
     private void UpdateLighting(float timePercent)
     {
         if (DirectionalLight != null)
@@ -194,6 +291,17 @@ public class SceneManager : MonoBehaviour
         yield return new WaitForSeconds(loadingTime / 4f);//          1 Quarter of loading time 
         LoadingScreen.SetActive(false);
         //soundManager.SetActive(true);
+    }
+
+    public IEnumerator TickUpWeirdness()
+    {
+        if (WeirdnessCanIncrease)
+        {
+            WeirdnessCanIncrease = false;
+            Weirdness += WeirdnessIncreaseAmount;
+            yield return new WaitForSeconds(WeirdnessIncreaseSpeed);
+            WeirdnessCanIncrease = true;
+        }
     }
 
 }

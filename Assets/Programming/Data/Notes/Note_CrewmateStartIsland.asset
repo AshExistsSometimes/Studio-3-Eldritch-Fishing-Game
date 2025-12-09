@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b56a8729645f274f94070be076fe0e7, type: 3}
+  m_Name: Note_CrewmateStartIsland
+  m_EditorClassIdentifier: 
+  NoteName: Island Note
+  NoteHeader: Crewmate's Diary (2/3)
+  NoteText: "We're running out of resources, and everyone's starting to get antsy.
+    \n\nI think some of them are hallucinating, talking to people who aren't there..
+    and to top it off, we found this dead fish, and it had tusks.. and all that did
+    was egg them on, got them talking about a sign from a higher power.\n\nThis nightmare
+    is changing them. I cant trust them anymore..\n<color=#DED2BD><size=80%>Don't
+    trust the fish\nDont trUst the Fish\nDoNt TrUst thE fish\ndonT truSt the fiSh\ndOn\"t
+    rust the Pish\ndo not trust the fish.\nDon't trust the Fish.\nIt is not what
+    it seems.\nDont trust the fish."

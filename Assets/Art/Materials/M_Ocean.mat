@@ -33,7 +33,7 @@ Material:
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  m_LockedProperties: 
+  m_LockedProperties: _Depth_Fade
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -148,11 +148,11 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Deep_Colour: {r: 0.14484692, g: 0.3301887, b: 0.2546101, a: 1}
+    - _Deep_Colour: {r: 0.16078432, g: 0.30980393, b: 0.23921569, a: 1}
     - _Deep_Water_Colour: {r: 1, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Foam_Colour: {r: 1, g: 1, b: 1, a: 1}
-    - _Shallow_Colour: {r: 0.17426129, g: 0.41509432, b: 0.354886, a: 1}
+    - _Foam_Colour: {r: 0.8745098, g: 0.99215686, b: 0.96862745, a: 1}
+    - _Shallow_Colour: {r: 0.08627451, g: 0.6784314, b: 0.53333336, a: 1}
     - _Shallow_Water_Colour: {r: 1, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

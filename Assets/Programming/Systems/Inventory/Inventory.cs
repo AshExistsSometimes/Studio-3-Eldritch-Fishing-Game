@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 //by    _                 _ _                     
@@ -18,6 +20,8 @@ public class Inventory : MonoBehaviour
     /// Singleton, so you can call this where ever.
     /// </summary>
     public static Inventory Instance { get; private set; }
+    public GameObject playerSpawnPoint;
+    public TMP_Text moneyText;
 
     // UI stuff
     [SerializeField]
@@ -25,6 +29,9 @@ public class Inventory : MonoBehaviour
 
     [SerializeField]
     private GameObject boatInventoryObject;
+
+    [SerializeField]
+    private GameObject shopInventoryObject;
 
     [SerializeField]
     private GameObject inventorySlotPrefab;
@@ -36,24 +43,42 @@ public class Inventory : MonoBehaviour
     private GameObject boatSlotParent;
 
     [SerializeField]
+    private GameObject shopSlotParent;
+
+    [SerializeField]
+    private GameObject sellSlotParent;
+
+    [SerializeField]
     private Image cursorImage;
+
+    public GameObject CursorIcon;
 
     [SerializeField]
     private DisplayItemData displayItemData;
 
     // How many slots you want the inventory to be.
     [SerializeField]
-    int invSize = 6;
+    public int invSize = 6;
 
     // how many slots you want the boat to have.
     [SerializeField]
-    int boatInvSize = 30;
+    public int boatInvSize = 30;
 
-    // Both inventory slots.
+    // how many slots you want the shop to have.
+    [SerializeField]
+    int shopInvSize = 5;
+
+    // how many slots you want the sell menu to have.
+    [SerializeField]
+    int sellInvSize = 1;
+
+    // All inventory slots.
     List<InventorySlotUI> inventorySlots = new List<InventorySlotUI>();
     List<InventorySlotUI> boatSlots = new List<InventorySlotUI>();
+    List<InventorySlotUI> shopSlots = new List<InventorySlotUI>();
+    List<InventorySlotUI> sellSlots = new List<InventorySlotUI>();
 
-    // ccurrent selected slot. used for draging and checks.
+    // current selected slot. used for draging and checks.
     private int selectedID = -1;
 
     private int selectedItemOriginalSlot = -1;
@@ -61,8 +86,12 @@ public class Inventory : MonoBehaviour
 
     public bool inventoryOpen = false;
 
-    // DEBUG REMOVE FROM FINAL
-    // public InvItemSO spawnData;
+    public PlayerController player;
+    public EconomyManager econManager;
+    public BiofuelConverterInteraction biofuelUI;
+    public BoatFuelManager fuelManager;
+
+    public FishingRod rod;
 
     // used for double click to open item data.
     private bool isSecondClick = false;
@@ -70,6 +99,9 @@ public class Inventory : MonoBehaviour
 
     // used for storing the previous hovered slot.
     private int hoverSlotID = -1;
+
+    // How much money the player has
+    int money = 0;
 
     void Awake()
     {
@@ -92,7 +124,10 @@ public class Inventory : MonoBehaviour
             }
         }
 
+        money = econManager.Currency;
+        moneyText.text = "$" + money;
     }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -102,45 +137,10 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (Input.GetKeyDown(InputManager.GetKeyCode("INVENTORY STRING")))
-
-        // Ideally something else handles calling open and close inventory, but this will suffice for now.
-        // Dont forget to check if the user is on the boat or have a seperate call with OpenInventory(true), this opens both the inventory
-        // and boat inventory together.
-        //if (Input.GetKeyDown(InputManager.GetKeyCode("OpenInventory")))
-        //{
-        //    if (inventoryObject.activeSelf)
-        //    {
-        //        CloseInventory();
-        //    }
-        //    else
-        //    {
-        //        OpenInventory(true);
-        //    }
-        //}
-
-        //// close the info panel if open otherwise close the inventory.
-        //if (Input.GetKeyDown(InputManager.GetKeyCode("CloseMenu")))
-        //{
-        //    if (displayItemData.IsPanelOpen())
-        //    {
-        //        displayItemData.ClosePanel();
-        //        return;
-        //    }
-
-        //    CloseInventory();
-        //}
-
-        // Example code for adding to inventory.
-        // if (Input.GetKeyDown(KeyCode.Space))//remnove this in final.
-        // {
-
-        //     // example add item in inventory, remove in final.
-        //     if (AttemptAddItemToInventory(spawnData))
-        //     {
-        //         // rm -rf the fish object in world.
-        //     }
-        // }
+        if (!inventoryOpen) // Fixes issue #47, stops inventory from running while closed.
+        {
+            return;
+        }
 
         // handles the cursor image.
         // if we have a item then we display.
@@ -198,6 +198,37 @@ public class Inventory : MonoBehaviour
             {
                 doubleClickSlotID = -1;
                 isSecondClick = false;
+            }
+        }
+
+        // right-click: sell item if a vendor is active and the slot contains an item ------ Ashley Code
+        if (Input.GetMouseButtonDown(1) && selectedID != -1)
+        {
+            InvItemSO itemToSell = GetSlotData(selectedID);
+            if (itemToSell != null && ShopManager.Instance != null && ShopManager.Instance.ActiveVendor != null)
+            {
+                // Use ShopManager to handle sell logic (we update money etc in ShopManager)
+                ShopManager.Instance.SellItem(itemToSell);
+
+                // Remove the item from the inventory (we sold it)
+                RemoveItemAtSlot(selectedID);
+
+                // Update UI money text from EconomyManager
+                if (moneyText != null && EconomyManager.instance != null)
+                    moneyText.text = "$" + EconomyManager.instance.Currency;
+
+                // Clear selection (so the UI doesn't keep dragging an empty item)
+                ClearSelected();
+            }
+
+            selectedData = GetSlotData(selectedID);
+            if (selectedData != null && biofuelUI.isOpen)
+            {
+                fuelManager.AddFuel(10);
+
+                RemoveItemAtSlot(selectedID);
+
+                ClearSelected();
             }
         }
 
@@ -267,6 +298,28 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public List<InventorySlotUI> GetAllItemsInInventory()
+    {
+        
+
+        return inventorySlots;
+    }
+
+    public List<InventorySlotUI> GetAllItemsInBoatInventory()
+    {
+        
+
+        return boatSlots;
+    }
+
+    public void SetInventorySlots(List<InventorySlotUI> items)
+    {
+        foreach (InventorySlotUI item in items) 
+        {
+            AddItemToSlot(item.GetID(), item.GetStoredData());
+        }
+    }
+
     /// <summary>
     /// Remnoves all data relating to the selected slot.
     /// </summary>
@@ -308,11 +361,18 @@ public class Inventory : MonoBehaviour
     /// Opens the inventory UI.
     /// </summary>
     /// <param name="openBoatInventoryToo">If TRUE, this will also open the boat inventory</param>
-    public void OpenInventory(bool openBoatInventoryToo = false)
+    /// <param name="openShopInventoryToo">If TRUE, this will also open the shop menu</param>
+    public void OpenInventory(bool openBoatInventoryToo = false, bool openShopInventoryToo = false)
     {
+        CursorIcon.SetActive(true);
+        player.canMove = false;
+        Cursor.lockState = CursorLockMode.None;
         inventoryOpen = true;
         inventoryObject.SetActive(true);
         boatInventoryObject.SetActive(openBoatInventoryToo);
+        shopInventoryObject.SetActive(openShopInventoryToo);
+
+        rod.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -320,10 +380,34 @@ public class Inventory : MonoBehaviour
     /// </summary>
     public void CloseInventory()
     {
+        // Fixes Issue #47
+        EventSystem.current?.SetSelectedGameObject(null);
+        ClearSelected();
+        cursorImage.gameObject.SetActive(false);
+
+        // reset hover if nessary. This fixes when you drag and hover, then close the inventory leaving a ghost icon.
+        if (hoverSlotID != -1)
+        {
+            SetSlotAlpha(hoverSlotID, 1f);
+            SetSlotImage(hoverSlotID, null);
+        }
+
+        // Fixes Issue #47
+        hoverSlotID = -1;
+        isSecondClick = false;
+        selectedID = -1;
+
+        CursorIcon.SetActive(false);
+        player.canMove = true;
+        Cursor.lockState = CursorLockMode.Locked;
         inventoryOpen = false;
         displayItemData.ClosePanel(); // jsut in case.
         inventoryObject.SetActive(false);
         boatInventoryObject.SetActive(false);
+        shopInventoryObject.SetActive(false);
+
+        rod.gameObject.SetActive(true);
+        ShopManager.Instance.CloseVendor();
     }
 
     /// <summary>
@@ -347,6 +431,24 @@ public class Inventory : MonoBehaviour
             InventorySlotUI slotUI = slot.GetComponent<InventorySlotUI>();
             slotUI.SetUp(globalIDTracker);
             boatSlots.Add(slotUI);
+            globalIDTracker++;
+        }
+
+        for (int i = 0; i < shopInvSize; i++)
+        {
+            GameObject slot = Instantiate(inventorySlotPrefab, shopSlotParent.transform);
+            InventorySlotUI slotUI = slot.GetComponent<InventorySlotUI>();
+            slotUI.SetUp(globalIDTracker);
+            shopSlots.Add(slotUI);
+            globalIDTracker++;
+        }
+
+        for (int i = 0; i < sellInvSize; i++)
+        {
+            GameObject slot = Instantiate(inventorySlotPrefab, sellSlotParent.transform);
+            InventorySlotUI slotUI = slot.GetComponent<InventorySlotUI>();
+            slotUI.SetUp(globalIDTracker);
+            sellSlots.Add(slotUI);
             globalIDTracker++;
         }
     }
@@ -402,6 +504,8 @@ public class Inventory : MonoBehaviour
         return -1;
     }
 
+    
+
     /// <summary>
     /// Add item to the provided slot. Will override the original data.
     /// </summary>
@@ -419,6 +523,24 @@ public class Inventory : MonoBehaviour
         }
 
         foreach (InventorySlotUI slot in boatSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                slot.SetItemData(data);
+                return;
+            }
+        }
+
+        foreach (InventorySlotUI slot in shopSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                slot.SetItemData(data);
+                return;
+            }
+        }
+
+        foreach (InventorySlotUI slot in sellSlots)
         {
             if (slot.GetID() == slotID)
             {
@@ -444,6 +566,22 @@ public class Inventory : MonoBehaviour
         }
 
         foreach (InventorySlotUI slot in boatSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                return slot.HasStoredData();
+            }
+        }
+
+        foreach (InventorySlotUI slot in shopSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                return slot.HasStoredData();
+            }
+        }
+
+        foreach (InventorySlotUI slot in sellSlots)
         {
             if (slot.GetID() == slotID)
             {
@@ -477,6 +615,22 @@ public class Inventory : MonoBehaviour
             }
         }
 
+        foreach (InventorySlotUI slot in shopSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                return slot.GetStoredData();
+            }
+        }
+
+        foreach (InventorySlotUI slot in sellSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                return slot.GetStoredData();
+            }
+        }
+
         return null;
     }
 
@@ -496,6 +650,23 @@ public class Inventory : MonoBehaviour
         }
 
         foreach (InventorySlotUI slot in boatSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                slot.SetItemData(null);
+                return;
+            }
+        }
+        foreach (InventorySlotUI slot in shopSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                slot.SetItemData(null);
+                return;
+            }
+        }
+
+        foreach (InventorySlotUI slot in sellSlots)
         {
             if (slot.GetID() == slotID)
             {
@@ -532,6 +703,27 @@ public class Inventory : MonoBehaviour
                 return;
             }
         }
+
+        foreach (InventorySlotUI slot in shopSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                SpawnItem(slot.GetStoredData().Prefab);
+                slot.SetItemData(null);
+                return;
+            }
+        }
+
+        foreach (InventorySlotUI slot in sellSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                SpawnItem(slot.GetStoredData().Prefab);
+                slot.SetItemData(null);
+                return;
+            }
+        }
+
     }
 
     /// <summary>
@@ -551,6 +743,24 @@ public class Inventory : MonoBehaviour
         }
 
         foreach (InventorySlotUI slot in boatSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                slot.SetImageAlpha(alpha);
+                return;
+            }
+        }
+
+        foreach (InventorySlotUI slot in shopSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                slot.SetImageAlpha(alpha);
+                return;
+            }
+        }
+
+        foreach (InventorySlotUI slot in sellSlots)
         {
             if (slot.GetID() == slotID)
             {
@@ -584,6 +794,24 @@ public class Inventory : MonoBehaviour
                 return;
             }
         }
+
+        foreach (InventorySlotUI slot in shopSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                slot.SetSlotImage(image);
+                return;
+            }
+        }
+
+        foreach (InventorySlotUI slot in sellSlots)
+        {
+            if (slot.GetID() == slotID)
+            {
+                slot.SetSlotImage(image);
+                return;
+            }
+        }
     }
 
     /// <summary>
@@ -592,7 +820,7 @@ public class Inventory : MonoBehaviour
     /// <param name="prefab">The prefab associated with the item.</param>
     private void SpawnItem(GameObject prefab)
     {
-        Instantiate(prefab, transform.position, Quaternion.identity);
+        Instantiate(prefab, playerSpawnPoint.transform.position, Quaternion.identity);
     }
 
     /// <summary>
@@ -615,5 +843,35 @@ public class Inventory : MonoBehaviour
 
     }
 
+    public void Sell()
+    {
+        // Only sell if a vendor is active
+        if (ShopManager.Instance == null || ShopManager.Instance.ActiveVendor == null) return;
+        if (selectedID == -1) return;
 
+        InvItemSO item = GetSlotData(selectedID);
+        if (item == null) return;
+
+        // Let ShopManager handle the sale (weirdness, popup, economy)
+        ShopManager.Instance.SellItem(item);
+
+        // Remove item from inventory and update money text
+        RemoveItemAtSlot(selectedID);
+
+        if (moneyText != null && EconomyManager.instance != null)
+            moneyText.text = "$" + EconomyManager.instance.Currency;
+
+        ClearSelected();
+    }
+
+    public bool DoesPlayerOwnItem(InvItemSO item)
+    {
+        // Search player inventory
+        foreach (var slot in inventorySlots)
+        {
+            if (slot.GetStoredData() == item)
+                return true;
+        }
+        return false;
+    }
 }

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b56a8729645f274f94070be076fe0e7, type: 3}
+  m_Name: Note_CultistsNote
+  m_EditorClassIdentifier: 
+  NoteName: CrewmatesDoubt
+  NoteHeader: Crewmates Diary (3/3)
+  NoteText: "Day 9\nThey\u2019ve started a church to worship that thing. holding
+    rituals, sacrificing people..\nBut this forsaken thing they worship, it's never
+    responded, never given them anything in return, only taken more and more, their
+    sanity.. their lives..\n\nYet they keep going.. maybe because they've given up
+    on escape, or maybe its for a reason I don't understand..<color=#D2C2A1><size=50%>
+    I can't understand<color=#3C3424><size=100%>\n\nWhatever that THING is, it's
+    taken their minds, and if they find out it hasn't taken mine too, they're going
+    offer me to-\r"

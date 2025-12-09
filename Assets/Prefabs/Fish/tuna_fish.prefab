@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tuna_fish
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e1760fbd347af443bcc2197799151c0, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -62,6 +66,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4e1760fbd347af443bcc2197799151c0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5942722897326284246}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4e1760fbd347af443bcc2197799151c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9094497128730245311}
   m_SourcePrefab: {fileID: 100100000, guid: 4e1760fbd347af443bcc2197799151c0, type: 3}
 --- !u!1 &3366555804488427353 stripped
 GameObject:
@@ -87,7 +94,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -118,3 +125,24 @@ CapsuleCollider:
   m_Height: 0.4
   m_Direction: 2
   m_Center: {x: 0, y: -0.0052453745, z: 0}
+--- !u!114 &9094497128730245311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3366555804488427353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f42600e72988adb4386cf28aad49ce63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlowColor: {r: 1, g: 1, b: 1, a: 1}
+  GlowIntensity: 0.01
+  _renderer: {fileID: 0}
+  _materialInstance: {fileID: 0}
+  _originalEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  _isGlowing: 0
+  interactionPrompt: {fileID: 0}
+  interactionText: Press 'E' to interact
+  fish: {fileID: 11400000, guid: e2cd2b737f7d6f84ba024edb54762bb5, type: 2}

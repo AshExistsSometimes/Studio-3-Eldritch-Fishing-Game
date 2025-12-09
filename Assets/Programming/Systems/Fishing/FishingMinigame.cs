@@ -28,7 +28,7 @@ public class FishingMinigame : MonoBehaviour
     public float FishStrength = 1f;// The speed the progress bar decreases - Determined by size on FishSO
 
     [Header("Inventory")]
-    // public InventoryManager inventory;
+     public Inventory inventory;
 
     [Header("References")]
     public Image target;
@@ -36,9 +36,15 @@ public class FishingMinigame : MonoBehaviour
     public RectTransform bounds;
     public GameObject MinigameUI;
     public Slider ProgressSlider;
+    [Space]
     public TMP_Text ResultText;
-    public PlayerMovement player;
+    public Image ResultImage;
+    public Sprite DefaulticonSprite;
+    [Space]
+    public PlayerController player;
     public Transform FishDropPoint;
+    public FishingRod rod;
+    private AnalyticsManager analytics;
 
     [Header("Bar Values")]
     float width = 0f;
@@ -87,7 +93,7 @@ public class FishingMinigame : MonoBehaviour
     public List<FishEntry> NightFishPool = new List<FishEntry>();
 
     private void Awake()
-    {
+    {   
         if (instance == null)
         {
             instance = this;
@@ -99,11 +105,13 @@ public class FishingMinigame : MonoBehaviour
 
         if (sceneManager == null)
             sceneManager = FindObjectOfType<SceneManager>();
+
+        analytics = AnalyticsManager.Instance;
     }
 
     void Start()
     {
-        // inventory = InventoryManager.instance;
+        inventory = Inventory.Instance;
         width = bounds.rect.width;
         isFishing = false;
         MinigameUI.SetActive(false);
@@ -113,12 +121,6 @@ public class FishingMinigame : MonoBehaviour
     void Update()
     {
         ProgressSlider.value = FishProgress;
-
-        if (Input.GetKeyDown(InputManager.GetKeyCode("DebugFishing")))
-        {
-            MinigameUI.SetActive(true);
-            InitializeMinigame();
-        }
 
         if (MinigameCanClose && Input.anyKeyDown)
         {
@@ -158,6 +160,12 @@ public class FishingMinigame : MonoBehaviour
         }
     }
 
+    public void StartMinigame()
+    {
+        MinigameUI.SetActive(true);
+        InitializeMinigame();
+    }
+
     private void HandleTargetMovement()
     {
         if (MovingRight)
@@ -180,10 +188,12 @@ public class FishingMinigame : MonoBehaviour
         if (WithinBounds())
         {
             FishProgress += Time.deltaTime * (DefaultPersistance - FishPersistance);
+            rod.ReelSpinning = true;
         }
         else
         {
             FishProgress -= Time.deltaTime * (DefaultStrength + FishStrength);
+            rod.ReelSpinning = false;
         }
     }
 
@@ -205,17 +215,28 @@ public class FishingMinigame : MonoBehaviour
 
     public void WinMinigame()
     {
+        rod.PullBobberBackIn();
         ResultText.gameObject.SetActive(true);
-        ResultText.text = "Caught It!";
-        AddToInventory();
+        ResultText.text = "Caught a " + selectedFish.fishName;
+        ResultImage.sprite = selectedFish.fishIcon;
+
+        analytics.AddString("Fishing Minigame Succeeded, caught: " + selectedFish.fishName);
+        analytics.AddFishToCounter(selectedFish.fishName);
+        NoteManager.Instance.UnlockFish(selectedFish);
+        if (inventory != null)
+        {
+            AddToInventory();
+        }
         isFishing = false;
         StartCoroutine(MinigameCanEnd());
     }
 
     public void FailMinigame()
     {
+        rod.PullBobberBackIn();
         ResultText.gameObject.SetActive(true);
         ResultText.text = "It Got Away!";
+        analytics.AddString("Fishing Minigame Failed");
         isFishing = false;
         StartCoroutine(MinigameCanEnd());
     }
@@ -243,13 +264,39 @@ public class FishingMinigame : MonoBehaviour
         player.canMove = false;
         isFishing = true;
         MinigameOpen = true;
-    }
-    private void SelectFishForGame() // Randomly selects a fish from the active pool based on rarity and scene weirdness.
-    {
-        // Determine time pool
-        List<FishEntry> activePool = sceneManager.IsNight ? NightFishPool : DayFishPool;
 
-        // rarity weighting
+        analytics.AddString("Fishing Minigame Started - Rolled fish: " + selectedFish.fishName + ", Weirdness at Minigame Start: " + sceneManager.Weirdness + ", Fish Weirdness: " + selectedFish.weirdnessLevel);
+    }
+   
+    // Randomly selects a fish from the active pool based on time of day, rarity, and scene weirdness. ////////////////////
+    private void SelectFishForGame()
+    {
+        // Determine active pool based on time of day
+        List<FishEntry> activePool = null;
+
+        if (sceneManager.IsDay)
+        {
+            activePool = DayFishPool;
+            Debug.Log("[FishingMinigame] Time of Day: DAY - Using DayFishPool");
+        }
+        else if (sceneManager.IsNight)
+        {
+            activePool = NightFishPool;
+            Debug.Log("[FishingMinigame] Time of Day: NIGHT - Using NightFishPool");
+        }
+        else
+        {
+            Debug.LogWarning("[FishingMinigame] Neither IsDay nor IsNight is true! Defaulting to DayFishPool.");
+            activePool = DayFishPool;
+        }
+
+        if (activePool == null || activePool.Count == 0)
+        {
+            Debug.LogError("[FishingMinigame] Active fish pool is empty or null! Cannot select fish.");
+            return;
+        }
+
+        // Determine rarity //
         FishRarity chosenRarity;
         float roll = Random.value;
         if (roll < CommonThreshold) chosenRarity = FishRarity.Common;
@@ -257,41 +304,99 @@ public class FishingMinigame : MonoBehaviour
         else if (roll < OddThreshold) chosenRarity = FishRarity.Odd;
         else if (roll < WeirdThreshold) chosenRarity = FishRarity.Weird;
         else chosenRarity = FishRarity.Eldritch;
+        //////////////////////
+
+        Debug.Log($"[FishingMinigame] Rarity roll: {roll:F2}, Selected rarity: {chosenRarity}");
 
         List<FishSO> validFish = new List<FishSO>();
+        Dictionary<FishRarity, int> rarityCounts = new Dictionary<FishRarity, int>();
 
+        // Initialize rarity counts
+        foreach (FishRarity rarity in System.Enum.GetValues(typeof(FishRarity)))
+            rarityCounts[rarity] = 0;
+
+        // Filtering process with logs
         foreach (var entry in activePool)
         {
-            if (entry.locked) continue;
-            if (entry.rarity != chosenRarity) continue;
-            if (sceneManager.Weirdness < entry.fish.weirdnessLevel) continue;
+            rarityCounts[entry.rarity]++;
 
+            if (entry.locked)
+            {
+                Debug.Log($"[FishingMinigame] EXCLUDED {entry.fish.fishName}: Locked");
+                continue;
+            }
+            if (entry.rarity != chosenRarity)
+            {
+                Debug.Log($"[FishingMinigame] EXCLUDED {entry.fish.fishName}: Rarity mismatch ({entry.rarity} != {chosenRarity})");
+                continue;
+            }
+            if (sceneManager.Weirdness < entry.fish.weirdnessLevel)
+            {
+                Debug.Log($"[FishingMinigame] EXCLUDED {entry.fish.fishName}: Requires Weirdness {entry.fish.weirdnessLevel}, current {sceneManager.Weirdness}");
+                continue;
+            }
+
+            Debug.Log($"[FishingMinigame] VALID {entry.fish.fishName} (Rarity={entry.rarity}, WeirdnessReq={entry.fish.weirdnessLevel})");
             validFish.Add(entry.fish);
         }
 
-        Debug.Log($"[FishingMinigame] Selected rarity: {chosenRarity}, Weirdness: {sceneManager.Weirdness}, Pool size: {activePool.Count}");
+        // Rarity distribution log
+        string rarityLog = "[FishingMinigame] Pool Rarity Distribution:";
+        foreach (var kvp in rarityCounts)
+            rarityLog += $" {kvp.Key}={kvp.Value}";
+        Debug.Log(rarityLog);
+
+        // If valid fish found, pick one randomly
         if (validFish.Count > 0)
         {
             selectedFish = validFish[Random.Range(0, validFish.Count)];
+            Debug.Log($"[FishingMinigame] Selected fish: {selectedFish.fishName}");
+            return;
+        }
+
+        // Fallback - no valid fish found, try all unlocked regardless of rarity
+        Debug.LogWarning("[FishingMinigame] No valid fish met conditions. Attempting unlocked fallback...");
+        validFish.Clear();
+        foreach (var entry in activePool)
+        {
+            if (!entry.locked)
+            {
+                Debug.Log($"[FishingMinigame] Fallback unlocked candidate: {entry.fish.fishName}");
+                validFish.Add(entry.fish);
+            }
+        }
+
+        if (validFish.Count > 0)
+        {
+            selectedFish = validFish[Random.Range(0, validFish.Count)];
+            Debug.Log($"[FishingMinigame] Fallback (unlocked) fish selected: {selectedFish.fishName}");
+            return;
+        }
+
+        // Fallback 2 - pick any fish of the chosen rarity
+        Debug.LogError("[FishingMinigame] No unlocked fish found. Selecting random fish by rarity only as final fallback.");
+        validFish.Clear();
+        foreach (var entry in activePool)
+        {
+            if (entry.rarity == chosenRarity)
+                validFish.Add(entry.fish);
+        }
+
+        if (validFish.Count > 0)
+        {
+            selectedFish = validFish[Random.Range(0, validFish.Count)];
+            Debug.Log($"[FishingMinigame] Final fallback: selected {selectedFish.fishName} (Rarity={chosenRarity})");
         }
         else
         {
-            // fallback to common unlocked fish
-            validFish.Clear();
-            foreach (var entry in activePool)
-            {
-                if (!entry.locked && sceneManager.Weirdness >= entry.fish.weirdnessLevel)
-                {
-                    Debug.Log($"Checking {entry.fish.fishName}: Rarity={entry.rarity}, Locked={entry.locked}, WeirdnessReq={entry.fish.weirdnessLevel}");
-                    validFish.Add(entry.fish);
-                }
-            }
-            if (validFish.Count > 0)
-                selectedFish = validFish[Random.Range(0, validFish.Count)];
-            else
-                Debug.LogWarning("No valid fish found in pool!");
+            // Absolute safety: pick SOMETHING if everything else fails
+            selectedFish = activePool[Random.Range(0, activePool.Count)].fish;
+            Debug.LogError($"[FishingMinigame] No valid or rarity-matched fish available. Randomly selected {selectedFish.fishName} to prevent null reference.");
         }
     }
+
+    //////////////////////////////
+
 
     public void InitializeStats()// Initializes minigame values using the FishSO stats
     {
@@ -309,7 +414,9 @@ public class FishingMinigame : MonoBehaviour
 
     public void AddToInventory()
     {
-        // Adding to inventory logic
+        InvItemSO fishToAdd = selectedFish.InventoryItem;
+        inventory.AttemptAddItemToInventory(fishToAdd);
+        analytics.AddString("Added " + selectedFish.fishName + " to inventory");
     }
 
     private void DropFishOnGround()
